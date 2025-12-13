@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('account_id')->constrained('accounts')->cascadeOnDelete();
             $table->decimal('interest_rate', 5, 2);
             $table->decimal('minimum_balance', 15, 2);
-            $table->integer('withdrawal_limit_per_month')->default(0);
+            $table->integer('withdraw_limit_per_month')->default(0);
             $table->timestamps();
         });
 

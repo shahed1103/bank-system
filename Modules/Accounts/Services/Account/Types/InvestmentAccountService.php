@@ -9,8 +9,7 @@ use Modules\Accounts\Services\Account\Contracts\AccountTypeInterface;
 
 class InvestmentAccountService extends BaseAccountService implements AccountTypeInterface
 {
-    public function create($data)
-    {
+    public function create($data): array{
         $additionalData = $data->input('additional_data', []);
 
         $account = $this->createBaseAccount($data);

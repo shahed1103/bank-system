@@ -9,16 +9,17 @@ use Modules\Accounts\Services\Account\Contracts\AccountTypeInterface;
 
 class SavingsAccountService extends BaseAccountService implements AccountTypeInterface
 {
-    public function create($request)
-    {
+    public function create($request): array{
+        $additionalData = $request->input('additional_data', []);
+
         $account = $this->createBaseAccount($request);
 
         SavingsAccount::create([
             'account_id' => $account->id,
-            'interest_rate' => $request['interest_rate'],
-            'minimum_balance' => $request['minimum_balance'],
+            'interest_rate' => $additionalData['interest_rate'],
+            'minimum_balance' => $additionalData['minimum_balance'],
+            'withdraw_limit_per_month' => $additionalData['withdraw_limit_per_month'],
         ]);
-
         $message = 'Account created successfully';
         return ['account' => $account , 'message' => $message];
     }

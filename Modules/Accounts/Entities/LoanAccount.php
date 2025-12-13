@@ -15,9 +15,7 @@ class LoanAccount extends Model
         'start_date',
         'end_date',
         'remaining_balance'
-
     ];
-
     public function account()
     {
         return $this->belongsTo(Account::class, 'account_id');
