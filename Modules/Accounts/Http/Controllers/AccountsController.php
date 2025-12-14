@@ -18,16 +18,17 @@ use Modules\Accounts\Entities\AccountStatus;
 
 class AccountsController extends Controller
 {
-    private AccountFactory $accountCreationService;
+    private AccountFactory $accountFactory;
     
-    public function __construct(AccountFactory $accountCreationService){
-        $this->accountCreationService = $accountCreationService;
+    public function __construct(AccountFactory $accountFactory){
+        $this->accountFactory = $accountFactory;
     }
 
-    public function create(AccountCreateRequest $request): JsonResponse{
+    public function createAccount(AccountCreateRequest $request): JsonResponse{
         try {
             $data = [] ;
-            $data = $this->accountCreationService->create($request);
+            $service = $this->accountFactory->make($request['account_type_id']);
+            $data = $service->create($request);
             return Response::Success($data['account'],$data['message'] );
         }
         catch (Throwable $th) {

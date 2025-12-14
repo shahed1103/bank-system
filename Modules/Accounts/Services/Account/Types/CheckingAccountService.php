@@ -5,8 +5,9 @@ namespace Modules\Accounts\Services\Account\Types;
 use Modules\Accounts\Entities\CheckingAccount;
 
 use Modules\Accounts\Services\Account\BaseAccountService;
+use Modules\Accounts\Services\Account\AccountCreation;
 
-class CheckingAccountService extends BaseAccountService 
+class CheckingAccountService extends BaseAccountService implements AccountCreation
 {
     public function create($request):array {
 

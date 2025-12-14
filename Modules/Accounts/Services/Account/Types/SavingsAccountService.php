@@ -5,8 +5,9 @@ namespace Modules\Accounts\Services\Account\Types;
 use Modules\Accounts\Entities\SavingsAccount;
 
 use Modules\Accounts\Services\Account\BaseAccountService;
+use Modules\Accounts\Services\Account\AccountCreation;
 
-class SavingsAccountService extends BaseAccountService 
+class SavingsAccountService extends BaseAccountService implements AccountCreation
 {
     public function create($request): array{
         $additionalData = $request->input('additional_data', []);

@@ -5,8 +5,9 @@ namespace Modules\Accounts\Services\Account\Types;
 use Modules\Accounts\Entities\LoanAccount;
 
 use Modules\Accounts\Services\Account\BaseAccountService;
+use Modules\Accounts\Services\Account\AccountCreation;
 
-class LoanAccountService extends BaseAccountService 
+class LoanAccountService extends BaseAccountService implements AccountCreation
 {
     public function create($request): array{
         $additionalData = $request->input('additional_data', []);
