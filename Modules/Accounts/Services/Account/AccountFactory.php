@@ -14,8 +14,7 @@ use Modules\Accounts\Services\Account\Types\{
 
 class AccountFactory
 {
-    public static function create($request)
-    {
+    public static function create($request): array {
         $accountType = AccountType::find($request->input('account_type_id'));
 
         return match($accountType->name) {

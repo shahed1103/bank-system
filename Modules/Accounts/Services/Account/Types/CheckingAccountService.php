@@ -5,15 +5,14 @@ namespace Modules\Accounts\Services\Account\Types;
 use Modules\Accounts\Entities\CheckingAccount;
 
 use Modules\Accounts\Services\Account\BaseAccountService;
-use Modules\Accounts\Services\Account\Contracts\AccountTypeInterface;
 
-class CheckingAccountService extends BaseAccountService implements AccountTypeInterface
+class CheckingAccountService extends BaseAccountService 
 {
-    public function create($data):array {
+    public function create($request):array {
 
-        $additionalData = $data->input('additional_data', []);
+        $additionalData = $request->input('additional_data', []);
 
-        $account = $this->createBaseAccount($data);
+        $account = $this->createBaseAccount($request);
 
         CheckingAccount::create([
             'account_id' => $account->id,

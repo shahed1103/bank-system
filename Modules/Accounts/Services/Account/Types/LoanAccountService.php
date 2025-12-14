@@ -5,14 +5,13 @@ namespace Modules\Accounts\Services\Account\Types;
 use Modules\Accounts\Entities\LoanAccount;
 
 use Modules\Accounts\Services\Account\BaseAccountService;
-use Modules\Accounts\Services\Account\Contracts\AccountTypeInterface;
 
-class LoanAccountService extends BaseAccountService implements AccountTypeInterface
+class LoanAccountService extends BaseAccountService 
 {
-    public function create($data): array{
-        $additionalData = $data->input('additional_data', []);
+    public function create($request): array{
+        $additionalData = $request->input('additional_data', []);
 
-        $account = $this->createBaseAccount($data);
+        $account = $this->createBaseAccount($request);
 
         LoanAccount::create([
             'account_id' => $account->id,
