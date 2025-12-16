@@ -2,19 +2,19 @@
 
 namespace Modules\Accounts\Services\Account\Types;
 
-use Modules\Accounts\Entities\SavingsAccount;
+use Modules\Accounts\Entities\SavingAccount;
 
 use Modules\Accounts\Services\Account\BaseAccountService;
 use Modules\Accounts\Services\Account\AccountInterface;
 
-class SavingsAccountService extends BaseAccountService implements AccountInterface
+class SavingAccountService extends BaseAccountService implements AccountInterface
 {
     public function create($request): array{
         $additionalData = $request->input('additional_data', []);
 
         $account = $this->createBaseAccount($request);
 
-        SavingsAccount::create([
+        SavingAccount::create([
             'account_id' => $account->id,
             'interest_rate' => 2.5,
             'minimum_balance' => 100,
