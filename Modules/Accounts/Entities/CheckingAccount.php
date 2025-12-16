@@ -2,18 +2,28 @@
 
 namespace Modules\Accounts\Entities;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CheckingAccount extends Model
+class CheckingAccountSetting extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
-        'account_id',
+        'name',
+        'minimum_balance',
         'overdraft_limit',
-        'monthly_fee',
+        'overdraft_fees',
+        'monthly_fees',
+        'is_active',
     ];
 
-    public function account()
+    /**
+     * Get the checking account details associated with this setting.
+     */
+    public function checkingAccountDetails()
     {
-        return $this->belongsTo(Account::class, 'account_id');
+        // 'checking_account_setting_id' هو اسم العمود المفتاح الأجنبي في جدول checking_account_details
+        return $this->hasMany(CheckingAccountDetails::class, 'checking_account_setting_id');
     }
 }

@@ -13,11 +13,15 @@ return new class extends Migration
     {
         Schema::create('checking_accounts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('account_id')->constrained('accounts')->cascadeOnDelete();
-            $table->decimal('overdraft_limit', 15, 2)->default(0);
-            $table->decimal('monthly_fee', 10, 2)->default(0);
-            $table->timestamps();
-        });
+//      $table->foreignId('account_id')->constrained('accounts')->cascadeOnDelete();
+        $table->string('name')->unique(); // مثلاً: "حساب جاري عادي", "حساب جاري مميز"
+        $table->decimal('minimum_balance', 10, 2)->default(0); // الحد الأدنى للرصيد (استخدم decimal للأموال)
+        $table->decimal('overdraft_limit', 10, 2)->default(0); // الحد الأعلى للسحب على المكشوف
+        $table->decimal('overdraft_fees', 10, 2)->default(0); // رسوم السحب على المكشوف
+        $table->decimal('monthlyfees', 10, 2)->default(0); // رسوم شهرية
+ //       $table->boolean('is_active')->default(true); // لتمكين/تعطيل إعداد معين
+        $table->timestamps();
+    });
 
     }
 

@@ -13,16 +13,19 @@ return new class extends Migration
     {
         Schema::create('loan_accounts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('account_id')->constrained('accounts')->cascadeOnDelete();
-            $table->decimal('loan_amount', 15, 2);
-            $table->decimal('interest_rate', 5, 2);
-            $table->integer('term_months');
-            $table->decimal('monthly_payment', 15, 2);
-            $table->date('start_date');
-            $table->date('end_date');
-            $table->decimal('remaining_balance', 15, 2);
-            $table->timestamps();
-        });
+ //  $table->foreignId('account_id')->constrained('accounts')->cascadeOnDelete();
+        $table->string('name')->unique(); // مثلاً: "قرض شخصي", "قرض سيارة", "قرض عقاري"
+        $table->decimal('interest_rate', 5, 4); // الفائدة
+        $table->enum('interest_rate_type', ['fixed', 'variable'])->default('fixed'); // نوع الفائدة
+        $table->decimal('late_payment_fees', 10, 2)->default(0); // رسوم الدفع المتأخر
+        $table->decimal('processing_fees', 10, 2)->default(0); // رسوم معالجة القرض
+        $table->decimal('early_repayment_penalty', 10, 2)->default(0); // غرامة السداد المبكر
+        $table->integer('max_tenure_months'); // أقصى مدة للقرض بالشهر
+        $table->decimal('min_loan_amount', 10, 2)->default(0); // الحد الأدنى لمبلغ القرض
+        $table->decimal('max_loan_amount', 10, 2)->default(0); // الحد الأقصى لمبلغ القرض
+        $table->boolean('is_active')->default(true);
+        $table->timestamps();
+    });
 
     }
 

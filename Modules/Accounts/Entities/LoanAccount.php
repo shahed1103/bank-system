@@ -2,22 +2,31 @@
 
 namespace Modules\Accounts\Entities;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class LoanAccount extends Model
+class LoanProductSetting extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
-        'account_id',
-        'loan_amount',
+        'name',
         'interest_rate',
-        'term_months',
-        'monthly_payment',
-        'start_date',
-        'end_date',
-        'remaining_balance'
+        'interestratetype',
+        'latepaymentfees',
+        'processing_fees',
+        'earlyrepaymentpenalty',
+        'maxtenuremonths',
+        'minloanamount',
+        'maxloanamount',
+        'is_active',
     ];
-    public function account()
+
+    /**
+
+     */
+    public function loanDetails()
     {
-        return $this->belongsTo(Account::class, 'account_id');
+        return $this->hasMany(LoanDetails::class, 'loanproductsetting_id');
     }
 }

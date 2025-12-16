@@ -2,19 +2,25 @@
 
 namespace Modules\Accounts\Entities;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SavingsAccount extends Model
+class SavingAccountSetting extends Model
 {
-    protected $fillable = [
-        'account_id',
+    use HasFactory;
+protected $fillable = [
+        'name',
         'interest_rate',
-        'minimum_balance',
-        'withdraw_limit_per_month',
+        'minimumbalancefor_interest',
+        'freewithdrawlimitpermonth',
+        'withdrawfeeafter_limit',
+        'is_active',
     ];
 
-    public function account()
+    /**
+     */
+    public function savingAccountDetails()
     {
-        return $this->belongsTo(Account::class, 'account_id');
+        return $this->hasMany(SavingAccountDetails::class, 'savingaccountsetting_id');
     }
 }

@@ -16,9 +16,9 @@ class SavingsAccountService extends BaseAccountService implements AccountInterfa
 
         SavingAccount::create([
             'account_id' => $account->id,
-            'interest_rate' => 2.5,
-            'minimum_balance' => 100,
-            'withdraw_limit_per_month' => 4,
+            // 'interest_rate' => 2.5,
+            // 'minimum_balance' => 100,
+            // 'withdraw_limit_per_month' => 4,
         ]);
         $message = 'Account created successfully';
         return ['account' => $account , 'message' => $message];

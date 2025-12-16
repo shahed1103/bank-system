@@ -17,11 +17,11 @@ class CheckingAccountService extends BaseAccountService implements AccountInterf
 
         CheckingAccount::create([
             'account_id' => $account->id,
-            'overdraft_limit' => 500,
-            'monthly_fee' => 10,
+            // 'overdraft_limit' => 500,
+            // 'monthly_fee' => 10,
         ]);
 
         $message = 'Account created successfully';
-        return ['account' => $account , 'message' => $message];     
+        return ['account' => $account , 'message' => $message];
     }
 }
