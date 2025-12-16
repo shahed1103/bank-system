@@ -27,45 +27,45 @@ class AccountCreateRequest extends FormRequest
      */
     public function rules(): array{
         
-    $baseRules = [
+    return [
         'account_type_id' => ['required', 'exists:account_types,id'],
-        'additional_data' => ['required', 'array'],
+        // 'additional_data' => ['required', 'array'],
     ];
 
-    $type = AccountType::find($this->input('account_type_id'))?->name;
+    // $type = AccountType::find($this->input('account_type_id'))?->name;
 
-    return match ($type) {
+    // return match ($type) {
 
-        'savings' => array_merge($baseRules, [
-            'additional_data.interest_rate' => ['required', 'numeric'],
-            'additional_data.minimum_balance' => ['required', 'numeric'],
-            'additional_data.withdraw_limit_per_month' => ['required', 'integer'],
-        ]),
+    //     'savings' => array_merge($baseRules, [
+    //         'additional_data.interest_rate' => ['required', 'numeric'],
+    //         'additional_data.minimum_balance' => ['required', 'numeric'],
+    //         'additional_data.withdraw_limit_per_month' => ['required', 'integer'],
+    //     ]),
 
-        'checking' => array_merge($baseRules, [
-            'additional_data.overdraft_limit' => ['required', 'numeric'],
-            'additional_data.monthly_fee' => ['required', 'numeric'],
-        ]),
+    //     'checking' => array_merge($baseRules, [
+    //         'additional_data.overdraft_limit' => ['required', 'numeric'],
+    //         'additional_data.monthly_fee' => ['required', 'numeric'],
+    //     ]),
 
-        'loan' => array_merge($baseRules, [
-            'additional_data.loan_amount' => ['required', 'numeric'],
-            'additional_data.interest_rate' => ['required', 'numeric'],
-            'additional_data.term_months' => ['required', 'integer'],
-            'additional_data.monthly_payment' => ['required', 'numeric'],
-            'additional_data.start_date' => ['required', 'date'],
-            'additional_data.end_date' => ['required', 'date', 'after:additional_data.start_date'],
-            'additional_data.remaining_balance' => ['required', 'numeric'],
-        ]),
+    //     'loan' => array_merge($baseRules, [
+    //         'additional_data.loan_amount' => ['required', 'numeric'],
+    //         'additional_data.interest_rate' => ['required', 'numeric'],
+    //         'additional_data.term_months' => ['required', 'integer'],
+    //         'additional_data.monthly_payment' => ['required', 'numeric'],
+    //         'additional_data.start_date' => ['required', 'date'],
+    //         'additional_data.end_date' => ['required', 'date', 'after:additional_data.start_date'],
+    //         'additional_data.remaining_balance' => ['required', 'numeric'],
+    //     ]),
 
-        'investment' => array_merge($baseRules, [
-            'additional_data.risk_level_id' => ['required', 'exists:risk_levels,id'],
-            'additional_data.invested_amount' => ['required', 'numeric'],
-            'additional_data.expected_return_rate' => ['required', 'numeric'],
-            'additional_data.current_value' => ['required', 'numeric'],
-        ]),
+    //     'investment' => array_merge($baseRules, [
+    //         'additional_data.risk_level_id' => ['required', 'exists:risk_levels,id'],
+    //         'additional_data.invested_amount' => ['required', 'numeric'],
+    //         'additional_data.expected_return_rate' => ['required', 'numeric'],
+    //         'additional_data.current_value' => ['required', 'numeric'],
+    //     ]),
 
-        default => $baseRules,
-    };
+    //     default => $baseRules,
+    // };
 }
 
 

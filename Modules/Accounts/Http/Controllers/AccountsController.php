@@ -39,6 +39,21 @@ class AccountsController extends Controller
         }
     }
 
+    public function updateAccount(AccountCreateRequest $request): JsonResponse{
+        try {
+            $data = [] ;
+            $service = $this->accountFactory->make($request['account_type_id']);
+            $data = $service->update($request);
+            return Response::Success($data['account'],$data['message'] );
+        }
+        catch (Throwable $th) {
+            $message = $th->getMessage();
+            $errors [] = $message;
+            $code = $th->getCode() ?: 400;
+            return Response::ErrorX($data , $message , $errors , $code);
+        }
+    }
+
     public function getAllTypes(): JsonResponse{
         try {
             $data = [] ;

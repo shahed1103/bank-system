@@ -5,9 +5,9 @@ namespace Modules\Accounts\Services\Account\Types;
 use Modules\Accounts\Entities\LoanAccount;
 
 use Modules\Accounts\Services\Account\BaseAccountService;
-use Modules\Accounts\Services\Account\AccountCreation;
+use Modules\Accounts\Services\Account\AccountInterface;
 
-class LoanAccountService extends BaseAccountService implements AccountCreation
+class LoanAccountService extends BaseAccountService implements AccountInterface
 {
     public function create($request): array{
         $additionalData = $request->input('additional_data', []);
@@ -16,13 +16,13 @@ class LoanAccountService extends BaseAccountService implements AccountCreation
 
         LoanAccount::create([
             'account_id' => $account->id,
-            'loan_amount' => $additionalData['loan_amount'],
-            'interest_rate' => $additionalData['interest_rate'],
-            'term_months' => $additionalData['term_months'],
-            'monthly_payment' => $additionalData['monthly_payment'],
-            'start_date' => $additionalData['start_date'],
-            'end_date' => $additionalData['end_date'],
-            'remaining_balance' => $additionalData['remaining_balance'],
+            // 'loan_amount' => $additionalData['loan_amount'],
+            // 'interest_rate' => $additionalData['interest_rate'],
+            // 'term_months' => $additionalData['term_months'],
+            // 'monthly_payment' => $additionalData['monthly_payment'],
+            // 'start_date' => $additionalData['start_date'],
+            // 'end_date' => $additionalData['end_date'],
+            // 'remaining_balance' => $additionalData['remaining_balance'],
         ]);
 
         $message = 'Account created successfully';

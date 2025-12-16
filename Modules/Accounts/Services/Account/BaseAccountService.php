@@ -13,8 +13,17 @@ abstract class BaseAccountService
             'account_status_id' => 1, 
             'account_number' => $this->generateAccountNumber(),
             'balance' => 0,
-            // 'parent_id' => $parentId
+            // 'parent_id' => $null
         ]);
+    }
+
+    protected function updateBaseAccount(Account $account, array $data): void
+    {
+        if (isset($data['account_status_id'])) {
+            $account->update([
+                'account_status_id' => $data['account_status_id'],
+            ]);
+        }
     }
 
     protected function generateAccountNumber(): string{

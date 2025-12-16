@@ -14,7 +14,7 @@ use Modules\Accounts\Services\Account\Types\{
 
 class AccountFactory
 {
-    public function make(int $accountTypeId): AccountCreation{
+    public function make(int $accountTypeId): AccountInterface{
         $type = AccountType::findOrFail($accountTypeId)->name;
 
         return match($type) {

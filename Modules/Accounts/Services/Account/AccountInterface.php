@@ -2,6 +2,7 @@
 
 namespace Modules\Accounts\Services\Account;
 
-interface AccountCreation {
+interface AccountInterface {
     public function create(array $data): array;
+    // public function update(array $data): array;
 }
