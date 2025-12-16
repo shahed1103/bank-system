@@ -17,7 +17,7 @@ return new class extends Migration
         $table->decimal('current_interest_rate', 5, 4); // سعر الفائدة المطبق حالياً على هذا الحساب (قد يختلف عن إعدادات المنتج)
         $table->integer('monthly_withdrawals_made')->default(0); // عدد مرات السحب لهذا الشهر
         $table->timestamp('last_interest_payout_date')->nullable(); // تاريخ آخر صرف للفوائد
-        // يمكنك إضافة أي تفاصيل أخرى خاصة بحساب التوفير الفردي هنا
+        
         $table->timestamps();
     });
     }

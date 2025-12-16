@@ -19,7 +19,6 @@ return new class extends Migration
         $table->enum('interest_rate_type', ['fixed', 'variable'])->default('fixed'); // نوع الفائدة
         $table->decimal('late_payment_fees', 10, 2)->default(0); // رسوم الدفع المتأخر
         $table->decimal('processing_fees', 10, 2)->default(0); // رسوم معالجة القرض
-        $table->decimal('early_repayment_penalty', 10, 2)->default(0); // غرامة السداد المبكر
         $table->integer('max_tenure_months'); // أقصى مدة للقرض بالشهر
         $table->decimal('min_loan_amount', 10, 2)->default(0); // الحد الأدنى لمبلغ القرض
         $table->decimal('max_loan_amount', 10, 2)->default(0); // الحد الأقصى لمبلغ القرض

@@ -16,10 +16,10 @@ return new class extends Migration
 //      $table->foreignId('account_id')->constrained('accounts')->cascadeOnDelete();
         $table->string('name')->unique(); // مثلاً: "حساب جاري عادي", "حساب جاري مميز"
         $table->decimal('minimum_balance', 10, 2)->default(0); // الحد الأدنى للرصيد (استخدم decimal للأموال)
-        $table->decimal('overdraft_limit', 10, 2)->default(0); // الحد الأعلى للسحب على المكشوف
-        $table->decimal('overdraft_fees', 10, 2)->default(0); // رسوم السحب على المكشوف
+        $table->decimal('overdraft_limit', 10, 2)->default(0); // الحد الأعلى للسحب الاضافي
+        $table->decimal('overdraft_fees', 10, 2)->default(0); // رسوم السحب الاضافي
         $table->decimal('monthlyfees', 10, 2)->default(0); // رسوم شهرية
- //       $table->boolean('is_active')->default(true); // لتمكين/تعطيل إعداد معين
+ //     $table->boolean('is_active')->default(true); // لتمكين/تعطيل إعداد معين
         $table->timestamps();
     });
 

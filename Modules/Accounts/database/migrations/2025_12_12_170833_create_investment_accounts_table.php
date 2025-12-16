@@ -20,7 +20,6 @@ return new class extends Migration
         $table->decimal('expected_returns', 5, 4)->nullable(); // العوائد المتوقعة (قد تكون غير مضمونة لذا nullable)
         $table->decimal('minimum_investment', 10, 2)->default(0); // الحد الأدنى للاستثمار
         $table->decimal('management_fees_percentage', 5, 4)->default(0); // رسوم الإدارة كنسبة مئوية
-        $table->integer('lock_in_period_months')->nullable(); // فترة الإغلاق بالشهور
         $table->enum('risk_level', ['low', 'medium', 'high'])->nullable(); // مستوى المخاطرة
         $table->boolean('is_active')->default(true);
         $table->timestamps();
