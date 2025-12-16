@@ -4,7 +4,7 @@ namespace Modules\Accounts\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 
-class SavingAccount extends Model
+class SavingsAccount extends Model
 {
     protected $fillable = [
         'account_id',
