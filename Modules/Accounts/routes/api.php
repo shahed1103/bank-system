@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Modules\Accounts\Http\Controllers\AccountsController;
 
 Route::middleware(['auth:sanctum'])->group(function () {
-    Route::post('accounts', [AccountsController::class, 'create']);
+    Route::post('createAccount', [AccountsController::class, 'createAccount']);
 });
 
 Route::get('getAllTypes', [AccountsController::class, 'getAllTypes']);

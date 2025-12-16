@@ -5,8 +5,9 @@ namespace Modules\Accounts\Services\Account\Types;
 use Modules\Accounts\Entities\CheckingAccount;
 
 use Modules\Accounts\Services\Account\BaseAccountService;
+use Modules\Accounts\Services\Account\AccountInterface;
 
-class CheckingAccountService extends BaseAccountService 
+class CheckingAccountService extends BaseAccountService implements AccountInterface
 {
     public function create($request):array {
 
@@ -16,10 +17,11 @@ class CheckingAccountService extends BaseAccountService
 
         CheckingAccount::create([
             'account_id' => $account->id,
-            'overdraft_limit' => $additionalData['overdraft_limit'] ?? 0,
-            'monthly_fee' => $additionalData['monthly_fee'] ?? 0,
+            'overdraft_limit' => 500,
+            'monthly_fee' => 10,
         ]);
 
         $message = 'Account created successfully';
-        return ['account' => $account , 'message' => $message];     }
+        return ['account' => $account , 'message' => $message];     
+    }
 }

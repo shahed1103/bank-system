@@ -14,15 +14,15 @@ use Modules\Accounts\Services\Account\Types\{
 
 class AccountFactory
 {
-    public static function create($request): array {
-        $accountType = AccountType::find($request->input('account_type_id'));
+    public function make(int $accountTypeId): AccountInterface{
+        $type = AccountType::findOrFail($accountTypeId)->name;
 
-        return match($accountType->name) {
-            'savings' => (new SavingsAccountService())->create($request),
-            'checking' => (new CheckingAccountService())->create($request),
-            'loan' => (new LoanAccountService())->create($request),
-            'investment' => (new InvestmentAccountService())->create($request),
-            default => throw new Exception("Invalid account type: $request->account_type", 400),
+        return match($type) {
+            'savings' => new SavingsAccountService(),
+            'checking' => new CheckingAccountService(),
+            'loan' => new LoanAccountService(),
+            'investment' => new InvestmentAccountService(),
+            default => throw new Exception("Invalid account type: $type", 400),
         };
     }
 }
