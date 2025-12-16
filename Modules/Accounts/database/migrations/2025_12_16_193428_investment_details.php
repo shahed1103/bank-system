@@ -18,6 +18,7 @@ return new class extends Migration
         $table->decimal('requested_investment_amount', 15, 2); // مبلغ الاستثمار الأولي
         $table->decimal('approval_investment_amount');
         $table->string('rejected_rasion');
+        $table->enum('risk_level', ['low', 'medium', 'high'])->nullable(); // مستوى المخاطر
         $table->decimal('current_value', 15, 2); // القيمة الحالية للاستثمار
         $table->date('approved_date');
         $table->timestamps();

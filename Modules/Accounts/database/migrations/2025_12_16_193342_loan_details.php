@@ -18,7 +18,7 @@ return new class extends Migration
         $table->decimal('approved_principal_amount', 15, 2); //
         $table->decimal('remaining_principal', 15, 2); // المبلغ المتبقي من رأس المال
         $table->decimal('interest_rate_at_disbursement', 5, 4); // سعر الفائدة المحدد وقت صرف القرض
-        $table->integer('term_months'); // مدة القرض بالأشهر
+        $table->integer('requested_term_months'); // مدة القرض بالأشهر
         $table->date('approved_date'); // تاريخ صرف القرض
         $table->date('next_payment_date'); // تاريخ الاستحقاق القادم
         $table->decimal('monthly_payment_amount', 15, 2); // قيمة القسط الشهري

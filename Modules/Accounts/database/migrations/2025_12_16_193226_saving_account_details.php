@@ -16,8 +16,7 @@ return new class extends Migration
         $table->foreignId('saving_account_setting_id')->nullable()->constrained('saving_account_settings'); // يربط بإعدادات المنتج
         $table->decimal('current_interest_rate', 5, 4); // سعر الفائدة المطبق حالياً على هذا الحساب (قد يختلف عن إعدادات المنتج)
         $table->integer('monthly_withdrawals_made')->default(0); // عدد مرات السحب لهذا الشهر
-        $table->timestamp('last_interest_payout_date')->nullable(); // تاريخ آخر صرف للفوائد
-        
+        $table->decimal('amount');
         $table->timestamps();
     });
     }
