@@ -19,9 +19,10 @@ class Account extends Model
         'opened_at',
         'closed_at',
         'account_type_id',
-        'account_status_id'
+        'account_status_id',
         // 'accountable_id',
         // 'accountable_type',
+        'status_resion'
     ];
 
     // // علاقة polymorphic للحصول على تفاصيل الحساب
