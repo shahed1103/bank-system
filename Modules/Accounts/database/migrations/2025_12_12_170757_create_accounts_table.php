@@ -19,8 +19,9 @@ return new class extends Migration
         $table->decimal('balance', 15, 2)->default(0); // الرصيد الحالي (استخدم decimal للدقة المالية)
         // $table->enum('status', ['active', 'closed', 'suspended', 'frozen'])->default('active'); // حالة الحساب
         $table->timestamp('opened_at')->useCurrent(); // تاريخ فتح الحساب
-        $table->timestamp('closed_at')->nullable(); // تاريخ إغلاق الحساب
-
+        $table->timestamp('closed_at')->nullable();
+        // تاريخ إغلاق الحساب
+        $table->boolean('premium')->default('false');
         // // الأعمدة الخاصة بالعلاقة متعددة الأشكال
         // $table->morphs('accountable'); // سيضيف 'accountable_id' (integer) و 'accountable_type' (string)
 
