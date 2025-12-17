@@ -5,11 +5,10 @@ namespace Modules\Accounts\Entities;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SavingAccountSetting extends Model
+class SavingAccount extends Model
 {
     use HasFactory;
 protected $fillable = [
-        'name',
         'interest_rate',
         'minimumbalancefor_interest',
         'freewithdrawlimitpermonth',

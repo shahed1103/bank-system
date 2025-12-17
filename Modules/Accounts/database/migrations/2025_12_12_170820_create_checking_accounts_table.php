@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('checking_accounts', function (Blueprint $table) {
             $table->id();
 //      $table->foreignId('account_id')->constrained('accounts')->cascadeOnDelete();
-        $table->string('name')->unique(); // مثلاً: "حساب جاري عادي", "حساب جاري مميز"
+
         $table->decimal('minimum_balance', 10, 2)->default(0); // الحد الأدنى للرصيد (استخدم decimal للأموال)
         $table->decimal('overdraft_limit', 10, 2)->default(0); // الحد الأعلى للسحب الاضافي
         $table->decimal('overdraft_fees', 10, 2)->default(0); // رسوم السحب الاضافي

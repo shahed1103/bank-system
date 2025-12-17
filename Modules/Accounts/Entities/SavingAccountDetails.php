@@ -10,6 +10,7 @@ class SavingAccountDetails extends Model
     use HasFactory;
 
     protected $fillable = [
+        'name',
         'savingaccountsetting_id',
         'currentinterestrate',
         'monthlywithdrawalsmade',

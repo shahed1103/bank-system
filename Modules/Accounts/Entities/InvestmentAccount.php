@@ -5,16 +5,15 @@ namespace Modules\Accounts\Entities;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class InvestmentProductSetting extends Model
+class InvestmentAccount extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name',
+
         'expected_returns',
         'minimum_investment',
         'managementfeespercentage',
-//        'is_active',
     ];
 
     /**

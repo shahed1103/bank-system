@@ -14,8 +14,6 @@ return new class extends Migration
         Schema::create('savings_accounts', function (Blueprint $table) {
         $table->id();
   //    $table->foreignId('account_id')->constrained('accounts')->cascadeOnDelete();
-
-        $table->string('name')->unique(); // مثلاً: "توفير عادي", "توفير بفوائد عالية"
         $table->decimal('interest_rate', 5, 4); // الفوائد (نسبة مئوية، 5 أرقام منها 4 بعد الفاصلة)
         $table->decimal('minimumbalancefor_interest', 10, 2)->default(0); // الحد الأدنى لكسب الفائدة
         $table->integer('freewithdrawlimitpermonth')->default(0); // عدد مرات السحب المجانية المسموحة

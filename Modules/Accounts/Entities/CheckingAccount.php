@@ -5,12 +5,11 @@ namespace Modules\Accounts\Entities;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CheckingAccountSetting extends Model
+class CheckingAccount extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name',
         'minimum_balance',
         'overdraft_limit',
         'overdraft_fees',

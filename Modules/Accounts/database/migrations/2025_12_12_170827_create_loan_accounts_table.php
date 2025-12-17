@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('loan_accounts', function (Blueprint $table) {
             $table->id();
  //  $table->foreignId('account_id')->constrained('accounts')->cascadeOnDelete();
-        $table->string('name')->unique(); // مثلاً: "قرض شخصي", "قرض سيارة", "قرض عقاري"
+    
         $table->decimal('interest_rate', 5, 4); // الفائدة
         $table->enum('interest_rate_type', ['fixed', 'variable'])->default('fixed'); // نوع الفائدة
         $table->decimal('late_payment_fees', 10, 2)->default(0); // رسوم الدفع المتأخر
@@ -22,7 +22,6 @@ return new class extends Migration
         $table->integer('max_tenure_months'); // أقصى مدة للقرض بالشهر
         $table->decimal('min_loan_amount', 10, 2)->default(0); // الحد الأدنى لمبلغ القرض
         $table->decimal('max_loan_amount', 10, 2)->default(0); // الحد الأقصى لمبلغ القرض
-        $table->boolean('is_active')->default(true);
         $table->timestamps();
     });
 

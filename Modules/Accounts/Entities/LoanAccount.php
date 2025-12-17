@@ -5,12 +5,11 @@ namespace Modules\Accounts\Entities;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class LoanProductSetting extends Model
+class LoanAccount extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name',
         'interest_rate',
         'interestratetype',
         'latepaymentfees',
@@ -19,7 +18,6 @@ class LoanProductSetting extends Model
         'maxtenuremonths',
         'minloanamount',
         'maxloanamount',
-        'is_active',
     ];
 
     /**

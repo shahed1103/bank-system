@@ -1,0 +1,32 @@
+<?php
+
+namespace Modules\Accounts\Database\Seeders;
+
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+use Modules\Accounts\Entities\AccountType;
+use Modules\Accounts\Entities\CheckingAccount;
+
+class CheckingAccountSettingSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
+    {
+        $settings = [
+            [
+                'minimum_balance' => 100.00,
+                'overdraft_limit' => 500.00,
+                'overdraft_fees' => 35.00,
+                'monthly_fees' => 10.00,
+            ]
+            ];
+
+        foreach ($settings as $settingData) {
+            CheckingAccount::Create(
+                $settingData                     
+            );
+        }
+    }
+}

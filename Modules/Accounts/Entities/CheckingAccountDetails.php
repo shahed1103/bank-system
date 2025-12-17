@@ -10,6 +10,7 @@ class CheckingAccountDetails extends Model
     use HasFactory;
 
     protected $fillable = [
+        'name',
         'checking_account_setting_id',
         'allows_overdraft',
         'current_overdraft_used',
