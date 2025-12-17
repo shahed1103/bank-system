@@ -29,15 +29,10 @@ class AccountCreateRules
             'additional_data.allows_overdraft' => ['required', 'boolean'],
         ]),
 
-    //     'loan' => array_merge($baseRules, [
-    //         'additional_data.loan_amount' => ['required', 'numeric'],
-    //         'additional_data.interest_rate' => ['required', 'numeric'],
-    //         'additional_data.term_months' => ['required', 'integer'],
-    //         'additional_data.monthly_payment' => ['required', 'numeric'],
-    //         'additional_data.start_date' => ['required', 'date'],
-    //         'additional_data.end_date' => ['required', 'date', 'after:additional_data.start_date'],
-    //         'additional_data.remaining_balance' => ['required', 'numeric'],
-    //     ]),
+        'loan' => array_merge($baseRules, [
+            'additional_data.requested_principal_amount' => ['required', 'numeric'],
+            'additional_data.requested_term_months' => ['required', 'numeric'],
+        ]),
 
         'investment' => array_merge($baseRules, [
             'additional_data.requested_investment_amount' => ['required', 'numeric'],
