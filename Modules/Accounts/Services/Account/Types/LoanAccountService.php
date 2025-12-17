@@ -10,7 +10,7 @@ use Modules\Accounts\Services\Account\AccountInterface;
 class LoanAccountService extends BaseAccountService implements AccountInterface
 {
     protected function resolveAccountStatus(): int{
-        return 3; // Active
+        return 5; //non Active
     }
 
     public function create($request , $userId): array{

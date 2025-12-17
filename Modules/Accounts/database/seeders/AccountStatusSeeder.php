@@ -13,9 +13,9 @@ class AccountStatusSeeder extends Seeder
      */
     public function run(): void
     {
-        $statues = ['active' , 'frozen' , 'suspended' , 'closed'];
+        $statues = ['active' , 'frozen' , 'suspended' , 'closed' , 'non active'];
 
-        for($i = 0 ; $i<4 ; $i++){
+        for($i = 0 ; $i<5 ; $i++){
                 AccountStatus::create([
                 'name' => $statues[$i]
             ]);

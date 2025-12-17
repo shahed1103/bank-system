@@ -18,15 +18,16 @@ class AccountCreateRules
     return match ($type) {
 
         'savings' => array_merge($baseRules, [
-            'additional_data.name' => ['required', 'string'],
+            // 'additional_data.name' => ['required', 'string'],
             'additional_data.amount' => ['required', 'numeric'],
         ]),
         
 
-    //     'checking' => array_merge($baseRules, [
-    //         'additional_data.overdraft_limit' => ['required', 'numeric'],
-    //         'additional_data.monthly_fee' => ['required', 'numeric'],
-    //     ]),
+        'checking' => array_merge($baseRules, [
+            // 'additional_data.name' => ['required', 'string'],
+            'additional_data.amount' => ['required', 'numeric'],
+            'additional_data.allows_overdraft' => ['required', 'boolean'],
+        ]),
 
     //     'loan' => array_merge($baseRules, [
     //         'additional_data.loan_amount' => ['required', 'numeric'],
@@ -38,12 +39,10 @@ class AccountCreateRules
     //         'additional_data.remaining_balance' => ['required', 'numeric'],
     //     ]),
 
-    //     'investment' => array_merge($baseRules, [
-    //         'additional_data.risk_level_id' => ['required', 'exists:risk_levels,id'],
-    //         'additional_data.invested_amount' => ['required', 'numeric'],
-    //         'additional_data.expected_return_rate' => ['required', 'numeric'],
-    //         'additional_data.current_value' => ['required', 'numeric'],
-    //     ]),
+        'investment' => array_merge($baseRules, [
+            'additional_data.requested_investment_amount' => ['required', 'numeric'],
+            'additional_data.risk_level' => ['nullable', 'in:low,medium,high'],
+        ]),
 
         default => $baseRules,
     };

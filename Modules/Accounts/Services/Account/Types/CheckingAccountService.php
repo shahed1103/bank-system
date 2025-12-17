@@ -7,6 +7,8 @@ use Modules\Accounts\Entities\CheckingAccount;
 use Modules\Accounts\Services\Account\BaseAccountService;
 use Modules\Accounts\Services\Account\AccountInterface;
 
+use Modules\Accounts\Entities\CheckingAccountDetails;
+
 class CheckingAccountService extends BaseAccountService implements AccountInterface
 {
 
@@ -19,11 +21,15 @@ class CheckingAccountService extends BaseAccountService implements AccountInterf
         $additionalData = $request->input('additional_data', []);
 
         $account = $this->createBaseAccount($request , $userId);
+        $checkingAccount = CheckingAccount::where('year_version', now()->year)
+            ->firstOrFail();
 
-        CheckingAccount::create([
+        CheckingAccountDetails::create([
             'account_id' => $account->id,
-            // 'overdraft_limit' => 500,
-            // 'monthly_fee' => 10,
+            // 'name' => $additionalData['name'],
+            'amount' => $additionalData['amount'],
+            'checking_account_id'   => $checkingAccount->id,
+            'allows_overdraft'   => $additionalData['allows_overdraft']
         ]);
 
         $message = 'Account created successfully';

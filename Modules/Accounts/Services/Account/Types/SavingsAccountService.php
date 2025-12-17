@@ -22,7 +22,7 @@ class SavingsAccountService extends BaseAccountService implements AccountInterfa
             ->firstOrFail();
         SavingAccountDetails::create([
             'account_id' => $account->id,
-            'name' => $additionalData['name'],
+            // 'name' => $additionalData['name'],
             'savings_account_id'   => $savingsAccount->id,
             'currentinterestrate'  => $savingsAccount->interest_rate,
             'amount' => $additionalData['amount'],
