@@ -5,7 +5,7 @@ namespace Modules\Accounts\Entities;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SavingAccount extends Model
+class SavingsAccount extends Model
 {
     use HasFactory;
 protected $fillable = [
