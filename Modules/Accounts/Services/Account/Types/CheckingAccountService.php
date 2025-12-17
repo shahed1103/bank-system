@@ -9,11 +9,16 @@ use Modules\Accounts\Services\Account\AccountInterface;
 
 class CheckingAccountService extends BaseAccountService implements AccountInterface
 {
-    public function create($request):array {
+
+    protected function resolveAccountStatus(): int{
+        return 1; // Active
+    }
+
+    public function create($request , $userId):array {
 
         $additionalData = $request->input('additional_data', []);
 
-        $account = $this->createBaseAccount($request);
+        $account = $this->createBaseAccount($request , $userId);
 
         CheckingAccount::create([
             'account_id' => $account->id,

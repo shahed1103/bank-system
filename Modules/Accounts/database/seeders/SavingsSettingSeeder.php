@@ -20,6 +20,7 @@ class SavingsSettingSeeder extends Seeder
                 'minimumbalancefor_interest' => 100.00, // الحد الأدنى للرصيد للحصول على الفائدة
                 'freewithdrawlimitpermonth' => 4, // 4 عمليات سحب مجانية شهرياً
                 'withdrawfeeafter_limit' => 5.00, // رسوم 5 وحدات عملة بعد تجاوز الحد
+                'year_version' => 2025
             ]];
 
         foreach ($settings as $settingData) {

@@ -16,6 +16,7 @@ class LoanAccount extends Model
         'max_tenure_months',
         'min_loan_amount',
         'max_loan_amount',
+        'year_version'
 
     ];
 

@@ -18,6 +18,8 @@ return new class extends Migration
         $table->decimal('minimumbalancefor_interest', 10, 2)->default(0); // الحد الأدنى لكسب الفائدة
         $table->integer('freewithdrawlimitpermonth')->default(0); // عدد مرات السحب المجانية المسموحة
         $table->decimal('withdrawfeeafter_limit', 10, 2)->default(0); // رسوم السحب بعد تجاوز الحد
+        $table->unsignedSmallInteger('year_version');
+
  //      $table->boolean('is_active')->default(true);
         $table->timestamps();
     });

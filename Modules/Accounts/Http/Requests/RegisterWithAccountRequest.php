@@ -29,8 +29,7 @@ class RegisterWithAccountRequest extends FormRequest
         
         return array_merge(
             UserSignupRules::rules(),
-            AccountCreateRules::rules()
-        );
+            AccountCreateRules::rules($this->input('account_type_id')));
 }
 
 

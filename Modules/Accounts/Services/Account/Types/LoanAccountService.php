@@ -9,10 +9,14 @@ use Modules\Accounts\Services\Account\AccountInterface;
 
 class LoanAccountService extends BaseAccountService implements AccountInterface
 {
-    public function create($request): array{
+    protected function resolveAccountStatus(): int{
+        return 3; // Active
+    }
+
+    public function create($request , $userId): array{
         $additionalData = $request->input('additional_data', []);
 
-        $account = $this->createBaseAccount($request);
+        $account = $this->createBaseAccount($request , $userId);
 
         LoanAccount::create([
             'account_id' => $account->id,

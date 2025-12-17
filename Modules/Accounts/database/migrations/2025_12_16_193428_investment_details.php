@@ -20,6 +20,7 @@ return new class extends Migration
         $table->string('rejected_rasion');
         $table->enum('risk_level', ['low', 'medium', 'high'])->nullable(); // مستوى المخاطر
         $table->date('approved_date');
+        $table->foreignId('account_id')->constrained('accounts')->onDelete('cascade');
         $table->timestamps();
     });
     }

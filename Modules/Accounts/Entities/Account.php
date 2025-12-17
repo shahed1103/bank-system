@@ -10,27 +10,53 @@ class Account extends Model
     use HasFactory;
 
     protected $fillable = [
-        'customer_id',
+        'user_id',
         'account_number',
         'account_name',
         'balance',
         'currency',
-        'status',
+        // 'status',
         'opened_at',
         'closed_at',
-        'accountable_id',
-        'accountable_type',
+        'account_type_id',
+        'account_status_id'
+        // 'accountable_id',
+        // 'accountable_type',
     ];
 
-    // علاقة polymorphic للحصول على تفاصيل الحساب
-    public function accountable()
+    // // علاقة polymorphic للحصول على تفاصيل الحساب
+    // public function accountable()
+    // {
+    //     return $this->morphTo();
+    // }
+
+    public function user()
     {
-        return $this->morphTo();
+        return $this->belongsTo(User::class);
     }
 
-    // علاقة مع العميل (إذا كان لديك موديل Customer)
-    public function customer()
-    {
-        return $this->belongsTo(Customer::class);
+    public function accountType(){
+        return $this->belongsTo(AccountType::class);
+    }
+
+    public function accountStatus(){
+        return $this->belongsTo(AccountStatus::class);
+    }
+
+
+    public function savingDetails(){
+        return $this->hasOne(SavingAccountDetails::class);
+    }
+
+    public function checkingDetails(){
+        return $this->hasOne(CheckingAccountDetails::class);
+    }
+
+    public function investmentDetails(){
+        return $this->hasOne(InvestmentDetails::class);
+    }
+
+    public function loanDetails(){
+        return $this->hasOne(LoanDetails::class);
     }
 }

@@ -22,6 +22,8 @@ return new class extends Migration
         $table->integer('max_tenure_months'); // أقصى مدة للقرض بالشهر
         $table->decimal('min_loan_amount', 10, 2)->default(0); // الحد الأدنى لمبلغ القرض
         $table->decimal('max_loan_amount', 10, 2)->default(0); // الحد الأقصى لمبلغ القرض
+        $table->unsignedSmallInteger('year_version');
+
         $table->timestamps();
     });
 

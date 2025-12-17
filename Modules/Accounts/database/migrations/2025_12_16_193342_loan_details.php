@@ -23,6 +23,7 @@ return new class extends Migration
         $table->date('next_payment_date'); // تاريخ الاستحقاق القادم
         $table->decimal('monthly_payment_amount', 15, 2); // قيمة القسط الشهري
         $table->string('rejected_resion');
+        $table->foreignId('account_id')->constrained('accounts')->onDelete('cascade');
         $table->timestamps();
     });
     }

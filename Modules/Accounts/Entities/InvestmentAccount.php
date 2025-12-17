@@ -14,6 +14,7 @@ class InvestmentAccount extends Model
         'expected_returns',
         'minimum_investment',
         'managementfeespercentage',
+        'year_version'
     ];
 
     /**

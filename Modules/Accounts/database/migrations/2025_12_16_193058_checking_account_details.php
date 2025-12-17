@@ -18,6 +18,8 @@ return new class extends Migration
         $table->decimal('amount');
         $table->boolean('allows_overdraft')->default(false); // هل هذا الحساب الجاري المحدد يسمح بالسحب الاضافي
         $table->decimal('current_overdraft_used', 15, 2)->default(0); // المبلغ المسحوب حالياً الاضافي
+        $table->foreignId('account_id')->constrained('accounts')->onDelete('cascade');
+
         $table->timestamps();
     });
     }

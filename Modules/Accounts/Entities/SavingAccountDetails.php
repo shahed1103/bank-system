@@ -11,6 +11,7 @@ class SavingAccountDetails extends Model
 
     protected $fillable = [
         'name',
+        'account_id',
         'savings_account_id',
         'currentinterestrate',
         'monthlywithdrawalsmade',
@@ -19,9 +20,8 @@ class SavingAccountDetails extends Model
 
     /**
      */
-    public function account()
-    {
-        return $this->morphOne(Account::class, 'accountable');
+    public function account(){
+        return $this->belongsTo(Account::class);
     }
 
     /**

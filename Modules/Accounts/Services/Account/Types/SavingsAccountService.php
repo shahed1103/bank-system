@@ -3,22 +3,29 @@
 namespace Modules\Accounts\Services\Account\Types;
 
 use Modules\Accounts\Entities\SavingsAccount;
+use Modules\Accounts\Entities\SavingAccountDetails;
 
 use Modules\Accounts\Services\Account\BaseAccountService;
 use Modules\Accounts\Services\Account\AccountInterface;
 
 class SavingsAccountService extends BaseAccountService implements AccountInterface
 {
-    public function create($request): array{
+    protected function resolveAccountStatus(): int{
+        return 1; // Active
+    }
+
+    public function create($request , $userId): array{
         $additionalData = $request->input('additional_data', []);
 
-        $account = $this->createBaseAccount($request);
-
-        SavingAccount::create([
+        $account = $this->createBaseAccount($request , $userId);
+        $savingsAccount = SavingsAccount::where('year_version', now()->year)
+            ->firstOrFail();
+        SavingAccountDetails::create([
             'account_id' => $account->id,
-            // 'interest_rate' => 2.5,
-            // 'minimum_balance' => 100,
-            // 'withdraw_limit_per_month' => 4,
+            'name' => $additionalData['name'],
+            'savings_account_id'   => $savingsAccount->id,
+            'currentinterestrate'  => $savingsAccount->interest_rate,
+            'amount' => $additionalData['amount'],
         ]);
         $message = 'Account created successfully';
         return ['account' => $account , 'message' => $message];

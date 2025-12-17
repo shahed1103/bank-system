@@ -29,18 +29,19 @@ class AccountCreateRequest extends FormRequest
         
     return [
         'account_type_id' => ['required', 'exists:account_types,id'],
-        // 'additional_data' => ['required', 'array'],
+        'account_name' => ['required', 'string'],
+        'additional_data' => ['required', 'array'],
     ];
 
-    // $type = AccountType::find($this->input('account_type_id'))?->name;
+    $type = AccountType::find($this->input('account_type_id'))?->name;
 
-    // return match ($type) {
+    return match ($type) {
 
-    //     'savings' => array_merge($baseRules, [
-    //         'additional_data.interest_rate' => ['required', 'numeric'],
-    //         'additional_data.minimum_balance' => ['required', 'numeric'],
-    //         'additional_data.withdraw_limit_per_month' => ['required', 'integer'],
-    //     ]),
+        'savings' => array_merge($baseRules, [
+            'additional_data.name' => ['required', 'numeric'],
+            'additional_data.amount' => ['required', 'string'],
+        ]),
+        
 
     //     'checking' => array_merge($baseRules, [
     //         'additional_data.overdraft_limit' => ['required', 'numeric'],
@@ -65,7 +66,7 @@ class AccountCreateRequest extends FormRequest
     //     ]),
 
     //     default => $baseRules,
-    // };
+    };
 }
 
 

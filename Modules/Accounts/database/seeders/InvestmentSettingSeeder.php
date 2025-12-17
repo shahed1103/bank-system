@@ -18,6 +18,7 @@ class InvestmentSettingSeeder extends Seeder
                 'expected_returns' => 8.5, // مثلاً 8.5%
                 'minimum_investment' => 1000.00,
                 'management_fees_percentage' => 1.5, // 1.5% رسوم إدارة
+                'year_version' => 2025
             ]
             ];
 

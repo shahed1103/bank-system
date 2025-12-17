@@ -17,7 +17,9 @@ return new class extends Migration
         $table->decimal('minimum_balance', 10, 2)->default(0); // الحد الأدنى للرصيد (استخدم decimal للأموال)
         $table->decimal('overdraft_limit', 10, 2)->default(0); // الحد الأعلى للسحب الاضافي
         $table->decimal('overdraft_fees', 10, 2)->default(0); // رسوم السحب الاضافي
-        $table->decimal('monthlyfees', 10, 2)->default(0); // رسوم شهرية
+        $table->decimal('monthlyfees', 10, 2)->default(0); // رسوم شهرية    
+        $table->unsignedSmallInteger('year_version');
+
  //     $table->boolean('is_active')->default(true); // لتمكين/تعطيل إعداد معين
         $table->timestamps();
     });

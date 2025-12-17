@@ -4,6 +4,8 @@ namespace Modules\Accounts\Services\Collaborate;
 
 use Modules\Accounts\Services\Account\AccountFactory;
 use App\Services\UserService;
+use Illuminate\Support\Facades\DB;
+
 
 class RegisterAndAccountCreation {
 
@@ -13,14 +15,16 @@ class RegisterAndAccountCreation {
     }
 
     public function registerUserWithAccount($request): array{
-
         DB::beginTransaction();
         try{
         $data['user'] = $this->userService->register($request);
+        // $result = $this->userService->register($request);
+
+        $user = $data['user']['user'];
 
         $service = $this->accountFactory->make($request['account_type_id']);
 
-        $data['account'] = $service->create($request);
+        $data['account'] = $service->create($request , $user->id);
 
         DB::commit();
 

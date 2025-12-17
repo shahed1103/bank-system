@@ -16,14 +16,20 @@ class InvestmentDetails extends Model
         'rejected_rasion',
         'risk_level',
         'approved_date',
+        'account_id',
+
     ];
 
     /**
      * Get the parent account model.
      */
-    public function account()
-    {
-        return $this->morphOne(Account::class, 'accountable');
+    // public function account()
+    // {
+    //     return $this->morphOne(Account::class, 'accountable');
+    // }
+
+    public function account(){
+        return $this->belongsTo(Account::class);
     }
 
     /**

@@ -15,9 +15,11 @@ return new class extends Migration
         $table->id();
         $table->string('name')->unique()->defult('normal'); // مثلاً: "توفير عادي", "توفير بفوائد عالي
         $table->foreignId('savings_account_id')->nullable()->constrained('savings_accounts')->onDelete('cascade'); // يربط بإعدادات المنتج
-        $table->decimal('current_interest_rate', 5, 4); // سعر الفائدة المطبق حالياً على هذا الحساب (قد يختلف عن إعدادات المنتج)
-        $table->integer('monthly_withdrawals_made')->default(0); // عدد مرات السحب لهذا الشهر
+        $table->decimal('currentinterestrate', 5, 4); // سعر الفائدة المطبق حالياً على هذا الحساب (قد يختلف عن إعدادات المنتج)
+        $table->integer('monthlywithdrawalsmade')->default(0); // عدد مرات السحب لهذا الشهر
         $table->decimal('amount');
+        $table->foreignId('account_id')->constrained('accounts')->onDelete('cascade');
+
         $table->timestamps();
     });
     }

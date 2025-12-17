@@ -19,17 +19,22 @@ class LoanDetails extends Model
         'approved_date',
         'next_payment_date',
         'monthly_payment_amount',
-        'rejected_resion'
+        'rejected_resion',
+        'account_id',
+
     ];
 
     /**
 
      */
-    public function account()
-    {
-        return $this->morphOne(Account::class, 'accountable');
-    }
+    // public function account()
+    // {
+    //     return $this->morphOne(Account::class, 'accountable');
+    // }
 
+    public function account(){
+        return $this->belongsTo(Account::class);
+    }
     /**
 
      */

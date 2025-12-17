@@ -24,7 +24,7 @@ class LoanSettingSeerder extends Seeder
                 'max_tenure_months' => 1.0, // 1% من المبلغ المتبقي
                 'min_loan_amount' => 60, // 5 سنوات
                 'max_loan_amount' => 1000.00,
-
+                'year_version' => 2025
             ]
          ];
         foreach ($settings as $settingData) {
