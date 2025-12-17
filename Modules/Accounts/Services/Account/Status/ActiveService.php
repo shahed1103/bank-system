@@ -28,14 +28,17 @@ public function freeze($accountId , $request):array {
     $account->account_status_id = 2;
     $account->status_resion = $request['status_resion'];
 
-    $message = 'this Account  closed successfuly';
+    $message = 'this Account  freeze successfuly';
     return ['account' => $account  , 'message' => $message];
 }
 
 
 public function activate($accountId):array {
-    $message = 'this Account is already active';
-    return ['message' => $message];
+$account = Account::find($accountId);
+$account->account_status_id = 1;
+
+$message = 'this Account  return active successfuly';
+return ['account' => $account  , 'message' => $message];
 }
 
 public function closed($accountId , $request):array {
