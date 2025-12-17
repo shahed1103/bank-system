@@ -13,8 +13,8 @@ return new class extends Migration
     {
     Schema::create('checking_account_details', function (Blueprint $table) {
         $table->id();
-        $table->string('name')->unique()->default('normal'); // مثلاً: "حساب جاري عادي", "حساب جاري مميز"
-        $table->foreignId('checking_account_setting_id')->nullable()->constrained('checking_account_settings'); // يربط بإعدادات المنتج
+        $table->string('name')->default('normal'); // مثلاً: "حساب جاري عادي", "حساب جاري مميز"
+        $table->foreignId('checking_account_id')->nullable()->constrained('checking_accounts') ->onDelete('cascade'); // يربط بإعدادات المنتج
         $table->decimal('amount');
         $table->boolean('allows_overdraft')->default(false); // هل هذا الحساب الجاري المحدد يسمح بالسحب الاضافي
         $table->decimal('current_overdraft_used', 15, 2)->default(0); // المبلغ المسحوب حالياً الاضافي

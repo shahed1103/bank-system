@@ -7,7 +7,7 @@ use Illuminate\Database\Seeder;
 use Modules\Accounts\Entities\AccountType;
 use Modules\Accounts\Entities\CheckingAccount;
 
-class CheckingAccountSettingSeeder extends Seeder
+class CheckingSettingSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,16 +16,17 @@ class CheckingAccountSettingSeeder extends Seeder
     {
         $settings = [
             [
-                'minimum_balance' => 100.00,
-                'overdraft_limit' => 500.00,
-                'overdraft_fees' => 35.00,
-                'monthly_fees' => 10.00,
+        'minimum_balance' => 100.00,
+        'overdraft_limit' => 500.00,
+        'overdraft_fees' => 35.00,
+        'monthlyfees' => 10.00
+
             ]
             ];
 
         foreach ($settings as $settingData) {
             CheckingAccount::Create(
-                $settingData                     
+                $settingData
             );
         }
     }

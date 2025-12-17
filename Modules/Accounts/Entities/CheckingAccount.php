@@ -22,7 +22,6 @@ class CheckingAccount extends Model
      */
     public function checkingAccountDetails()
     {
-        // 'checking_account_setting_id' هو اسم العمود المفتاح الأجنبي في جدول checking_account_details
-        return $this->hasMany(CheckingAccountDetails::class, 'checking_account_setting_id');
+        return $this->hasMany(CheckingAccountDetails::class, 'checking_accounts_id');
     }
 }

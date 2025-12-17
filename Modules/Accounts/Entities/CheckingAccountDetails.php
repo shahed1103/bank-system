@@ -11,7 +11,7 @@ class CheckingAccountDetails extends Model
 
     protected $fillable = [
         'name',
-        'checking_account_setting_id',
+        'checking_accounts_id',
         'allows_overdraft',
         'current_overdraft_used',
         'amount'
@@ -24,9 +24,9 @@ class CheckingAccountDetails extends Model
     }
 
     // علاقة بإعدادات الحساب الجاري
-    public function settings()
+    public function checkingAccountSetting()
     {
-        return $this->belongsTo(CheckingAccountSetting::class, 'checking_account_setting_id');
+        return $this->belongsTo(CheckingAccount::class, 'checking_accounts_id');
     }
 }
 

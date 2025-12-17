@@ -14,7 +14,7 @@ return new class extends Migration
 
     Schema::create('investment_details', function (Blueprint $table) {
         $table->id();
-        $table->foreignId('investment_product_setting_id')->constrained('investment_product_settings'); // يربط بمنتج الاستثمار
+        $table->foreignId('investment_account_id')->constrained('investment_accounts') ->onDelete('cascade');// يربط بمنتج الاستثمار
         $table->decimal('requested_investment_amount', 15, 2); // مبلغ الاستثمار الأولي
         $table->decimal('approval_investment_amount');
         $table->string('rejected_rasion');

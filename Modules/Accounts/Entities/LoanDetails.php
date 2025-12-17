@@ -10,7 +10,7 @@ class LoanDetails extends Model
     use HasFactory;
 
     protected $fillable = [
-        'loanproductsetting_id',
+        'loan_id',
         'requested_principal_amount',
         'approved_principal_amount',
         'remaining_principal',
@@ -33,8 +33,8 @@ class LoanDetails extends Model
     /**
 
      */
-    public function productSetting()
+    public function loanAccountSetting()
     {
-        return $this->belongsTo(LoanProductSetting::class, 'loanproductsetting_id');
+        return $this->belongsTo(LoanAccount::class, 'loan_id');
     }
 }

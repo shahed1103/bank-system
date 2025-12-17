@@ -11,7 +11,7 @@ class SavingAccountDetails extends Model
 
     protected $fillable = [
         'name',
-        'savingaccountsetting_id',
+        'savings_account_id',
         'currentinterestrate',
         'monthlywithdrawalsmade',
         'amount',
@@ -27,8 +27,8 @@ class SavingAccountDetails extends Model
     /**
 
      */
-    public function settings()
+    public function savingsAccountSetting()
     {
-        return $this->belongsTo(SavingAccountSetting::class, 'savingaccountsetting_id');
+        return $this->belongsTo(SavingsAccount::class, 'savings_account_id');
     }
 }

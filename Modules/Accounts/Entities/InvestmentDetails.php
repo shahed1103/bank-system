@@ -10,7 +10,7 @@ class InvestmentDetails extends Model
     use HasFactory;
 
     protected $fillable = [
-        'investment_product_setting_id',
+        'investment_account_id',
         'requested_investment_amount',
         'approval_investment_amount',
         'rejected_rasion',
@@ -29,8 +29,8 @@ class InvestmentDetails extends Model
     /**
      * Get the product settings for this investment.
      */
-    public function productSetting()
+    public function investmentAccountSetting()
     {
-        return $this->belongsTo(InvestmentProductSetting::class, 'investment_product_setting_id');
+        return $this->belongsTo(InvestmentAccount::class, 'investment_account_id');
     }
 }

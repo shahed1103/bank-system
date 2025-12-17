@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('accounts', function (Blueprint $table) {
         $table->id();
-        $table->foreignId('customer_id')->constrained('customers'); // أو 'users' إذا كان لديك جدول مستخدمين
+  
         $table->string('account_number')->unique(); // رقم الحساب الفريد
         $table->string('account_name')->nullable(); // اسم يمكن للعميل تسمية حسابه به (مثل "حسابي الجاري الرئيسي")
         $table->decimal('balance', 15, 2)->default(0); // الرصيد الحالي (استخدم decimal للدقة المالية)

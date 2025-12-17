@@ -13,7 +13,7 @@ return new class extends Migration
     {
           Schema::create('loan_details', function (Blueprint $table) {
         $table->id();
-        $table->foreignId('loan_product_setting_id')->constrained('loan_product_settings'); // يربط بمنتج القرض
+        $table->foreignId('loan_id')->constrained('loan_accounts')->onDelete('cascade'); // يربط بمنتج القرض
         $table->decimal('requested_principal_amount', 15, 2); // المبلغ  للقرض
         $table->decimal('approved_principal_amount', 15, 2); //
         $table->decimal('remaining_principal', 15, 2); // المبلغ المتبقي من رأس المال

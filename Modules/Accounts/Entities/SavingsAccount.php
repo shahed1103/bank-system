@@ -19,6 +19,6 @@ protected $fillable = [
      */
     public function savingAccountDetails()
     {
-        return $this->hasMany(SavingAccountDetails::class, 'savingaccountsetting_id');
+        return $this->hasMany(SavingAccountDetails::class, 'savings_account_id');
     }
 }

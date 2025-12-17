@@ -8,16 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class LoanAccount extends Model
 {
     use HasFactory;
-
     protected $fillable = [
         'interest_rate',
-        'interestratetype',
-        'latepaymentfees',
+        'interest_rate_type',
+        'late_payment_fees',
         'processing_fees',
-        'earlyrepaymentpenalty',
-        'maxtenuremonths',
-        'minloanamount',
-        'maxloanamount',
+        'max_tenure_months',
+        'min_loan_amount',
+        'max_loan_amount',
+
     ];
 
     /**

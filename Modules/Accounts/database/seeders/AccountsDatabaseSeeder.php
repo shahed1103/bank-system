@@ -14,7 +14,11 @@ class AccountsDatabaseSeeder extends Seeder
         $this->call([
             AccountStatusSeeder::class,
             AccountTypeSeeder::class,
-            RiskLevelSeeder::class
+            CheckingSettingSeeder::class,
+            InvestmentSettingSeeder::class,
+            LoanSettingSeerder::class,
+            SavingsSettingSeeder::class
+
         ]);
     }
 }
