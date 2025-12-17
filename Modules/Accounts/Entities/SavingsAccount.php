@@ -14,7 +14,6 @@ protected $fillable = [
         'minimumbalancefor_interest',
         'freewithdrawlimitpermonth',
         'withdrawfeeafter_limit',
-        'is_active',
     ];
 
     /**

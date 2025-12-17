@@ -13,6 +13,7 @@ class CheckingAccountDetails extends Model
         'checking_account_setting_id',
         'allows_overdraft',
         'current_overdraft_used',
+        'amount'
     ];
 
     // علاقة polymorphic عكسية للوصول إلى بيانات الحساب الأساسية

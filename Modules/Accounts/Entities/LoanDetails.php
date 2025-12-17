@@ -11,13 +11,15 @@ class LoanDetails extends Model
 
     protected $fillable = [
         'loanproductsetting_id',
-        'principal_amount',
+        'requested_principal_amount',
+        'approved_principal_amount',
         'remaining_principal',
-        'interestrateat_disbursement',
-        'term_months',
-        'disbursement_date',
-        'nextpaymentdate',
-        'monthlypaymentamount',
+        'interest_rate_at_disbursement',
+        'requested_term_months',
+        'approved_date',
+        'next_payment_date',
+        'monthly_payment_amount',
+        'rejected_resion'
     ];
 
     /**

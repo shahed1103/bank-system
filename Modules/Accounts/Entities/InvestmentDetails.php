@@ -11,9 +11,11 @@ class InvestmentDetails extends Model
 
     protected $fillable = [
         'investment_product_setting_id',
-        'initial_investment_amount',
-        'current_value',
-        'maturity_date',
+        'requested_investment_amount',
+        'approval_investment_amount',
+        'rejected_rasion',
+        'risk_level',
+        'approved_date',
     ];
 
     /**

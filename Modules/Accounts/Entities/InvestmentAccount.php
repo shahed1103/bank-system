@@ -11,13 +11,10 @@ class InvestmentProductSetting extends Model
 
     protected $fillable = [
         'name',
-        'type',
         'expected_returns',
         'minimum_investment',
         'managementfeespercentage',
-        'lockinperiod_months',
-        'risk_level',
-        'is_active',
+//        'is_active',
     ];
 
     /**

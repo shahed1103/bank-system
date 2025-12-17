@@ -15,7 +15,7 @@ class CheckingAccountSetting extends Model
         'overdraft_limit',
         'overdraft_fees',
         'monthly_fees',
-        'is_active',
+//        'is_active',
     ];
 
     /**

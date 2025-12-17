@@ -13,7 +13,7 @@ class SavingAccountDetails extends Model
         'savingaccountsetting_id',
         'currentinterestrate',
         'monthlywithdrawalsmade',
-        'lastinterestpayout_date',
+        'amount',
     ];
 
     /**
