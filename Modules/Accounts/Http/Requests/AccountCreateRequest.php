@@ -42,30 +42,23 @@ class AccountCreateRequest extends FormRequest
             'additional_data.amount' => ['required', 'string'],
         ]),
         
+                'checking' => array_merge($baseRules, [
+            // 'additional_data.name' => ['required', 'string'],
+            'additional_data.amount' => ['required', 'numeric'],
+            'additional_data.allows_overdraft' => ['required', 'boolean'],
+        ]),
 
-    //     'checking' => array_merge($baseRules, [
-    //         'additional_data.overdraft_limit' => ['required', 'numeric'],
-    //         'additional_data.monthly_fee' => ['required', 'numeric'],
-    //     ]),
+        'loan' => array_merge($baseRules, [
+            'additional_data.requested_principal_amount' => ['required', 'numeric'],
+            'additional_data.requested_term_months' => ['required', 'numeric'],
+        ]),
 
-    //     'loan' => array_merge($baseRules, [
-    //         'additional_data.loan_amount' => ['required', 'numeric'],
-    //         'additional_data.interest_rate' => ['required', 'numeric'],
-    //         'additional_data.term_months' => ['required', 'integer'],
-    //         'additional_data.monthly_payment' => ['required', 'numeric'],
-    //         'additional_data.start_date' => ['required', 'date'],
-    //         'additional_data.end_date' => ['required', 'date', 'after:additional_data.start_date'],
-    //         'additional_data.remaining_balance' => ['required', 'numeric'],
-    //     ]),
-
-    //     'investment' => array_merge($baseRules, [
-    //         'additional_data.risk_level_id' => ['required', 'exists:risk_levels,id'],
-    //         'additional_data.invested_amount' => ['required', 'numeric'],
-    //         'additional_data.expected_return_rate' => ['required', 'numeric'],
-    //         'additional_data.current_value' => ['required', 'numeric'],
-    //     ]),
-
-    //     default => $baseRules,
+        'investment' => array_merge($baseRules, [
+            'additional_data.requested_investment_amount' => ['required', 'numeric'],
+            'additional_data.risk_level' => ['nullable', 'in:low,medium,high'],
+        ]),
+        
+        default => $baseRules,
     };
 }
 
