@@ -83,6 +83,7 @@ $message = 'this Account  return active successfuly';
 return ['account' => $account  , 'message' => $message];
 }
 
+
 //////////////////////////////////////////mustshahedEdit
 public function closed($accountId , $request):array {
 

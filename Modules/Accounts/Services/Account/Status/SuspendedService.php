@@ -13,21 +13,21 @@ class SuspendService  implements TransitionInterface
 
 public function withdraw($accountId , $request):array {
  $account = Account::findOrFail($accountId);
-$message = "you cant withdraw because this account was suspended because {$account->raison} /
+$message = "you cant withdraw because this account was suspended because {$account->status_resion} /
  waiting for return Active";
 return [ 'message' => $message];
 }
 
 public function deposit($accountId , $request):array {
  $account = Account::findOrFail($accountId);
-$message = "you cant withdraw because this account was suspended because {$account->raison} /
+$message = "you cant withdraw because this account was suspended because {$account->status_resion} /
  waiting for return Active";
 return [ 'message' => $message];
 }
 
 public function transfer($accountId , $request):array {
  $account = Account::findOrFail($accountId);
-$message = "you cant withdraw because this account was suspended because {$account->raison} /
+$message = "you cant withdraw because this account was suspended because {$account->status_resion} /
  waiting for return Active";
 return [ 'message' => $message];
 }
