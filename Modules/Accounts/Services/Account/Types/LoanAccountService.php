@@ -18,7 +18,7 @@ class LoanAccountService extends BaseAccountService implements AccountInterface 
     }
 
     public function getOwnBalance(Account $account): float{
-        return -($account->loanDetails->remaining_principal) ; 
+        return -($account->loanDetails->remaining_principal) ;
     }
 
     public function create($request , $userId): array{
@@ -43,7 +43,7 @@ class LoanAccountService extends BaseAccountService implements AccountInterface 
         ]);
 
         $message = 'Account created successfully';
-        return ['account' => $account , 'message' => $message];    
+        return ['account' => $account , 'message' => $message];
     }
 
     public function approve(Account $account): void{
@@ -96,4 +96,25 @@ class LoanAccountService extends BaseAccountService implements AccountInterface 
         return $account;
 
     }
+
+
+public function withdraw($accountId , $request):array {
+    $account = Account::findOrFail($accountId);
+
+$message = "you cant withdraw because this account a LoanAccount ";
+return [ 'message' => $message];
+}
+
+
+//////////////////////////////////can
+public function deposit($accountId , $request):array {
+
+}
+
+public function transfer($accountId , $request):array {
+    $account = Account::findOrFail($accountId);
+
+$message = "you cant transfer because this account a LoanAccount ";
+return [ 'message' => $message];
+}
 }

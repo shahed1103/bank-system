@@ -10,16 +10,16 @@ use Modules\Accounts\Services\Account\BaseAccountService;
 use Modules\Accounts\Services\Account\AccountInterface;
 use Throwable;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Exception; 
+use Exception;
 
 class SavingsAccountService extends BaseAccountService implements AccountInterface
 {
     protected function resolveAccountStatus(): int{
         return 1; // Active
     }
-    
+
     public function getOwnBalance(Account $account): float{
-        return $account->savingDetails->balance ; 
+        return $account->savingDetails->balance ;
     }
 
     public function create($request , $userId): array{
@@ -64,5 +64,27 @@ class SavingsAccountService extends BaseAccountService implements AccountInterfa
     ]);
 
     return $account;
+}
+
+
+
+
+//////////////////////////////////can
+public function withdraw($accountId , $request):array {
+
+}
+
+
+//////////////////////////////////can
+public function deposit($accountId , $request):array {
+
+}
+
+
+public function transfer($accountId , $request):array {
+    $account = Account::findOrFail($accountId);
+
+$message = "you cant transfer because this account a LoanAccount ";
+return [ 'message' => $message];
 }
 }

@@ -19,7 +19,7 @@ class InvestmentAccountService extends BaseAccountService implements AccountInte
 
 
     public function getOwnBalance(Account $account): float{
-        return $account->investmentDetails->balance ; 
+        return $account->investmentDetails->balance ;
     }
 
     public function create($request , $userId): array{
@@ -41,7 +41,7 @@ class InvestmentAccountService extends BaseAccountService implements AccountInte
 
 
         $message = 'Account created successfully';
-        return ['account' => $account , 'message' => $message];    
+        return ['account' => $account , 'message' => $message];
     }
 
     public function approve(Account $account): void{
@@ -88,4 +88,23 @@ class InvestmentAccountService extends BaseAccountService implements AccountInte
     return $account;
 
     }
+
+
+
+
+    //////////////////////////////////can
+public function withdraw($accountId , $request):array {
+
+}
+
+
+//////////////////////////////////can
+public function deposit($accountId , $request):array {
+
+}
+
+//////////////////////////////can
+public function transfer($accountId , $request):array {
+
+}
 }

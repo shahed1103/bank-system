@@ -17,9 +17,9 @@ class CheckingAccountService extends BaseAccountService implements AccountInterf
     }
 
     public function getOwnBalance(Account $account): float{
-        return $account->checkingDetails->balance ; 
+        return $account->checkingDetails->balance ;
     }
-    
+
     public function create($request , $userId):array {
 
         $additionalData = $request->input('additional_data', []);
@@ -54,4 +54,21 @@ class CheckingAccountService extends BaseAccountService implements AccountInterf
     return $account;
     }
 
+
+
+//////////////////////////////////can
+public function withdraw($accountId , $request):array {
+
+}
+
+
+//////////////////////////////////can
+public function deposit($accountId , $request):array {
+
+}
+
+//////////////////////////////can
+public function transfer($accountId , $request):array {
+
+}
 }
