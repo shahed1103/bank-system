@@ -69,6 +69,16 @@ class Account extends Model
         return $service->getOwnBalance($this);
     }
 
+
+    public function decorator()
+    {
+        // Account has one Decorator
+        return $this->hasOne(Decorator::class);
+    }
+}
+
+
+
     public function close(): string{
         $factory = app(AccountFactory::class);
 

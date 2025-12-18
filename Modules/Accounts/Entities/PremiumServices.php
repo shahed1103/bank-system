@@ -11,4 +11,11 @@ class PremiumServices extends Model
         'cost',
         'description'
     ];
+
+
+        public function decorator()
+    {
+        // Account has one Decorator
+        return $this->hasOne(Decorator::class);
+    }
 }

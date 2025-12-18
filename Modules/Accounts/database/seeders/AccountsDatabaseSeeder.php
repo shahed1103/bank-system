@@ -17,7 +17,9 @@ class AccountsDatabaseSeeder extends Seeder
             CheckingSettingSeeder::class,
             InvestmentSettingSeeder::class,
             LoanSettingSeerder::class,
-            SavingsSettingSeeder::class
+            SavingsSettingSeeder::class,
+            PremiumServicesSeeder::class,
+            InsuranceSeeder::class
 
         ]);
     }

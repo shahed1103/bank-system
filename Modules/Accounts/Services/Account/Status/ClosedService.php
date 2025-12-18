@@ -5,18 +5,34 @@ namespace Modules\Accounts\Services\Account\Status;
 use Modules\Accounts\Entities\CheckingAccount;
 use Modules\Accounts\Services\Account\TransitionInterface;
 use Modules\Accounts\Entities\CheckingAccountDetails;
-
+// public function withdraw(): array;    //سحب
+// public function deposit(): array;     //ايداع
+// public function transfer(): array;
 
 class ClosedService  implements TransitionInterface
 {
 
 
+public function withdraw($accountId , $request):array {
+    $account = Account::findOrFail($accountId);
 
+$message = "you cant withdraw because this account was closed because {$account->rasion}";
+return [ 'message' => $message];
+}
 
+public function deposit($accountId , $request):array {
+    $account = Account::findOrFail($accountId);
 
+$message = "you cant withdraw because this account was closed because {$account->rasion}";
+return [ 'message' => $message];
+}
 
+public function transfer($accountId , $request):array {
+    $account = Account::findOrFail($accountId);
 
-
+$message = "you cant withdraw because this account was closed because {$account->rasion}";
+return [ 'message' => $message];
+}
 
 public function freeze($accountId , $request):array {
 $message = 'you cant complete because this account was closed';

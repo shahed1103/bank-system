@@ -15,6 +15,7 @@ use Modules\Accounts\Services\Account\Status\{
 class TransitionFactory
 {
     public function withdrawFac(int $accountStatusId): TransitionInterface{
+        
         $status = AccountStatus::findOrFail($accountStatusId)->name;
 
         return match($status) {
