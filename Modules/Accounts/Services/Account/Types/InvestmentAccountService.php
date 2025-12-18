@@ -18,6 +18,11 @@ class InvestmentAccountService extends BaseAccountService implements AccountInte
         return 5; // non Active
     }
 
+    
+    protected function getOwnBalance(): int{
+        return $this->savingDetails->amount ; 
+    }
+
     public function create($request , $userId): array{
         $additionalData = $request->input('additional_data', []);
 
@@ -45,7 +50,7 @@ class InvestmentAccountService extends BaseAccountService implements AccountInte
             ->firstOrFail();
 
         $details->update([
-            'approval_investment_amount' => $details->requested_investment_amount,
+            'balance' => $details->requested_investment_amount,
             'approved_date' => now(),
             // 'rejected_rasion' => null,
         ]);
@@ -60,7 +65,7 @@ class InvestmentAccountService extends BaseAccountService implements AccountInte
             ->firstOrFail();
 
         $details->update([
-            'approval_investment_amount' => $data['approval_investment_amount'],
+            'balance' => $data['approval_investment_amount'],
             'rejected_rasion' => $data['rejected_rasion'],
             'approved_date' => now(),
         ]);

@@ -15,7 +15,7 @@ abstract class BaseAccountService
             'account_number' => $this->generateAccountNumber(),
             'account_name' => $request['account_name'],
             'opened_at' => Carbon::now(),
-            'balance' => 0,
+            // 'balance' => 0,
             'parent_account_id' => $request['parent_account_id'] ?? null,
         ]);
     }

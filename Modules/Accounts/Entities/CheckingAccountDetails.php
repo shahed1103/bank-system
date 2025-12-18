@@ -14,7 +14,7 @@ class CheckingAccountDetails extends Model
         'checking_accounts_id',
         'allows_overdraft',
         'current_overdraft_used',
-        'amount',
+        'balance',
         'account_id',
 
     ];

@@ -17,6 +17,11 @@ class LoanAccountService extends BaseAccountService implements AccountInterface 
         return 5; //non Active
     }
 
+    
+    protected function getOwnBalance(): int{
+        return $this->savingDetails->amount ; 
+    }
+
     public function create($request , $userId): array{
         $additionalData = $request->input('additional_data', []);
 
@@ -47,7 +52,7 @@ class LoanAccountService extends BaseAccountService implements AccountInterface 
             ->firstOrFail();
 
         $details->update([
-            'approved_principal_amount' => $details->requested_principal_amount,
+            'balance' => $details->requested_principal_amount,
             'remaining_principal' => $details->requested_principal_amount,
             'approved_date' => now(),
             'next_payment_date' => now()->addMonth(),
@@ -65,7 +70,7 @@ class LoanAccountService extends BaseAccountService implements AccountInterface 
             ->firstOrFail();
 
         $details->update([
-            'approved_principal_amount' => $data['approved_principal_amount'],
+            'balance' => $data['approved_principal_amount'],
             'remaining_principal' =>  $data['approved_principal_amount'],
             'approved_date' => now(),
             'next_payment_date' => now()->addMonth(),

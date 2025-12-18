@@ -12,7 +12,7 @@ class InvestmentDetails extends Model
     protected $fillable = [
         'investment_account_id',
         'requested_investment_amount',
-        'approval_investment_amount',
+        'balance',
         'rejected_rasion',
         'risk_level',
         'approved_date',

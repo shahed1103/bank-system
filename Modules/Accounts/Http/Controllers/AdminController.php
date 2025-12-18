@@ -23,21 +23,21 @@ class AdminController extends Controller
     }
 
     public function approve($accountId): JsonResponse{
-        // try {
-            $data = [];
+        $data = [];
+        try {
             $data = $this->adminService->approve($accountId);
             return Response::Success($data['account'], $data['message']);
-        // } catch (Throwable $th) {
-        //     $message = $th->getMessage();
-        //     $errors[] = $message;
-        //     $code = $th->getCode() ?: 400;
-        //     return Response::ErrorX($data, $message, $errors, $code);
-        // }
+        } catch (Throwable $th) {
+            $message = $th->getMessage();
+            $errors[] = $message;
+            $code = $th->getCode() ?: 400;
+            return Response::ErrorX($data, $message, $errors, $code);
+        }
     }
 
     public function reject(AccountDecisionRequest $request , $accountId): JsonResponse{
+        $data = [];
         try {
-            $data = [];
             // $account = Account::findOrFail($request->account_id);
             $this->adminService->reject($request , $accountId);
             // $message = 'Account rejected successfully';

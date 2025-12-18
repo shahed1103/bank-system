@@ -15,7 +15,7 @@ class SavingAccountDetails extends Model
         'savings_account_id',
         'currentinterestrate',
         'monthlywithdrawalsmade',
-        'amount',
+        'balance',
     ];
 
     /**

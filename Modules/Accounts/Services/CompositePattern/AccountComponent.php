@@ -1,8 +1,8 @@
 <?php
 
-namespace Modules\Accounts\Services\Account\CompositePattern;
+namespace Modules\Accounts\Services\CompositePattern;
 
 interface AccountComponent{
-    public function getBalance(): float;
-    public function close(): void;
+    public function getBalance(): array;
+    public function close(): array;
 }

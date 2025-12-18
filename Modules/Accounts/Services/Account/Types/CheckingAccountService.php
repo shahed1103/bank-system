@@ -16,6 +16,11 @@ class CheckingAccountService extends BaseAccountService implements AccountInterf
         return 1; // Active
     }
 
+    protected function getOwnBalance(): int{
+        return $this->savingDetails->amount ; 
+    }
+    
+
     public function create($request , $userId):array {
 
         $additionalData = $request->input('additional_data', []);
@@ -27,7 +32,7 @@ class CheckingAccountService extends BaseAccountService implements AccountInterf
         CheckingAccountDetails::create([
             'account_id' => $account->id,
             // 'name' => $additionalData['name'],
-            'amount' => $additionalData['amount'],
+            'balance' => $additionalData['balance'],
             'checking_account_id'   => $checkingAccount->id,
             'allows_overdraft'   => $additionalData['allows_overdraft']
         ]);

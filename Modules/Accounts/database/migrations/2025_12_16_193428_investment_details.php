@@ -16,7 +16,7 @@ return new class extends Migration
         $table->id();
         $table->foreignId('investment_account_id')->constrained('investment_accounts') ->onDelete('cascade');// يربط بمنتج الاستثمار
         $table->decimal('requested_investment_amount', 15, 2); // مبلغ الاستثمار الأولي
-        $table->decimal('approval_investment_amount')->nullable(); 
+        $table->decimal('balance')->nullable(); 
         $table->string('rejected_rasion')->nullable(); 
         $table->enum('risk_level', ['low', 'medium', 'high'])->nullable(); // مستوى المخاطر
         $table->date('approved_date')->nullable(); 

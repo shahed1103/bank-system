@@ -1,18 +1,23 @@
 <?php
 
-namespace Modules\Accounts\Services\Account\CompositePattern;
+namespace Modules\Accounts\Services\CompositePattern;
+use Modules\Accounts\Entities\Account;
 
 class AccountHierarchyService{
-    public function build(int $parentAccountId): AccountComponent
-    {
-        $parent = Account::findOrFail($parentAccountId);
+    public function build(int $accountId): AccountComponent{
+        $account = Account::with('children')->findOrFail($accountId);
 
-        $composite = new AccountComposite($parent);
+        if ($account->children->isEmpty()) {
+            return new AccountLeaf($account);
+        }
 
-        foreach ($parent->children as $childAccount) {
-            $composite->add(new AccountLeaf($childAccount));
+        $composite = new AccountComposite($account);
+
+        foreach ($account->children as $child) {
+            $composite->add($this->build($child->id));
         }
 
         return $composite;
     }
 }
+

@@ -15,7 +15,7 @@ return new class extends Migration
         $table->id();
         $table->foreignId('loan_id')->constrained('loan_accounts')->onDelete('cascade'); // يربط بمنتج القرض
         $table->decimal('requested_principal_amount', 15, 2); // المبلغ  للقرض
-        $table->decimal('approved_principal_amount', 15, 2)->nullable(); //
+        $table->decimal('balance', 15, 2)->nullable(); //
         $table->decimal('remaining_principal', 15, 2)->nullable(); // المبلغ المتبقي من رأس المال
         $table->decimal('interest_rate_at_disbursement', 5, 4); // سعر الفائدة المحدد وقت صرف القرض
         $table->integer('requested_term_months'); // مدة القرض بالأشهر

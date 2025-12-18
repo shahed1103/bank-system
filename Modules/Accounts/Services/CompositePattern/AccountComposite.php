@@ -1,6 +1,7 @@
 <?php
 
-namespace Modules\Accounts\Services\Account\CompositePattern;
+namespace Modules\Accounts\Services\CompositePattern;
+use Modules\Accounts\Entities\Account;
 
 class AccountComposite implements AccountComponent
 {
@@ -13,19 +14,36 @@ class AccountComposite implements AccountComponent
         $this->children[] = $component;
     }
 
-    public function getBalance(): float
-    {
-        $total = $this->account->balance;
+    public function getBalance(): array{
+        $total = $this->account->getOwnBalance();
 
         foreach ($this->children as $child) {
-            $total += $child->getBalance();
+            $childBalance = $child->getBalance(); 
+            $total += $childBalance['balance'];        
         }
 
-        return $total;
+    //      public function savingDetails(){
+    //     return $this->hasOne(SavingAccountDetails::class);
+    // }
+
+    // public function checkingDetails(){
+    //     return $this->hasOne(CheckingAccountDetails::class);
+    // }
+
+    // public function investmentDetails(){
+    //     return $this->hasOne(InvestmentDetails::class);
+    // }
+
+    // public function loanDetails(){
+    //     return $this->hasOne(LoanDetails::class);
+    // }
+
+
+        $message = 'Account hierarchy balance retrived successfully';
+        return ['balance' => $total , 'message' => $message];
     }
 
-    public function close(): void
-    {
+    public function close(): array{
         foreach ($this->children as $child) {
             $child->close();
         }
@@ -33,5 +51,8 @@ class AccountComposite implements AccountComponent
         $this->account->update([
             'account_status_id' => AccountStatus::CLOSED
         ]);
+
+        $message = 'Account hierarchy closed successfully';
+        return ['close' => $this->account , 'message' => $message];
     }
 }

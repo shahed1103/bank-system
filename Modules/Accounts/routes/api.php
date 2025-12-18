@@ -4,12 +4,13 @@ use Illuminate\Support\Facades\Route;
 use Modules\Accounts\Http\Controllers\AccountsController;
 use Modules\Accounts\Http\Controllers\RegisterAndAcoountCreationController;
 use Modules\Accounts\Http\Controllers\AdminController;
-
-
+use Modules\Accounts\Http\Controllers\AccountHierarchyController;
 
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('createAccount', [AccountsController::class, 'createAccount']);
 });
+
+// Route::post('createAccount', [AccountsController::class, 'createAccount']);
 
 Route::get('getAllTypes', [AccountsController::class, 'getAllTypes']);
 Route::get('getAllStatues', [AccountsController::class, 'getAllStatues']);
@@ -18,3 +19,6 @@ Route::post('registerUserWithAccount', [RegisterAndAcoountCreationController::cl
 
 Route::get('approve/{accountId}', [AdminController::class, 'approve']);
 
+Route::get('total-balance/{accountId}', [AccountHierarchyController::class, 'totalBalance']);
+
+Route::post('close-hierarchy/{accountId}',[AccountHierarchyController::class, 'closeHierarchy']);

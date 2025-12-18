@@ -12,7 +12,7 @@ class LoanDetails extends Model
     protected $fillable = [
         'loan_id',
         'requested_principal_amount',
-        'approved_principal_amount',
+        'balance',
         'remaining_principal',
         'interest_rate_at_disbursement',
         'requested_term_months',

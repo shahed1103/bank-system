@@ -14,9 +14,10 @@ return new class extends Migration
         Schema::create('decorators', function (Blueprint $table) {
             $table->id();
             $table->foreignId('account_id')->constrained('accounts')->onDelete('cascade');
-            $table->boolean('insurance')->default('false');
+            $table->boolean('insurance')->default(false);
+            $table->boolean('premium_services')->default(false);
+
             $table->foreignId('insurances_id')->constrained('insurances')->onDelete('cascade')->nullable();
-            $table->boolean('premium_services')->default('false');
             $table->foreignId('premium_services_id')->constrained('premium_services')->onDelete('cascade')->nullable();
             $table->integer('total_cost')->default(0);
             $table->timestamps();

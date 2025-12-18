@@ -23,8 +23,8 @@ class RegisterAndAcoountCreationController{
     }
     
     public function registerUserWithAccount(RegisterWithAccountRequest $request): JsonResponse{
+        $data = [] ;
         try {
-            $data = [] ;
             $data = $this->registerAndAccountCreation->registerUserWithAccount($request);
             return Response::Success($data['userAccounut'],$data['message'] );
         }

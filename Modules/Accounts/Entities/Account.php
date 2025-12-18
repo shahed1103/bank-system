@@ -4,6 +4,7 @@ namespace Modules\Accounts\Entities;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Accounts\Services\Account\AccountFactory;
 
 class Account extends Model
 {
@@ -13,7 +14,7 @@ class Account extends Model
         'user_id',
         'account_number',
         'account_name',
-        'balance',
+        // 'balance',
         'currency',
         'opened_at',
         'closed_at',
@@ -58,5 +59,14 @@ class Account extends Model
 
     public function children(){
         return $this->hasMany(Account::class, 'parent_account_id');
+    }
+
+    public function getOwnBalance(): float{
+        /** @var AccountServiceFactory $factory */
+        $factory = App::make(AccountFactory::class);
+
+        $service = $factory->make($this->account_type_id);
+
+        return $service->getOwnBalance();
     }
 }

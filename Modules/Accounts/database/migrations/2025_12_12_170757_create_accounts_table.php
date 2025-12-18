@@ -16,12 +16,12 @@ return new class extends Migration
 
         $table->string('account_number')->unique(); // رقم الحساب الفريد
         $table->string('account_name')->nullable(); // اسم يمكن للعميل تسمية حسابه به (مثل "حسابي الجاري الرئيسي")
-        $table->decimal('balance', 15, 2)->default(0); // الرصيد الحالي (استخدم decimal للدقة المالية)
+        // $table->decimal('balance', 15, 2)->default(0); // الرصيد الحالي (استخدم decimal للدقة المالية)
         // $table->enum('status', ['active', 'closed', 'suspended', 'frozen'])->default('active'); // حالة الحساب
         $table->timestamp('opened_at')->useCurrent(); // تاريخ فتح الحساب
         $table->timestamp('closed_at')->nullable();
         // تاريخ إغلاق الحساب
-        $table->boolean('premium')->default('false');
+        $table->boolean('premium')->default(false);
         $table->string('status_resion')->nullable();
         
         $table->foreignId('parent_account_id')

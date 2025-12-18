@@ -15,7 +15,7 @@ return new class extends Migration
         $table->id();
         $table->string('name')->default('normal'); // مثلاً: "حساب جاري عادي", "حساب جاري مميز"
         $table->foreignId('checking_account_id')->nullable()->constrained('checking_accounts') ->onDelete('cascade'); // يربط بإعدادات المنتج
-        $table->decimal('amount');
+        $table->decimal('balance');
         $table->boolean('allows_overdraft')->default(false); // هل هذا الحساب الجاري المحدد يسمح بالسحب الاضافي
         $table->decimal('current_overdraft_used', 15, 2)->default(0); // المبلغ المسحوب حالياً الاضافي
         $table->foreignId('account_id')->constrained('accounts')->onDelete('cascade');

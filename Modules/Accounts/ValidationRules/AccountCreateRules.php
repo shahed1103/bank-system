@@ -19,13 +19,13 @@ class AccountCreateRules
 
         'savings' => array_merge($baseRules, [
             // 'additional_data.name' => ['required', 'string'],
-            'additional_data.amount' => ['required', 'numeric'],
+            'additional_data.balance' => ['required', 'numeric'],
         ]),
         
 
         'checking' => array_merge($baseRules, [
             // 'additional_data.name' => ['required', 'string'],
-            'additional_data.amount' => ['required', 'numeric'],
+            'additional_data.balance' => ['required', 'numeric'],
             'additional_data.allows_overdraft' => ['required', 'boolean'],
         ]),
 

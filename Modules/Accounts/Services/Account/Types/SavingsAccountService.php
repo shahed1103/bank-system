@@ -14,6 +14,11 @@ class SavingsAccountService extends BaseAccountService implements AccountInterfa
         return 1; // Active
     }
 
+    
+    protected function getOwnBalance(): int{
+        return $this->savingDetails->amount ; 
+    }
+
     public function create($request , $userId): array{
         $additionalData = $request->input('additional_data', []);
 
@@ -25,7 +30,7 @@ class SavingsAccountService extends BaseAccountService implements AccountInterfa
             // 'name' => $additionalData['name'],
             'savings_account_id'   => $savingsAccount->id,
             'currentinterestrate'  => $savingsAccount->interest_rate,
-            'amount' => $additionalData['amount'],
+            'balance' => $additionalData['balance'],
         ]);
         $message = 'Account created successfully';
         return ['account' => $account , 'message' => $message];
