@@ -4,7 +4,7 @@ namespace Modules\Accounts\Entities;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Modules\Accounts\Services\Account\AccountFactory;
+use Modules\Accounts\Services\Account\Factory\AccountFactory;
 
 class Account extends Model
 {

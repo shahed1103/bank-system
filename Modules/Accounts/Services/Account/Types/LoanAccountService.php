@@ -6,7 +6,7 @@ use Modules\Accounts\Entities\LoanAccount;
 use Modules\Accounts\Entities\Account;
 
 use Modules\Accounts\Services\Account\BaseAccountService;
-use Modules\Accounts\Services\Account\AccountInterface;
+use Modules\Accounts\Services\Account\Factory\AccountInterface;
 use Modules\Accounts\Services\Account\ApproveRejectInterface;
 
 use Modules\Accounts\Entities\LoanDetails;

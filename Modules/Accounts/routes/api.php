@@ -10,7 +10,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('createAccount', [AccountsController::class, 'createAccount']);
 });
 
-// Route::post('createAccount', [AccountsController::class, 'createAccount']);
 
 Route::get('getAllTypes', [AccountsController::class, 'getAllTypes']);
 Route::get('getAllStatues', [AccountsController::class, 'getAllStatues']);

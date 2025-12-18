@@ -3,7 +3,7 @@
 namespace Modules\Accounts\Services\Admin;
 
 use Modules\Accounts\Entities\Account;
-use Modules\Accounts\Services\Account\AccountFactory;
+use Modules\Accounts\Services\Account\Factory\AccountFactory;
 use Modules\Accounts\Services\Account\ApproveRejectInterface;
 
 use Illuminate\Support\Carbon;

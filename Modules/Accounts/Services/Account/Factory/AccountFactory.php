@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Accounts\Services\Account;
+namespace Modules\Accounts\Services\Account\Factory;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Exception;
