@@ -70,15 +70,6 @@ class Account extends Model
     }
 
 
-    public function decorator()
-    {
-        // Account has one Decorator
-        return $this->hasOne(Decorator::class);
-    }
-}
-
-
-
     public function close(): string{
         $factory = app(AccountFactory::class);
 
@@ -86,4 +77,11 @@ class Account extends Model
 
         return $service->close($this);
     }
+
+    public function decorator()
+    {
+        // Account has one Decorator
+        return $this->hasOne(Decorator::class);
+    }
+
 }
