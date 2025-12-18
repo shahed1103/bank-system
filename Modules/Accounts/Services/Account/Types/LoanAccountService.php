@@ -64,19 +64,15 @@ class LoanAccountService extends BaseAccountService implements AccountInterface 
         ]);
     }
 
-    public function reject(Account $account, array $data): array{
+    public function reject(Account $account, $data): void{
         $details = LoanDetails::where('account_id', $account->id)
             ->firstOrFail();
 
         $details->update([
-            'balance' => $data['approved_principal_amount'],
-            'remaining_principal' =>  $data['approved_principal_amount'],
             'approved_date' => now(),
-            'next_payment_date' => now()->addMonth(),
-            'monthly_payment_amount' => $data['approved_principal_amount'],
-            'rejected_resion' => $data['rejected_resion'],
+            'rejected_rasion' => $data['rejected_rasion'],
         ]);
-
+        
         $account->update([
             'account_status_id' => 5, // Non Active
         ]);

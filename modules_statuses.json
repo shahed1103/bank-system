@@ -1,3 +1,4 @@
 {
-    "Accounts": true
+    "Accounts": true,
+    "Transaction": true
 }

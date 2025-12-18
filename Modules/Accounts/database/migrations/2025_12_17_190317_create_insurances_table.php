@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table-> string('name');
             $table->decimal('cost');
-            $table->decimal('insurance_code');
+            $table->string('insurance_code');
 
             $table->timestamps();
         });

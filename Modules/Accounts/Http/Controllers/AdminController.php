@@ -35,12 +35,11 @@ class AdminController extends Controller
         }
     }
 
-    public function reject(AccountDecisionRequest $request , $accountId): JsonResponse{
+    public function reject($accountId , AccountDecisionRequest $request): JsonResponse{
         $data = [];
         try {
             // $account = Account::findOrFail($request->account_id);
-            $this->adminService->reject($request , $accountId);
-            // $message = 'Account rejected successfully';
+            $data = $this->adminService->reject($accountId , $request);
             return Response::Success($data['account'], $data['message']);
         } catch (Throwable $th) {
             $message = $th->getMessage();

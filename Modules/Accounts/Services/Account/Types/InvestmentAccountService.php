@@ -59,12 +59,11 @@ class InvestmentAccountService extends BaseAccountService implements AccountInte
         ]);
     }
 
-    public function reject(Account $account, array $data): array{
+    public function reject(Account $account, $data): void{
         $details = InvestmentDetails::where('account_id', $account->id)
             ->firstOrFail();
 
         $details->update([
-            'balance' => $data['approval_investment_amount'],
             'rejected_rasion' => $data['rejected_rasion'],
             'approved_date' => now(),
         ]);
