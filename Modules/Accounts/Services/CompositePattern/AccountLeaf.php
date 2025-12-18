@@ -15,11 +15,7 @@ class AccountLeaf implements AccountComponent
     }
 
     public function close(): array{
-        $this->account->update([
-            'account_status_id' => AccountStatus::CLOSED
-        ]);
-
         $message = 'Account hierarchy closed successfully';
-        return ['close' => $this->account , 'message' => $message];
+        return ['close' => $this->account->close() , 'message' => $message];
     }
 }

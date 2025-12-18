@@ -39,4 +39,19 @@ class CheckingAccountService extends BaseAccountService implements AccountInterf
         $message = 'Account created successfully';
         return ['account' => $account , 'message' => $message];
     }
+
+    public function close(Account $account): string{
+        if (($account->checkingDetails->balance ?? 0) < 0) {
+            throw new Exception(
+                'Checking account cannot be closed with negative balance.'
+            );
+        }
+        $account->update([
+            'account_status_id' => 4
+        ]);
+
+        $account->save();
+    return $account;
+    }
+
 }

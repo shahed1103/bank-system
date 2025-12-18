@@ -73,4 +73,19 @@ class InvestmentAccountService extends BaseAccountService implements AccountInte
             'account_status_id' => 5, // Non Active
         ]);
     }
+
+    public function close(Account $account): string{
+        if (($account->investmentDetails->balance ?? 0) > 0) {
+            throw new Exception(
+                'Investment account must have zero cash balance before closure.'
+            );
+        }
+
+        $account->update([
+            'account_status_id' => 4
+        ]);
+
+    return $account;
+
+    }
 }
