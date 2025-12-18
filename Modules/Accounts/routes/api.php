@@ -21,4 +21,4 @@ Route::get('approve/{accountId}', [AdminController::class, 'approve']);
 
 Route::get('total-balance/{accountId}', [AccountHierarchyController::class, 'totalBalance']);
 
-Route::post('close-hierarchy/{accountId}',[AccountHierarchyController::class, 'closeHierarchy']);
+Route::get('close-hierarchy/{accountId}',[AccountHierarchyController::class, 'closeHierarchy']);

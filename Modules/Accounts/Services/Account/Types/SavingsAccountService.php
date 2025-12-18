@@ -5,8 +5,12 @@ namespace Modules\Accounts\Services\Account\Types;
 use Modules\Accounts\Entities\SavingsAccount;
 use Modules\Accounts\Entities\SavingAccountDetails;
 use Modules\Accounts\Entities\Account;
+use Modules\Accounts\Entities\AccountStatus;
 use Modules\Accounts\Services\Account\BaseAccountService;
 use Modules\Accounts\Services\Account\AccountInterface;
+use Throwable;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Exception; 
 
 class SavingsAccountService extends BaseAccountService implements AccountInterface
 {
@@ -50,4 +54,15 @@ class SavingsAccountService extends BaseAccountService implements AccountInterfa
             'message' => 'Savings account updated successfully',
         ];
     }
+
+    public function close(Account $account): string {
+    if ($account->savingDetails->balance > 0) {
+        throw new Exception('Savings account must be empty before closing.');
+    }
+    $account->update([
+        'account_status_id' => 4
+    ]);
+
+    return $account;
+}
 }

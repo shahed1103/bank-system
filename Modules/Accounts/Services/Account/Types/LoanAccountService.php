@@ -18,7 +18,7 @@ class LoanAccountService extends BaseAccountService implements AccountInterface 
     }
 
     public function getOwnBalance(Account $account): float{
-        return $account->loanDetails->balance ; 
+        return -($account->loanDetails->remaining_principal) ; 
     }
 
     public function create($request , $userId): array{
@@ -80,5 +80,20 @@ class LoanAccountService extends BaseAccountService implements AccountInterface 
         $account->update([
             'account_status_id' => 5, // Non Active
         ]);
+    }
+
+    public function close(Account $account): string{
+        if (($account->loanDetails->remaining_principal ?? 0) > 0) {
+            throw new Exception(
+                'Loan account cannot be closed until the loan is fully repaid.'
+            );
+        }
+
+        $account->update([
+            'account_status_id' => 4
+        ]);
+
+        return $account;
+
     }
 }

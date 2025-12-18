@@ -29,12 +29,14 @@ class AccountComposite implements AccountComponent
         foreach ($this->children as $child) {
             $child->close();
         }
-
-        $this->account->update([
-            'account_status_id' => AccountStatus::CLOSED
-        ]);
+        $close = $this->account->close();
 
         $message = 'Account hierarchy closed successfully';
         return ['close' => $this->account , 'message' => $message];
     }
 }
+
+
+
+
+  

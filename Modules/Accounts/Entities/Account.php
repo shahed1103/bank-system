@@ -68,4 +68,12 @@ class Account extends Model
 
         return $service->getOwnBalance($this);
     }
+
+    public function close(): string{
+        $factory = app(AccountFactory::class);
+
+        $service = $factory->make($this->account_type_id);
+
+        return $service->close($this);
+    }
 }
