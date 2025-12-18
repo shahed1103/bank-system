@@ -23,9 +23,11 @@ return new class extends Migration
         // تاريخ إغلاق الحساب
         $table->boolean('premium')->default('false');
         $table->string('status_resion')->nullable();
-
-        // // الأعمدة الخاصة بالعلاقة متعددة الأشكال
-        // $table->morphs('accountable'); // سيضيف 'accountable_id' (integer) و 'accountable_type' (string)
+        
+        $table->foreignId('parent_account_id')
+                ->nullable()
+                ->constrained('accounts')
+                ->nullOnDelete();
 
         $table->timestamps();
     });

@@ -3,13 +3,15 @@
 namespace Modules\Accounts\Services\Account\Types;
 
 use Modules\Accounts\Entities\InvestmentAccount;
+use Modules\Accounts\Entities\Account;
+use Modules\Accounts\Services\Account\ApproveRejectInterface;
 
 use Modules\Accounts\Services\Account\BaseAccountService;
 use Modules\Accounts\Services\Account\AccountInterface;
 use Modules\Accounts\Entities\InvestmentDetails;
 
 
-class InvestmentAccountService extends BaseAccountService implements AccountInterface
+class InvestmentAccountService extends BaseAccountService implements AccountInterface , ApproveRejectInterface
 {
 
     protected function resolveAccountStatus(): int{
@@ -35,5 +37,36 @@ class InvestmentAccountService extends BaseAccountService implements AccountInte
 
 
         $message = 'Account created successfully';
-        return ['account' => $account , 'message' => $message];    }
+        return ['account' => $account , 'message' => $message];    
+    }
+
+    public function approve(Account $account): void{
+        $details = InvestmentDetails::where('account_id', $account->id)
+            ->firstOrFail();
+
+        $details->update([
+            'approval_investment_amount' => $details->requested_investment_amount,
+            'approved_date' => now(),
+            // 'rejected_rasion' => null,
+        ]);
+
+        $account->update([
+            'account_status_id' => 1, // Active
+        ]);
+    }
+
+    public function reject(Account $account, array $data): array{
+        $details = InvestmentDetails::where('account_id', $account->id)
+            ->firstOrFail();
+
+        $details->update([
+            'approval_investment_amount' => $data['approval_investment_amount'],
+            'rejected_rasion' => $data['rejected_rasion'],
+            'approved_date' => now(),
+        ]);
+
+        $account->update([
+            'account_status_id' => 5, // Non Active
+        ]);
+    }
 }

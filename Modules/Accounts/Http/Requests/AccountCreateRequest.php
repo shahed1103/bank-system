@@ -27,11 +27,12 @@ class AccountCreateRequest extends FormRequest
      */
     public function rules(): array{
         
-    return [
-        'account_type_id' => ['required', 'exists:account_types,id'],
-        'account_name' => ['required', 'string'],
-        'additional_data' => ['required', 'array'],
-    ];
+    $baseRules = [
+                'account_type_id' => ['required', 'exists:account_types,id'],
+                'account_name' => ['required', 'string'],
+                'parent_account_id' => 'nullable|exists:accounts,id',
+                'additional_data' => ['required', 'array'],
+        ];
 
     $type = AccountType::find($this->input('account_type_id'))?->name;
 

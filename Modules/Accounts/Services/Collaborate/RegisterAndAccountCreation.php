@@ -18,8 +18,6 @@ class RegisterAndAccountCreation {
         DB::beginTransaction();
         try{
         $data['user'] = $this->userService->register($request);
-        // $result = $this->userService->register($request);
-
         $user = $data['user']['user'];
 
         $service = $this->accountFactory->make($request['account_type_id']);

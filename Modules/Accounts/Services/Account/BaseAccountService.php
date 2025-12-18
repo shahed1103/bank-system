@@ -16,7 +16,7 @@ abstract class BaseAccountService
             'account_name' => $request['account_name'],
             'opened_at' => Carbon::now(),
             'balance' => 0,
-            // 'parent_id' => $null
+            'parent_account_id' => $request['parent_account_id'] ?? null,
         ]);
     }
     

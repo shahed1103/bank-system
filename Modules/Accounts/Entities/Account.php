@@ -15,24 +15,15 @@ class Account extends Model
         'account_name',
         'balance',
         'currency',
-        // 'status',
         'opened_at',
         'closed_at',
         'account_type_id',
         'account_status_id',
-        // 'accountable_id',
-        // 'accountable_type',
-        'status_resion'
+        'status_resion',
+        'parent_account_id'
     ];
 
-    // // علاقة polymorphic للحصول على تفاصيل الحساب
-    // public function accountable()
-    // {
-    //     return $this->morphTo();
-    // }
-
-    public function user()
-    {
+    public function user(){
         return $this->belongsTo(User::class);
     }
 
@@ -59,5 +50,13 @@ class Account extends Model
 
     public function loanDetails(){
         return $this->hasOne(LoanDetails::class);
+    }
+
+    public function parent(){
+        return $this->belongsTo(Account::class, 'parent_account_id');
+    }
+
+    public function children(){
+        return $this->hasMany(Account::class, 'parent_account_id');
     }
 }
