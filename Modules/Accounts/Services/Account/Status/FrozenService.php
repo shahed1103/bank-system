@@ -9,6 +9,36 @@ use Modules\Accounts\Entities\CheckingAccountDetails;
 
 class FrozenService  implements TransitionInterface
 {
+public function withdraw($accountId , $request):array {
+        $account = Account::findOrFail($accountId);
+
+
+$message = "you cant withdraw because this account was Frozen because {$account->raison} /
+ waiting for return Active";
+return [ 'message' => $message];
+}
+
+public function deposit($accountId , $request): void{
+
+        $account = Account::findOrFail($accountId);
+        $type = AccountType::findOrFail($account->type_id)->name;
+
+         match($type) {
+            'savings' => SavingsAccountService::deposit($account , $request),
+            'checking' => CheckingAccountService::deposit($account , $request),
+            'loan' =>  LoanAccountService::deposit($account , $request),
+            'investment' =>  InvestmentAccountService::deposit($account , $request),
+            default => throw new Exception("Invalid account type: $type", 400),
+        };
+    }
+
+
+public function transfer($accountId , $request):array {
+ $account = Account::findOrFail($accountId);
+$message = "you cant withdraw because this account was Frozen because {$account->raison} /
+ waiting for return Active";
+return [ 'message' => $message];
+}
 
 
 public function freeze($accountId , $request):array {
@@ -23,6 +53,7 @@ public function activate($accountId):array {
     return ['message' => $message];
 }
 
+//////////////////////////////////////////mustshahedEdit
 public function closed($accountId , $request):array {
 
     $account = Account::find($accountId);
