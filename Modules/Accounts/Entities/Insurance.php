@@ -11,5 +11,12 @@ class Insurance extends Model
         'cost',
         'insurance_code'
     ];
+
+
+    public function decorator()
+    {
+        // Account has one Decorator
+        return $this->hasOne(Decorator::class);
+    }
 }
 

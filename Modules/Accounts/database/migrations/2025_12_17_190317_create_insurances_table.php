@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('insurances', function (Blueprint $table) {
             $table->id();
             $table-> string('name');
-            $table->integer('cost');
-            $table->integer('insurance_code');
+            $table->decimal('cost');
+            $table->decimal('insurance_code');
 
             $table->timestamps();
         });
