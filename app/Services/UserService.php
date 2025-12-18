@@ -107,7 +107,7 @@ class UserService
 
                 return ['verifyCode' => $user['token'] , 'message' => $message , 'code' => $code];
     }
-    
+
     public function signin($request): array{
         $user = User::query()->where('email', $request['email'])->first();
         if (!is_null($user)){
@@ -136,9 +136,9 @@ class UserService
         }
 
         $otp = rand(100000, 999999);
-        $user->update([ 'otp_code' => $otp , 
-                        'otp_expires_at' => now()->addMinutes(5) , 
-                        'is_verified' => false 
+        $user->update([ 'otp_code' => $otp ,
+                        'otp_expires_at' => now()->addMinutes(5) ,
+                        'is_verified' => false
                     ]);
 
         Mail::raw("رمز التحقق الخاص بك هو: $otp", function ($message) use ($user) {
@@ -165,7 +165,7 @@ class UserService
 
         return ['user' => $user , 'message' => $message , 'code' => $code];
     }
- 
+
     public function forgotPassword($request): array{
               //Delete all old code user send before
         ResetCodePassword::query()->where('email' , $request['email'])->delete();
@@ -261,7 +261,41 @@ class UserService
            }
            $user['permissions']= $permission;
 
-           return $user; 
+           return $user;
+    }
+
+
+
+        public function updateProfile( $user_id, $request): array{
+        $clientRole = Role::query()->firstWhere('name', 'Client')->id;
+
+        if ($request->hasFile('photo')) {
+                $photo = $request->file('photo');
+                $path = $photo->store('uploads/profilePhoto', 'public');
+                $fullPath = url(Storage::url($path));
+        }
+
+        if ($request->hasFile('id_photo')) {
+                $photo = $request->file('id_photo');
+                $path = $photo->store('uploads/id_photo', 'public');
+                $fullPathIdPhoto = url(Storage::url($path));
+        }
+
+        $user = User::find($user_id)->get();
+        $user ->update([
+            'first_name' => $request['first_name'] ?? $user->first_name,
+            'last_name' => $request['last_name'] ?? $user->last_name,
+            'phone' =>  $request['phone'] ?? $user-> phone,
+            'photo' => $fullPath ?? $user->photo,
+            'birth_date' => $request['birth_date'] ?? $user->birth_date,
+            'national_id' => $request['national_id'] ?? $user->national_id,
+            'id_photo' => $fullPathIdPhoto ?? $user -> id_photo
+        ]);
+
+
+        $message = 'your profile apdated successfuly ';
+
+        return ['user' => $user , 'message' => $message];
     }
 
 }
