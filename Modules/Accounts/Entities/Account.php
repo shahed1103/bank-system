@@ -62,11 +62,10 @@ class Account extends Model
     }
 
     public function getOwnBalance(): float{
-        /** @var AccountServiceFactory $factory */
-        $factory = App::make(AccountFactory::class);
+        $factory = app(AccountFactory::class);
 
         $service = $factory->make($this->account_type_id);
 
-        return $service->getOwnBalance();
+        return $service->getOwnBalance($this);
     }
 }

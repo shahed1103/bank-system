@@ -13,14 +13,13 @@ use Modules\Accounts\Entities\InvestmentDetails;
 
 class InvestmentAccountService extends BaseAccountService implements AccountInterface , ApproveRejectInterface
 {
-
     protected function resolveAccountStatus(): int{
         return 5; // non Active
     }
 
-    
-    protected function getOwnBalance(): int{
-        return $this->savingDetails->amount ; 
+
+    public function getOwnBalance(Account $account): float{
+        return $account->investmentDetails->balance ; 
     }
 
     public function create($request , $userId): array{

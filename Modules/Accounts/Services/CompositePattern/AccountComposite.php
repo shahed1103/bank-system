@@ -21,24 +21,6 @@ class AccountComposite implements AccountComponent
             $childBalance = $child->getBalance(); 
             $total += $childBalance['balance'];        
         }
-
-    //      public function savingDetails(){
-    //     return $this->hasOne(SavingAccountDetails::class);
-    // }
-
-    // public function checkingDetails(){
-    //     return $this->hasOne(CheckingAccountDetails::class);
-    // }
-
-    // public function investmentDetails(){
-    //     return $this->hasOne(InvestmentDetails::class);
-    // }
-
-    // public function loanDetails(){
-    //     return $this->hasOne(LoanDetails::class);
-    // }
-
-
         $message = 'Account hierarchy balance retrived successfully';
         return ['balance' => $total , 'message' => $message];
     }

@@ -17,9 +17,8 @@ class LoanAccountService extends BaseAccountService implements AccountInterface 
         return 5; //non Active
     }
 
-    
-    protected function getOwnBalance(): int{
-        return $this->savingDetails->amount ; 
+    public function getOwnBalance(Account $account): float{
+        return $account->loanDetails->balance ; 
     }
 
     public function create($request , $userId): array{

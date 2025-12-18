@@ -4,7 +4,7 @@ namespace Modules\Accounts\Services\Account\Types;
 
 use Modules\Accounts\Entities\SavingsAccount;
 use Modules\Accounts\Entities\SavingAccountDetails;
-
+use Modules\Accounts\Entities\Account;
 use Modules\Accounts\Services\Account\BaseAccountService;
 use Modules\Accounts\Services\Account\AccountInterface;
 
@@ -13,10 +13,9 @@ class SavingsAccountService extends BaseAccountService implements AccountInterfa
     protected function resolveAccountStatus(): int{
         return 1; // Active
     }
-
     
-    protected function getOwnBalance(): int{
-        return $this->savingDetails->amount ; 
+    public function getOwnBalance(Account $account): float{
+        return $account->savingDetails->balance ; 
     }
 
     public function create($request , $userId): array{

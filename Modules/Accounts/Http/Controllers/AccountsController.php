@@ -26,17 +26,17 @@ class AccountsController extends Controller
 
     public function createAccount(AccountCreateRequest $request): JsonResponse{
         $data = [] ;
-        // try {
+        try {
             $service = $this->accountFactory->make($request['account_type_id']);
             $data = $service->create($request , auth()->user()->id);
             return Response::Success($data['account'],$data['message'] );
-        // }
-        // catch (Throwable $th) {
-        //     $message = $th->getMessage();
-        //     $errors [] = $message;
-        //     $code = $th->getCode() ?: 400;
-        //     return Response::ErrorX($data , $message , $errors , $code);
-        // }
+        }
+        catch (Throwable $th) {
+            $message = $th->getMessage();
+            $errors [] = $message;
+            $code = $th->getCode() ?: 400;
+            return Response::ErrorX($data , $message , $errors , $code);
+        }
     }
 
     public function getAllTypes(): JsonResponse{
