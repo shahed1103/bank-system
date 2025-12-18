@@ -89,7 +89,10 @@ return ['account' => $account  , 'message' => $message];
 public function closed($accountId , $request):array {
 
     $account = Account::find($accountId);
-    $account->account_status_id = 4;
+    // $account->account_status_id = 4;
+    
+    $close = $account->close();
+
     $account->status_resion = $request['status_resion'];
 
     $message = 'this Account  closed successfuly';
