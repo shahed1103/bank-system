@@ -5,6 +5,7 @@ namespace Modules\Accounts\Services\Account\Status;
 use Modules\Accounts\Entities\CheckingAccount;
 use Modules\Accounts\Services\Account\TransitionInterface;
 use Modules\Accounts\Entities\CheckingAccountDetails;
+use Modules\Accounts\Entities\Account;
 
 // public function withdraw(): array;    //سحب
 // public function deposit(): array;     //ايداع
