@@ -16,11 +16,10 @@ $managerApproved->handelWithdraw($account , $request);
     }
 
 $transition = Transition::create([
-       'account_id' => $account->id,
+        'account_id' => $account->id,
         'type' => 'withdraw' ,
         'amount' => $request['amount'],
         'approv'=> 'true'
-
  ]);
 
 $type = AccountType::findOrFail($account->account_type_id)->name;

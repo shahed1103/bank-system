@@ -52,7 +52,31 @@ $oldBalance = CheckingAccountDetails::getOwnBalance();
 
 
 //////////////////////////////can
-public function transfer($account , $request):array {
+public function transfer($account , $request , $transfer):array {
 
+$send_checking = CheckingAccountDetails:: where ('account_id' , $account->id)->get();
+$old_sendBalance = CheckingAccountDetails::getOwnBalance();
+
+if($request['amount'] > $old_sendBalance ) {
+    $transfer -> delete();
+     $message = "you cant transfer because the amount bigger than your balance";
+    return ['message' => $message];
+
+}
+
+   $send_checking-> update([
+    'balance' => ($old_sendBalance - $request['amount'])
+   ]);
+
+$recive_checking = CheckingAccountDetails:: where ('account_id' , $request['recive_account_id'])->get();
+$old_reciveBalance = CheckingAccountDetails::getOwnBalance();
+
+   $recive_checking-> update([
+    'balance' => ($old_reciveBalance + $request['amount'])
+   ]);
+
+
+    $message = "your transfer completed successfuly";
+    return ['message' => $message];
 }
 }
