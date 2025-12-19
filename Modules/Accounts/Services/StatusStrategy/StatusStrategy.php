@@ -1,5 +1,13 @@
 <?php
 namespace Modules\Accounts\Services\StatusStrategy;
+use Modules\Accounts\Entities\Account;
+use Modules\Accounts\Entities\AccountStatus;
+use Modules\Accounts\Services\StatusStrategy\Status\{
+    ActiveService,
+    ClosedService,
+    FrozenService,
+    SuspendedService
+};
 
 
 class StatusStrategy
@@ -14,7 +22,7 @@ class StatusStrategy
             'active'  => ActiveService :: freeze($account, $request) ,
             'closed' =>  ClosedService:: freeze($account, $request) ,
             'frozen' =>  FrozenService:: freeze($account, $request) ,
-            'suspended' =>  SuspendedService:: freeze($account, $request) ,
+            'suspended' => SuspendedService:: freeze($account, $request) ,
             default => throw new Exception("Invalid account status: $status", 400),
         };
     }

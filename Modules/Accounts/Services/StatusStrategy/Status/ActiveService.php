@@ -1,18 +1,12 @@
 <?php
 
-namespace Modules\Account\Services\Status;
+namespace Modules\Account\Services\StatusStrategy\Status;
 
-use Modules\Accounts\Entities\CheckingAccount;
-use Modules\Accounts\Services\Account\TransitionInterface;
-use Modules\Accounts\Entities\CheckingAccountDetails;
-use Modules\Accounts\Entities\Account;
 
-// public function freeze(): array;
-// public function activate(): array;
-// public function closed(): array;
-// public function suspend(): array;
+use Modules\Accounts\Services\StatusStrategy\ChangeStatusInterface;
 
-class ActiveService  implements TransitionInterface
+
+class ActiveService  implements ChangeStatusInterface
 {
 
 

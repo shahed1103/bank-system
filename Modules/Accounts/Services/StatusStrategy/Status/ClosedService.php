@@ -1,16 +1,10 @@
 <?php
 
-namespace Modules\Account\Services\Status;
+namespace Modules\Account\Services\StatusStrategy\Status;
 
-use Modules\Accounts\Entities\CheckingAccount;
-use Modules\Accounts\Entities\Account;
-use Modules\Accounts\Services\Account\TransitionInterface;
-use Modules\Accounts\Entities\CheckingAccountDetails;
-// public function withdraw(): array;    //سحب
-// public function deposit(): array;     //ايداع
-// public function transfer(): array;
+use Modules\Accounts\Services\StatusStrategy\ChangeStatusInterface;
 
-class ClosedService  implements TransitionInterface
+class ClosedService  implements ChangeStatusInterface
 
 {
 public function freeze($account , $request):array {

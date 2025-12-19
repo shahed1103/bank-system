@@ -1,6 +1,5 @@
 <?php
-namespace Modules\Accounts\Services\Account\StatusStrategy;
-use Modules\Accounts\Entities\Account;
+namespace Modules\Accounts\Services\StatusStrategy;
 
 
 interface ChangeStatusInterface

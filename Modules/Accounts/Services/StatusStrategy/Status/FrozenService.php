@@ -1,14 +1,10 @@
 <?php
 
-namespace Modules\Account\Services\Status;
+namespace Modules\Account\Services\StatusStrategy\Status;
 
-use Modules\Accounts\Entities\CheckingAccount;
-use Modules\Accounts\Entities\Account;
-use Modules\Accounts\Services\Account\TransitionInterface;
-use Modules\Accounts\Entities\CheckingAccountDetails;
+use Modules\Accounts\Services\StatusStrategy\ChangeStatusInterface;
 
-
-class FrozenService  implements TransitionInterface
+class FrozenService  implements ChangeStatusInterface
 
 
 {
