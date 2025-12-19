@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Accounts\Services\Account\Status;
+namespace Modules\Transaction\Services\Status;
 
 use Modules\Accounts\Entities\CheckingAccount;
 use Modules\Accounts\Entities\Account;

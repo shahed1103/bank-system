@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Accounts\Services\Account\Status;
+namespace Modules\Transaction\Services\Status;
 
 use Modules\Accounts\Entities\CheckingAccount;
 use Modules\Accounts\Services\Account\TransitionInterface;
@@ -90,7 +90,7 @@ public function closed($accountId , $request):array {
 
     $account = Account::find($accountId);
     // $account->account_status_id = 4;
-    
+
     $close = $account->close();
 
     $account->status_resion = $request['status_resion'];

@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Accounts\Services\Account;
+namespace Modules\Transaction\Services;
 
 interface TransitionInterface {
 
