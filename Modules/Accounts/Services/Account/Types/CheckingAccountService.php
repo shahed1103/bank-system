@@ -4,10 +4,13 @@ namespace Modules\Accounts\Services\Account\Types;
 
 use Modules\Accounts\Entities\CheckingAccount;
 use Modules\Accounts\Entities\Account;
+use App\Models\User;
+
+use Modules\Accounts\Entities\AccountStatus;
 
 use Modules\Accounts\Services\Account\BaseAccountService;
 use Modules\Accounts\Services\Account\Factory\AccountInterface;
-
+use Modules\CustomerService\Events\AccountActivityOccurred;
 use Modules\Accounts\Entities\CheckingAccountDetails;
 
 class CheckingAccountService extends BaseAccountService implements AccountInterface
@@ -51,6 +54,14 @@ class CheckingAccountService extends BaseAccountService implements AccountInterf
         ]);
 
         $account->save();
+
+    event(new AccountActivityOccurred(
+        User::find($account->user_id),
+        'account_status_changed',
+        ['account_status' => AccountStatus::find($account->account_status_id)->name]
+    ));
+    // notifyAccountStatusChange($account);
+
     return $account;
     }
 
