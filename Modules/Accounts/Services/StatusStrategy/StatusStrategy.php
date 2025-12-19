@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Accounts\Services\Account\StatusStrategy;
+namespace Modules\Accounts\Services\StatusStrategy;
 
 
 class StatusStrategy

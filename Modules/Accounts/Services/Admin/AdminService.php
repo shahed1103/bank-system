@@ -11,10 +11,11 @@ use Modules\CustomerService\Services\NotificationService;
 use App\Models\User;
 use Modules\Accounts\Entities\AccountStatus;
 use Modules\CustomerService\Events\AccountActivityOccurred;
+use Modules\Accounts\Services\StatusStrategy\StatusStrategy;
 
 class AdminService
 {
-    public function __construct( private StatusStrategy $statusStrategy){
+    public function __construct(private StatusStrategy $statusStrategy){
     $this->statusStrategy = $statusStrategy;
 }
 
@@ -33,7 +34,7 @@ class AdminService
         return ['account' => $account , 'message' => $message];
     }
 
-    public function reject($accountId, $data): array{
+    public function reject($accountId , $data): array{
         $account = Account::findOrFail($accountId);
 
         $service = app(AccountFactory::class)->make($account->account_type_id);
