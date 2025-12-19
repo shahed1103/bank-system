@@ -7,10 +7,13 @@ use Modules\Accounts\Services\Account\Factory\AccountFactory;
 use Modules\Accounts\Services\Account\ApproveRejectInterface;
 use Exception;
 use Illuminate\Support\Carbon;
+use Modules\CustomerService\Services\NotificationService;
+use App\Models\User;
+use Modules\Accounts\Entities\AccountStatus;
+use Modules\CustomerService\Events\AccountActivityOccurred;
 
 class AdminService
 {
-
     public function __construct( private StatusStrategy $statusStrategy){
     $this->statusStrategy = $statusStrategy;
 }
@@ -127,6 +130,11 @@ class AdminService
         try{
         $retuenDate = [];
         $retuenDate = $this->statusStrategy->activateFac($accountId);
+        
+        $account = Account::find($accountId);
+
+        app(NotificationService::class)->notifyAccountStatusChange($account);
+
         DB::commit();
         $message = 'Account Activeted successfully';
 
@@ -143,6 +151,11 @@ class AdminService
         try{
         $retuenDate = [];
         $retuenDate = $this->statusStrategy->freezeFac($accountId);
+
+        $account = Account::find($accountId);
+        
+        app(NotificationService::class)->notifyAccountStatusChange($account);
+
         DB::commit();
         $message = 'Account Activeted successfully';
 
@@ -161,6 +174,11 @@ class AdminService
         try{
         $retuenDate = [];
         $retuenDate = $this->statusStrategy->closedFac($accountId);
+
+        $account = Account::find($accountId);
+        
+        app(NotificationService::class)->notifyAccountStatusChange($account);
+
         DB::commit();
         $message = 'Account Activeted successfully';
 
@@ -178,6 +196,11 @@ public function suspend($accountId , $request): array{
         try{
         $retuenDate = [];
         $retuenDate = $this->statusStrategy->suspendFac($accountId);
+
+        $account = Account::find($accountId);
+        
+        app(NotificationService::class)->notifyAccountStatusChange($account);
+
         DB::commit();
         $message = 'Account Activeted successfully';
 

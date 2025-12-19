@@ -31,7 +31,8 @@ use HasApiTokens, HasFactory, Notifiable , HasRoles;
         'birth_date',
         'otp_code',
         'otp_expires_at',
-        'is_verified'
+        'is_verified',
+        'preferred_channel'
     ];
 
 
