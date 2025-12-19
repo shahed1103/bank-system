@@ -1,4 +1,5 @@
 {
     "Accounts": true,
-    "Transaction": true
+    "Transaction": true,
+    "CustomerService": true
 }

@@ -36,16 +36,16 @@ class AccountHierarchyController extends Controller
 
     public function closeHierarchy(int $accountId): JsonResponse{
         $data = [] ;
-        try {
+        // try {
             $component = $this->accountHierarchyService->build($accountId);
             $data = $component->close();
             return Response::Success($data['close'],$data['message'] );
-        }
-        catch (Throwable $th) {
-            $message = $th->getMessage();
-            $errors [] = $message;
-            $code = $th->getCode() ?: 400;
-            return Response::ErrorX($data , $message , $errors , $code);
-        }
+        // }
+        // catch (Throwable $th) {
+        //     $message = $th->getMessage();
+        //     $errors [] = $message;
+        //     $code = $th->getCode() ?: 400;
+        //     return Response::ErrorX($data , $message , $errors , $code);
+        // }
     }
 }

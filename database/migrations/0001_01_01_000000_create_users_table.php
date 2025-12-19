@@ -24,6 +24,8 @@ return new class extends Migration
             $table->string('national_id', 11)->unique();
             $table->date('birth_date');
             $table->string('otp_code')->nullable();     
+            $table->string('preferred_channel')->default('sms');     
+            
             $table->timestamp('otp_expires_at')->nullable();
             $table->boolean('is_verified')->nullable();
             $table->timestamp('email_verified_at')->nullable();
