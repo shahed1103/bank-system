@@ -2,11 +2,7 @@
 
 namespace Modules\Transaction\Services\Status;
 
-use Modules\Accounts\Entities\CheckingAccount;
-use Modules\Accounts\Entities\Account;
-use Modules\Accounts\Services\Account\TransitionInterface;
-use Modules\Accounts\Entities\CheckingAccountDetails;
-
+use Modules\Transaction\Services\Strategy\TransitionInterface;
 
 class SuspendService  implements TransitionInterface
 {

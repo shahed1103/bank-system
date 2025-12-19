@@ -1,11 +1,9 @@
 <?php
 
 namespace Modules\Transaction\Services\Status;
+use Modules\Transaction\Services\Strategy\TransitionInterface;
+use Modules\Transaction\Services\ChainOfResponsibility\AutoApproved;
 
-use Modules\Accounts\Entities\CheckingAccount;
-use Modules\Accounts\Services\Account\TransitionInterface;
-use Modules\Accounts\Entities\CheckingAccountDetails;
-use Modules\Accounts\Entities\Account;
 
 class ActiveService  implements TransitionInterface
 {

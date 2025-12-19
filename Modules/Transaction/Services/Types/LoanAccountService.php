@@ -2,13 +2,11 @@
 
 namespace Modules\Transaction\Services\Types;
 
-use Modules\Accounts\Entities\LoanAccount;
-use Modules\Accounts\Entities\Account;
 
-use Modules\Accounts\Services\Account\BaseAccountService;
-use Modules\Accounts\Services\Account\Factory\AccountInterface;
-use Modules\Accounts\Services\Account\ApproveRejectInterface;
-
+use Modules\Transaction\Services\Strategy\TransitionInterface;
+use Throwable;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Exception;
 use Modules\Accounts\Entities\LoanDetails;
 
 class LoanAccountService  implements TransitionInterface
@@ -27,8 +25,8 @@ return [ 'message' => $message];
 //////////////////////////////////can
 public function deposit($account , $request):array {
 
-$loan = LoanAccountDetails:: where ('account_id' , $account->id)->get();
-$oldBalance = LoanAccountDetails::getOwnBalance();
+$loan = LoanDetails:: where ('account_id' , $account->id)->get();
+$oldBalance = LoanDetails::getOwnBalance();
 
    $loan-> update([
     'balance' => ($oldBalance - $request['amount'])

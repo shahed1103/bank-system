@@ -1,6 +1,17 @@
 <?php
 
 namespace Modules\Transaction\Services\ChainOfResponsibility;
+use Modules\Transaction\Services\ChainOfResponsibility\TransitionHandlerInterface;
+use Modules\Transaction\Entites\Transition;
+use Modules\Transaction\Entites\Transfer;
+use Modules\Accounts\Entities\AccountType;
+use Exception;
+use Modules\Transaction\Services\Types\{
+    SavingsAccountService,
+    CheckingAccountService,
+    LoanAccountService,
+    InvestmentAccountService
+};
 
 class AutoApproved  implements TransitionHandlerInterface
 {

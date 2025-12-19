@@ -2,12 +2,10 @@
 
 namespace Modules\Transaction\Services\Types;
 
-use Modules\Accounts\Entities\CheckingAccount;
-use Modules\Accounts\Entities\Account;
-
-use Modules\Accounts\Services\Account\BaseAccountService;
-use Modules\Accounts\Services\Account\Factory\AccountInterface;
-
+use Modules\Transaction\Services\Strategy\TransitionInterface;
+use Throwable;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Exception;
 use Modules\Accounts\Entities\CheckingAccountDetails;
 
     class CheckingAccountService  implements TransitionInterface

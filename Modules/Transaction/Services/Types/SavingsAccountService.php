@@ -2,12 +2,9 @@
 
 namespace Modules\Transaction\Services\Types;
 
-use Modules\Accounts\Entities\SavingsAccount;
+
 use Modules\Accounts\Entities\SavingAccountDetails;
-use Modules\Accounts\Entities\Account;
-use Modules\Accounts\Entities\AccountStatus;
-use Modules\Accounts\Services\Account\BaseAccountService;
-use Modules\Accounts\Services\Account\Factory\AccountInterface;
+use Modules\Transaction\Services\Strategy\TransitionInterface;
 use Throwable;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Exception;
@@ -19,8 +16,8 @@ class SavingsAccountService  implements TransitionInterface
 
 //////////////////////////////////can
 public function withdraw($account  , $request , $transition):array {
-$sav = SavingsAccountDetails:: where ('account_id' , $account->id)->get();
-$oldBalance = SavingsAccountDetails::getOwnBalance();
+$sav = SavingAccountDetails:: where ('account_id' , $account->id)->get();
+$oldBalance = SavingAccountDetails::getOwnBalance();
 
 if($request['amount'] > $oldBalance ) {
     $transition -> delete();
@@ -47,8 +44,8 @@ $message = "your cant withdraw this amount because you have savings account";
 //////////////////////////////////can
 public function deposit($account  , $request):array {
 
-$sav = SavingsAccountDetails:: where ('account_id' , $account->id)->get();
-$oldBalance = SavingsAccountDetails::getOwnBalance();
+$sav = SavingAccountDetails:: where ('account_id' , $account->id)->get();
+$oldBalance = SavingAccountDetails::getOwnBalance();
 
    $sav-> update([
     'balance' => ($oldBalance + $request['amount'])

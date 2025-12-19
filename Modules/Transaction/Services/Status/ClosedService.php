@@ -2,13 +2,7 @@
 
 namespace Modules\Transaction\Services\Status;
 
-use Modules\Accounts\Entities\CheckingAccount;
-use Modules\Accounts\Entities\Account;
-use Modules\Accounts\Services\Account\TransitionInterface;
-use Modules\Accounts\Entities\CheckingAccountDetails;
-// public function withdraw(): array;    //سحب
-// public function deposit(): array;     //ايداع
-// public function transfer(): array;
+use Modules\Transaction\Services\Strategy\TransitionInterface;
 
 class ClosedService  implements TransitionInterface
 {

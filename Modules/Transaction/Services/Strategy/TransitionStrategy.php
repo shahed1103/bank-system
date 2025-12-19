@@ -5,7 +5,8 @@ namespace Modules\Transaction\Services\Strategy;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Exception;
 use Modules\Accounts\Entities\AccountStatus;
-use Modules\Accounts\Services\Account\Status\{
+use Modules\Transaction\Services\Strategy\TransitionInterface;
+use Modules\Transaction\Services\Status\{
     ActiveService,
     ClosedService,
     FrozenService,

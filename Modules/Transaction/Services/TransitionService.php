@@ -1,7 +1,10 @@
 <?php
 
 namespace Modules\Transaction\Services;
-
+use Modules\Accounts\Entities\Account;
+use Exception;
+use Modules\Transaction\Services\Strategy\TransitionStrategy;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class TransitionService
 {
@@ -45,7 +48,7 @@ public function __construct( private TransitionStrategy $transitionStrategy){
         }
     }
 
-            public function transfer($accountId , $request): array{
+    public function transfer($accountId , $request): array{
         DB::beginTransaction();
         try{
         $account = Account::find($accountId);
