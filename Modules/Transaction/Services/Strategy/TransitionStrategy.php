@@ -14,13 +14,11 @@ use Modules\Accounts\Services\Account\Status\{
 
 class TransitionStrategy
 {
-    public function withdrawFac(int $accountId): TransitionInterface{
-
-        $account = Account::find($accountId);
-        $status = AccountStatus::findOrFail($account->account_status_id)->name;
+    public function withdrawStr($accountStatusId): TransitionInterface{
+     $status = AccountStatus::findOrFail($accountStatusId)->name;
 
         return match($status) {
-            'active' => ActiveService :: activate($account) ,
+            'active' => new ActiveService (),
             'closed' => new ClosedService(),
             'frozen' => new FrozenService(),
             'suspended' => new SuspendedService(),

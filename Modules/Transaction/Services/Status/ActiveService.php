@@ -18,45 +18,38 @@ use Modules\Accounts\Entities\Account;
 class ActiveService  implements TransitionInterface
 {
 
-public function withdraw($accountId , $request): void{
-
-        $account = Account::findOrFail($accountId);
-        $type = AccountType::findOrFail($account->type_id)->name;
-
+public function withdraw($typeId): TransitionInterface{
+$type = AccountType::findOrFail($typeId)->name;
          match($type) {
-            'savings' => SavingsAccountService::withdraw($account , $request),
-            'checking' => CheckingAccountService::withdraw($account , $request),
-            'loan' =>  LoanAccountService::withdraw($account , $request),
-            'investment' =>  InvestmentAccountService::withdraw($account , $request),
+            'savings' => new SavingsAccountService(),
+            'checking' => new CheckingAccountService(),
+            'loan' =>  new LoanAccountService(),
+            'investment' =>  new InvestmentAccountService(),
             default => throw new Exception("Invalid account type: $type", 400),
         };
     }
 
-public function deposit($accountId , $request): void{
-
-        $account = Account::findOrFail($accountId);
-        $type = AccountType::findOrFail($account->type_id)->name;
+public function deposit($typeId): TransitionInterface{
+        $type = AccountType::findOrFail($typeId)->name;
 
          match($type) {
-            'savings' => SavingsAccountService::deposit($account , $request),
-            'checking' => CheckingAccountService::deposit($account , $request),
-            'loan' =>  LoanAccountService::deposit($account , $request),
-            'investment' =>  InvestmentAccountService::deposit($account , $request),
+               'savings' => new SavingsAccountService(),
+            'checking' => new CheckingAccountService(),
+            'loan' =>  new LoanAccountService(),
+            'investment' =>  new InvestmentAccountService(),
             default => throw new Exception("Invalid account type: $type", 400),
         };
     }
 
 
-public function transfer($accountId , $request): void{
-
-        $account = Account::findOrFail($accountId);
-        $type = AccountType::findOrFail($account->type_id)->name;
+public function transfer($typeId): TransitionInterface{
+        $type = AccountType::findOrFail($typeId)->name;
 
          match($type) {
-            'savings' => SavingsAccountService::transfer($account , $request),
-            'checking' => CheckingAccountService::transfer($account , $request),
-            'loan' =>  LoanAccountService::transfer($account , $request),
-            'investment' =>  InvestmentAccountService::transfer($account , $request),
+          'savings' => new SavingsAccountService(),
+            'checking' => new CheckingAccountService(),
+            'loan' =>  new LoanAccountService(),
+            'investment' =>  new InvestmentAccountService(),
             default => throw new Exception("Invalid account type: $type", 400),
         };
     }

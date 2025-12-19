@@ -10,18 +10,13 @@ use Modules\Accounts\Entities\CheckingAccountDetails;
 
 class FrozenService  implements TransitionInterface
 {
-public function withdraw($accountId , $request):array {
-        $account = Account::findOrFail($accountId);
-
-
+public function withdraw($account , $request):array {
 $message = "you cant withdraw because this account was Frozen because {$account->status_resion} /
  waiting for return Active";
 return [ 'message' => $message];
 }
 
-public function deposit($accountId , $request): void{
-
-        $account = Account::findOrFail($accountId);
+public function deposit($account , $request): void{
         $type = AccountType::findOrFail($account->type_id)->name;
 
          match($type) {
@@ -34,8 +29,7 @@ public function deposit($accountId , $request): void{
     }
 
 
-public function transfer($accountId , $request):array {
- $account = Account::findOrFail($accountId);
+public function transfer($account , $request):array {
 $message = "you cant withdraw because this account was Frozen because {$account->status_resion} /
  waiting for return Active";
 return [ 'message' => $message];

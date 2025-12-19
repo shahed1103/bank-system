@@ -10,7 +10,7 @@ use Modules\Accounts\Services\Account\Factory\AccountInterface;
 
 use Modules\Accounts\Entities\CheckingAccountDetails;
 
-class CheckingAccountService
+class CheckingAccountService  implements TransitionInterface
 {
 
 //////////////////////////////////can

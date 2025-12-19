@@ -11,7 +11,7 @@ use Modules\Accounts\Services\Account\ApproveRejectInterface;
 
 use Modules\Accounts\Entities\LoanDetails;
 
-class LoanAccountService
+class LoanAccountService  implements TransitionInterface
 {
 
 

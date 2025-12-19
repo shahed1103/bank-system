@@ -11,7 +11,7 @@ use Modules\Accounts\Services\Account\Factory\AccountInterface;
 use Modules\Accounts\Entities\InvestmentDetails;
 
 
-class InvestmentAccountService
+class InvestmentAccountService  implements TransitionInterface
 {
 
 

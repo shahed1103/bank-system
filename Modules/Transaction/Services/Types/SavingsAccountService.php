@@ -12,26 +12,24 @@ use Throwable;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Exception;
 
-class SavingsAccountService 
+class SavingsAccountService  implements TransitionInterface
 {
 
 
 
 //////////////////////////////////can
-public function withdraw($accountId , $request):array {
+public function withdraw($account  , $request):array {
 
 }
 
 
 //////////////////////////////////can
-public function deposit($accountId , $request):array {
+public function deposit($account  , $request):array {
 
 }
 
 
-public function transfer($accountId , $request):array {
-    $account = Account::findOrFail($accountId);
-
+public function transfer($account , $request):array {
 $message = "you cant transfer because this account a SavingsAccount ";
 return [ 'message' => $message];
 }
