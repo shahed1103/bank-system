@@ -7,14 +7,6 @@ use Modules\Accounts\Services\Account\TransitionInterface;
 use Modules\Accounts\Entities\CheckingAccountDetails;
 use Modules\Accounts\Entities\Account;
 
-// public function withdraw(): array;    //سحب
-// public function deposit(): array;     //ايداع
-// public function transfer(): array;     //تحويل
-// public function freeze(): array;
-// public function activate(): array;
-// public function closed(): array;
-// public function suspend(): array;
-
 class ActiveService  implements TransitionInterface
 {
 
