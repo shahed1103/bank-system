@@ -84,4 +84,19 @@ class Account extends Model
         return $this->hasOne(Decorator::class);
     }
 
+
+    /**
+     * Get all of the comments for the Account
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function transfer(): HasMany
+    {
+        return $this->hasMany(Transfer::class);
+    }
+
+        public function transition(): HasMany
+    {
+        return $this->hasMany(Transition::class);
+    }
 }

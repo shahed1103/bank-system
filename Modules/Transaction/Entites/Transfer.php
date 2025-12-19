@@ -17,8 +17,13 @@ class Transfer extends Model
 
     ];
 
-    /**
-     * Get the checking account details associated with this setting.
-     */
-
+/**
+ * Get the user that owns the Transfer
+ *
+ * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+ */
+public function account(): BelongsTo
+{
+    return $this->belongsTo(Account::class,);
+}
 }

@@ -20,5 +20,8 @@ class Transition extends Model
     /**
      * Get the checking account details associated with this setting.
      */
-
+public function account(): BelongsTo
+{
+    return $this->belongsTo(Account::class,);
+}
 }

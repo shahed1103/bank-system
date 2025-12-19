@@ -2,6 +2,7 @@
 
 namespace Modules\Transaction\Services\ChainOfResponsibility;
 use Modules\Transaction\Services\ChainOfResponsibility\TransitionHandlerInterface;
+use Modules\Transaction\Services\ChainOfResponsibility\ManagerApproved;
 use Modules\Transaction\Entites\Transition;
 use Modules\Transaction\Entites\Transfer;
 use Modules\Accounts\Entities\AccountType;
