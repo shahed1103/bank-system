@@ -4,8 +4,8 @@ namespace Modules\Transaction\Services\Strategy;
 
 interface TransitionInterface {
 
-    public function withdraw($accountId , $request): array;    //سحب
-    public function deposit($accountId , $request): array;     //ايداع
-    public function transfer($accountId , $request): array;     //تحويل
+public function withdraw(int $accountId , array $request , ?Transition $transition = null): array;
+public function deposit(int $accountId , array $request): array;     //ايداع
+public function transfer(int $accountId , array $request , ?Transfer $transfer = null): array;     //تحويل
 
 }

@@ -16,15 +16,13 @@ public function __construct( private TransitionStrategy $transitionStrategy){
         try{
         $account = Account::find($accountId);
         $statusService = $this->transitionStrategy->withdrawStr($account->$account_status_id);
-        $typeService = $statusService->withdraw( $account->account_type_id);
-        $typeService ->withdraw ();
+        $resultData=[];
+        $resultData=$statusService->withdraw( $account , $request);
 
 
         DB::commit();
 
-        $message = 'User and account created successfully';
-
-        return ['userAccounut' => $data , 'message' => $message];
+        return  $resultData;
 
         } catch (Throwable $e) {
             DB::rollBack();

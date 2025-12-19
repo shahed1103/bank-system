@@ -16,18 +16,51 @@ class InvestmentAccountService  implements TransitionInterface
 
 
     //////////////////////////////////can
-public function withdraw($accountId , $request):array {
+public function withdraw($account , $request, $transition):array {
+
+$invest = InvestementAccountDetails:: where ('account_id' , $account->id)->get();
+$oldBalance = InvestementAccountDetails::getOwnBalance();
+
+if($request['amount'] > $oldBalance ) {
+    $transition -> delete();
+    $message = "you cant withdraw because the amount bigger than your balance";
+    return ['message' => $message];
+}
+
+if ($request['amount'] < $oldBalance / 2 ) {
+    $invest->update([
+        'balance' => ($oldBalance - $request['amount'])
+    ]);
+    $message = "your withdraw completed successfully";
+    return ['message' => $message];
+}
+
+$transition -> delete();
+$message = "your cant withdraw this amount because you have investment account";
+    return ['message' => $message];
 
 }
+
 
 
 //////////////////////////////////can
-public function deposit($accountId , $request):array {
+public function deposit($account , $request):array {
 
+
+$invest = InvestementAccountDetails:: where ('account_id' , $account->id)->get();
+$oldBalance = InvestementAccountDetails::getOwnBalance();
+
+   $invest-> update([
+    'balance' => ($oldBalance + $request['amount'])
+   ]);
+
+    $message = "your deposit completed successfuly";
+    return ['message' => $message];
 }
 
+
 //////////////////////////////can
-public function transfer($accountId , $request):array {
+public function transfer($account , $request):array {
 
 }
 }

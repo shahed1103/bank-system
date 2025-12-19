@@ -16,18 +16,9 @@ $message = "you cant withdraw because this account was Frozen because {$account-
 return [ 'message' => $message];
 }
 
-public function deposit($account , $request): void{
-        $type = AccountType::findOrFail($account->type_id)->name;
-
-         match($type) {
-            'savings' => SavingsAccountService::deposit($account , $request),
-            'checking' => CheckingAccountService::deposit($account , $request),
-            'loan' =>  LoanAccountService::deposit($account , $request),
-            'investment' =>  InvestmentAccountService::deposit($account , $request),
-            default => throw new Exception("Invalid account type: $type", 400),
-        };
+public function deposit($account , $request): array {
+AutoApproved::handelDeposit ($account , $request);
     }
-
 
 public function transfer($account , $request):array {
 $message = "you cant withdraw because this account was Frozen because {$account->status_resion} /

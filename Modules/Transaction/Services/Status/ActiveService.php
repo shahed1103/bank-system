@@ -18,42 +18,17 @@ use Modules\Accounts\Entities\Account;
 class ActiveService  implements TransitionInterface
 {
 
-public function withdraw($typeId): TransitionInterface{
-$type = AccountType::findOrFail($typeId)->name;
-         match($type) {
-            'savings' => new SavingsAccountService(),
-            'checking' => new CheckingAccountService(),
-            'loan' =>  new LoanAccountService(),
-            'investment' =>  new InvestmentAccountService(),
-            default => throw new Exception("Invalid account type: $type", 400),
-        };
+public function withdraw($account , $request): array {
+AutoApproved::handelWithdraw ($account , $request);
     }
 
-public function deposit($typeId): TransitionInterface{
-        $type = AccountType::findOrFail($typeId)->name;
-
-         match($type) {
-               'savings' => new SavingsAccountService(),
-            'checking' => new CheckingAccountService(),
-            'loan' =>  new LoanAccountService(),
-            'investment' =>  new InvestmentAccountService(),
-            default => throw new Exception("Invalid account type: $type", 400),
-        };
+public function deposit($account , $request): array {
+AutoApproved::handelDeposit ($account , $request);
     }
 
-
-public function transfer($typeId): TransitionInterface{
-        $type = AccountType::findOrFail($typeId)->name;
-
-         match($type) {
-          'savings' => new SavingsAccountService(),
-            'checking' => new CheckingAccountService(),
-            'loan' =>  new LoanAccountService(),
-            'investment' =>  new InvestmentAccountService(),
-            default => throw new Exception("Invalid account type: $type", 400),
-        };
+public function transfer($account , $request) : array{
+AutoApproved::handelTransfer ($account , $request);
     }
-
 
 
 
