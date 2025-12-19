@@ -2,7 +2,7 @@
 
 namespace Modules\Accounts\Services\Collaborate;
 
-use Modules\Accounts\Services\Account\AccountFactory;
+use Modules\Accounts\Services\Account\Factory\AccountFactory;
 use App\Services\UserService;
 use Illuminate\Support\Facades\DB;
 

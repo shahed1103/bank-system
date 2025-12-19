@@ -6,5 +6,5 @@ use Modules\Accounts\Entities\Account;
 interface ApproveRejectInterface
 {
     public function approve(Account $account): void;
-    public function reject(Account $account, array $data): array;
+    public function reject(Account $account, $data): void;
 }

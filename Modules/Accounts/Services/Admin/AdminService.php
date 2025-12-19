@@ -3,9 +3,9 @@
 namespace Modules\Accounts\Services\Admin;
 
 use Modules\Accounts\Entities\Account;
-use Modules\Accounts\Services\Account\AccountFactory;
+use Modules\Accounts\Services\Account\Factory\AccountFactory;
 use Modules\Accounts\Services\Account\ApproveRejectInterface;
-
+use Exception;
 use Illuminate\Support\Carbon;
 
 class AdminService
@@ -25,8 +25,9 @@ class AdminService
         return ['account' => $account , 'message' => $message];
     }
 
-    public function reject(Account $account, array $data): void
-    {
+    public function reject($accountId, $data): array{
+        $account = Account::findOrFail($accountId);
+
         $service = app(AccountFactory::class)->make($account->account_type_id);
 
         if (! $service instanceof ApproveRejectInterface) {
@@ -34,6 +35,8 @@ class AdminService
         }
 
         $service->reject($account, $data);
+        $message = 'Account rejected successfully';
+        return ['account' => $account , 'message' => $message];
     }
 
 

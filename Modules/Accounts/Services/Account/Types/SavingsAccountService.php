@@ -7,7 +7,7 @@ use Modules\Accounts\Entities\SavingAccountDetails;
 use Modules\Accounts\Entities\Account;
 use Modules\Accounts\Entities\AccountStatus;
 use Modules\Accounts\Services\Account\BaseAccountService;
-use Modules\Accounts\Services\Account\AccountInterface;
+use Modules\Accounts\Services\Account\Factory\AccountInterface;
 use Throwable;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Exception;

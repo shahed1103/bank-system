@@ -22,7 +22,7 @@ return new class extends Migration
         $table->date('approved_date')->nullable(); // تاريخ صرف القرض
         $table->date('next_payment_date')->nullable(); // تاريخ الاستحقاق القادم
         $table->decimal('monthly_payment_amount', 15, 2)->nullable(); // قيمة القسط الشهري
-        $table->string('rejected_resion')->nullable();
+        $table->string('rejected_rasion')->nullable();
         $table->foreignId('account_id')->constrained('accounts')->onDelete('cascade');
         $table->timestamps();
     });

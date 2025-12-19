@@ -4,6 +4,7 @@ namespace Modules\Accounts\Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Modules\Accounts\Entities\Insurance;
 
 class InsuranceSeeder extends Seeder
 {

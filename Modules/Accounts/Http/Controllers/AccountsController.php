@@ -3,7 +3,7 @@
 namespace Modules\Accounts\Http\Controllers;
 
 use Illuminate\Routing\Controller;
-use Modules\Accounts\Services\Account\AccountFactory;
+use Modules\Accounts\Services\Account\Factory\AccountFactory;
 
 use Illuminate\Http\Request;
 use App\Http\Responses\response;

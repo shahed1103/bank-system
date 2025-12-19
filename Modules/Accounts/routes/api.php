@@ -10,7 +10,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('createAccount', [AccountsController::class, 'createAccount']);
 });
 
-// Route::post('createAccount', [AccountsController::class, 'createAccount']);
 
 Route::get('getAllTypes', [AccountsController::class, 'getAllTypes']);
 Route::get('getAllStatues', [AccountsController::class, 'getAllStatues']);
@@ -18,6 +17,7 @@ Route::get('getAllStatues', [AccountsController::class, 'getAllStatues']);
 Route::post('registerUserWithAccount', [RegisterAndAcoountCreationController::class, 'registerUserWithAccount']);
 
 Route::get('approve/{accountId}', [AdminController::class, 'approve']);
+Route::post('reject/{accountId}', [AdminController::class, 'reject']);
 
 Route::get('total-balance/{accountId}', [AccountHierarchyController::class, 'totalBalance']);
 

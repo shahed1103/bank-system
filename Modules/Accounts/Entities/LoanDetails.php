@@ -19,7 +19,7 @@ class LoanDetails extends Model
         'approved_date',
         'next_payment_date',
         'monthly_payment_amount',
-        'rejected_resion',
+        'rejected_rasion',
         'account_id',
 
     ];
