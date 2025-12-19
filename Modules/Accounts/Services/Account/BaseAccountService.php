@@ -19,10 +19,14 @@ abstract class BaseAccountService
             'parent_account_id' => $request['parent_account_id'] ?? null,
         ]);
     }
-    
+
     abstract protected function resolveAccountStatus(): int;
 
     protected function generateAccountNumber(): string{
         return 'ACC-' . now()->format('Ymd') . '-' . rand(100000, 999999);
     }
 }
+
+
+
+

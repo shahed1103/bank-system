@@ -10,6 +10,11 @@ use Illuminate\Support\Carbon;
 
 class AdminService
 {
+
+    public function __construct( private StatusStrategy $statusStrategy){
+    $this->statusStrategy = $statusStrategy;
+}
+
     public function approve($accountId): array{
 
         $account = Account::findOrFail($accountId);
@@ -111,4 +116,78 @@ class AdminService
         $message = 'invest updated successfully';
         return ['invest' => $invest , 'message' => $message];
     }
+
+
+
+    /////////////////////////////////////////////
+
+
+    public function activete($accountId): array{
+        DB::beginTransaction();
+        try{
+        $retuenDate = [];
+        $retuenDate = $this->statusStrategy->activateFac($accountId);
+        DB::commit();
+        $message = 'Account Activeted successfully';
+
+        return $retuenDate;
+
+        } catch (Throwable $e) {
+            DB::rollBack();
+            throw $e;
+        }
+    }
+
+    public function freeze($accountId , $request): array{
+        DB::beginTransaction();
+        try{
+        $retuenDate = [];
+        $retuenDate = $this->statusStrategy->freezeFac($accountId);
+        DB::commit();
+        $message = 'Account Activeted successfully';
+
+        return $retuenDate;
+
+        } catch (Throwable $e) {
+            DB::rollBack();
+            throw $e;
+        }
+    }
+
+
+
+    public function close($accountId , $request): array{
+        DB::beginTransaction();
+        try{
+        $retuenDate = [];
+        $retuenDate = $this->statusStrategy->closedFac($accountId);
+        DB::commit();
+        $message = 'Account Activeted successfully';
+
+        return $retuenDate;
+
+        } catch (Throwable $e) {
+            DB::rollBack();
+            throw $e;
+        }
+    }
+
+
+public function suspend($accountId , $request): array{
+        DB::beginTransaction();
+        try{
+        $retuenDate = [];
+        $retuenDate = $this->statusStrategy->suspendFac($accountId);
+        DB::commit();
+        $message = 'Account Activeted successfully';
+
+        return $retuenDate;
+
+        } catch (Throwable $e) {
+            DB::rollBack();
+            throw $e;
+        }
+    }
+
+
 }

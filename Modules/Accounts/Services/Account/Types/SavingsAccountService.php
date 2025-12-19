@@ -66,25 +66,4 @@ class SavingsAccountService extends BaseAccountService implements AccountInterfa
     return $account;
 }
 
-
-
-
-//////////////////////////////////can
-public function withdraw($accountId , $request):array {
-
-}
-
-
-//////////////////////////////////can
-public function deposit($accountId , $request):array {
-
-}
-
-
-public function transfer($accountId , $request):array {
-    $account = Account::findOrFail($accountId);
-
-$message = "you cant transfer because this account a SavingsAccount ";
-return [ 'message' => $message];
-}
 }

@@ -72,7 +72,7 @@ class LoanAccountService extends BaseAccountService implements AccountInterface 
             'approved_date' => now(),
             'rejected_rasion' => $data['rejected_rasion'],
         ]);
-        
+
         $account->update([
             'account_status_id' => 5, // Non Active
         ]);
@@ -94,23 +94,4 @@ class LoanAccountService extends BaseAccountService implements AccountInterface 
     }
 
 
-public function withdraw($accountId , $request):array {
-    $account = Account::findOrFail($accountId);
-
-$message = "you cant withdraw because this account a LoanAccount ";
-return [ 'message' => $message];
-}
-
-
-//////////////////////////////////can
-public function deposit($accountId , $request):array {
-
-}
-
-public function transfer($accountId , $request):array {
-    $account = Account::findOrFail($accountId);
-
-$message = "you cant transfer because this account a LoanAccount ";
-return [ 'message' => $message];
-}
 }

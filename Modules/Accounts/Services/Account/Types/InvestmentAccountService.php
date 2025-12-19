@@ -90,20 +90,4 @@ class InvestmentAccountService extends BaseAccountService implements AccountInte
 
 
 
-
-    //////////////////////////////////can
-public function withdraw($accountId , $request):array {
-
-}
-
-
-//////////////////////////////////can
-public function deposit($accountId , $request):array {
-
-}
-
-//////////////////////////////can
-public function transfer($accountId , $request):array {
-
-}
 }
