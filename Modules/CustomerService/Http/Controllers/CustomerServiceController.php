@@ -4,53 +4,28 @@ namespace Modules\CustomerService\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Modules\CustomerService\Services\RecommendationService;
+use Illuminate\Http\JsonResponse;
+use App\Http\Responses\response;
 
 class CustomerServiceController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        return view('customerservice::index');
+    public function __construct(private RecommendationService $recommendationService) {
+        $this->recommendationService = $recommendationService;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        return view('customerservice::create');
+    public function getRecommendations(): JsonResponse{
+        $data = [] ;
+        try {
+            $data = $this->recommendationService->getRecommendations();
+            return Response::Success($data['recommendations'],$data['message'] );
+        }
+        catch (Throwable $th) {
+            $message = $th->getMessage();
+            $errors [] = $message;
+            // $code = $th->getCode() ?: 400;
+            return Response::Error($data , $message , $errors);
+        }
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request) {}
-
-    /**
-     * Show the specified resource.
-     */
-    public function show($id)
-    {
-        return view('customerservice::show');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit($id)
-    {
-        return view('customerservice::edit');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, $id) {}
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy($id) {}
+    
 }

@@ -19,18 +19,12 @@ class CheckingAccountDetails extends Model
 
     ];
 
-    // // علاقة polymorphic عكسية للوصول إلى بيانات الحساب الأساسية
-    // public function account()
-    // {
-    //     return $this->morphOne(Account::class, 'accountable');
-    // }
 
     public function account(){
         return $this->belongsTo(Account::class);
     }
-    // علاقة بإعدادات الحساب الجاري
-    public function checkingAccountSetting()
-    {
+
+    public function checkingAccountSetting(){
         return $this->belongsTo(CheckingAccount::class, 'checking_accounts_id');
     }
 }

@@ -11,6 +11,9 @@ class TransactionDatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // $this->call([]);
+        $this->call([
+            TransitionSeeder::class,
+            TransferSeeder::class
+        ]);
     }
 }
