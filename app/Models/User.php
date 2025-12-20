@@ -9,6 +9,8 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Spatie\Permission\Traits\HasRoles;
+use App\Traits\LogsActivity;
+
 
 class User extends Authenticatable
 {
@@ -53,8 +55,6 @@ use HasApiTokens, HasFactory, Notifiable , HasRoles;
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-
-
 
     /* Get the user that owns the User
      *

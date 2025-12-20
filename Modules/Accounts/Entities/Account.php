@@ -5,11 +5,12 @@ namespace Modules\Accounts\Entities;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Modules\Accounts\Services\Account\Factory\AccountFactory;
+use App\Traits\LogsActivity;
 
 class Account extends Model
 {
     use HasFactory;
-
+    use LogsActivity;
     protected $fillable = [
         'user_id',
         'account_number',

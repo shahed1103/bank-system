@@ -3,9 +3,11 @@
 namespace Modules\Accounts\Entities;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\LogsActivity;
 
 class AccountType extends Model
 {
+    use LogsActivity;
     protected $fillable = [
         'name',
     ];

@@ -64,4 +64,50 @@ public function __construct( private TransitionStrategy $transitionStrategy){
             throw $e;
         }
     }
+
+ public function getNonApprovedTransition(): array{
+        $trans = Transition::where('approv' , false)->get();
+        $message = 'your Transition get successfuly ';
+        return ['trans' => $trans , 'message' => $message];
+    }
+
+ public function getNonApprovedTransfer(): array{
+        $trans = Transfer::where('approv' , false)->get();
+        $message = 'your Transfer get successfuly ';
+        return ['trans' => $trans , 'message' => $message];
+    }
+
+ public function approveTransition( $tranId ): array{
+        $tran = Transition::find($tranId)->get();
+        $tran ->update([
+       'approv' => true,
+        ]);
+        $tran-> save();
+        $message = 'your Transition completed successfuly ';
+        return ['tran' => $tran , 'message' => $message];
+    }
+
+ public function approveTransfer( $tranId ): array{
+        $tran = Transfer::find($tranId)->get();
+        $tran ->update([
+       'approv' => true,
+        ]);
+        $tran-> save();
+        $message = 'your Transfer completed successfuly ';
+        return ['tran' => $tran , 'message' => $message];
+    }
+
+ public function getTransHistory( $accountID ): array{
+        $transition = Transition::where('account_id', $accountID)->get();
+        $send_transfer = Transfer:: where('send_account_id', $accountID)->get();
+        $recive_transfer = Transfer:: where('recive_account_id', $accountID)->get();
+
+
+        $message = 'your history retived successfuly ';
+        return ['transition' => $transition , 'send_transfer' => $send_transfer
+     , 'recive_transfer' => $recive_transfer , 'message' => $message];
+    }
+
+
+    
 }

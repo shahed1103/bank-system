@@ -7,11 +7,12 @@ use Modules\Accounts\Http\Controllers\AdminController;
 use Modules\Accounts\Http\Controllers\AccountHierarchyController;
 
 Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get('getAllTypes', [AccountsController::class, 'getAllTypes']);
     Route::post('createAccount', [AccountsController::class, 'createAccount']);
 });
 
 
-Route::get('getAllTypes', [AccountsController::class, 'getAllTypes']);
+// Route::get('getAllTypes', [AccountsController::class, 'getAllTypes']);
 Route::get('getAllStatues', [AccountsController::class, 'getAllStatues']);
 
 Route::post('registerUserWithAccount', [RegisterAndAcoountCreationController::class, 'registerUserWithAccount']);
