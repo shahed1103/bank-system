@@ -11,3 +11,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('reply/{ticketId}', [TicketController::class, 'reply']);
     Route::post('changeStatus/{ticketId}', [TicketController::class, 'changeStatus']);
 });
+
+
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get('getRecommendations', [CustomerServiceController::class, 'getRecommendations']);
+});
+
