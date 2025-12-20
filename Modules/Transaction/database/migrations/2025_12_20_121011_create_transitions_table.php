@@ -17,9 +17,7 @@ return new class extends Migration
             $table->string('type');
             $table->decimal('amount');
             $table->boolean('approv')->default(false);
-
-    });
-
+        });
     }
 
     /**
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('checking_accounts');
+        Schema::dropIfExists('transitions');
     }
 };
