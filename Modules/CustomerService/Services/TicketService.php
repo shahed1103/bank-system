@@ -4,6 +4,8 @@ namespace Modules\CustomerService\Services;
 use Modules\CustomerService\Models\Ticket;
 use Modules\CustomerService\Models\TicketMessage;
 use Exception;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class TicketService
 {

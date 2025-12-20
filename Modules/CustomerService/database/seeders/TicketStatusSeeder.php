@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Accounts\Database\Seeders;
+namespace Modules\CustomerService\Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;

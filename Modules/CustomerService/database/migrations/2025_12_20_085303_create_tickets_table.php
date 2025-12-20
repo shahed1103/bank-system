@@ -15,7 +15,7 @@ return new class extends Migration
         $table->id();
         $table->foreignId('user_id')->constrained()->cascadeOnDelete();
         $table->string('subject');
-        $table->foreignId('status_id')->constrained()->cascadeOnDelete();
+        $table->foreignId('status_id')->constrained('ticket_statuses')->cascadeOnDelete();
 
          // open | in_progress | closed
         $table->timestamps();

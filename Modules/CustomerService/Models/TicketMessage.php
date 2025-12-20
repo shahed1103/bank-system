@@ -5,6 +5,7 @@ namespace Modules\CustomerService\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 // use Modules\CustomerService\Database\Factories\TicketMessageFactory;
+use App\Models\User; 
 
 class TicketMessage extends Model
 {
