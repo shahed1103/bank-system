@@ -10,6 +10,7 @@ use Illuminate\Support\Carbon;
 use Modules\CustomerService\Services\NotificationService;
 use App\Models\User;
 use Modules\Accounts\Entities\AccountStatus;
+use Illuminate\Support\Facades\DB;
 use Modules\CustomerService\Events\AccountActivityOccurred;
 use Modules\Accounts\Services\StatusStrategy\StatusStrategy;
 
@@ -131,7 +132,7 @@ class AdminService
         try{
         $retuenDate = [];
         $retuenDate = $this->statusStrategy->activateFac($accountId);
-        
+
         $account = Account::find($accountId);
 
         app(NotificationService::class)->notifyAccountStatusChange($account);
@@ -151,10 +152,8 @@ class AdminService
         DB::beginTransaction();
         try{
         $retuenDate = [];
-        $retuenDate = $this->statusStrategy->freezeFac($accountId);
-
+        $retuenDate = $this->statusStrategy->freezeFac($accountId, $request);
         $account = Account::find($accountId);
-        
         app(NotificationService::class)->notifyAccountStatusChange($account);
 
         DB::commit();
@@ -174,10 +173,10 @@ class AdminService
         DB::beginTransaction();
         try{
         $retuenDate = [];
-        $retuenDate = $this->statusStrategy->closedFac($accountId);
+        $retuenDate = $this->statusStrategy->closedFac($accountId , $request);
 
         $account = Account::find($accountId);
-        
+
         app(NotificationService::class)->notifyAccountStatusChange($account);
 
         DB::commit();
@@ -196,10 +195,10 @@ public function suspend($accountId , $request): array{
         DB::beginTransaction();
         try{
         $retuenDate = [];
-        $retuenDate = $this->statusStrategy->suspendFac($accountId);
+        $retuenDate = $this->statusStrategy->suspendFac($accountId , $request);
 
         $account = Account::find($accountId);
-        
+
         app(NotificationService::class)->notifyAccountStatusChange($account);
 
         DB::commit();

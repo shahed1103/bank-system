@@ -5,7 +5,7 @@ use Modules\Accounts\Entities\Account;
 use Exception;
 use Modules\Transaction\Services\Strategy\TransitionStrategy;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-
+use Illuminate\Support\Facades\DB;
 class TransitionService
 {
 
@@ -18,7 +18,7 @@ public function __construct( private TransitionStrategy $transitionStrategy){
         DB::beginTransaction();
         try{
         $account = Account::find($accountId);
-        $statusService = $this->transitionStrategy->withdrawStr($account->$account_status_id);
+        $statusService = $this->transitionStrategy->withdrawStr($account->account_status_id);
         $resultData=[];
         $resultData=$statusService->withdraw( $account , $request);
         DB::commit();
@@ -109,5 +109,5 @@ public function __construct( private TransitionStrategy $transitionStrategy){
     }
 
 
-    
+
 }

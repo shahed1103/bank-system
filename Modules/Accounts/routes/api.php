@@ -18,9 +18,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
 Route::post('registerUserWithAccount', [RegisterAndAcoountCreationController::class, 'registerUserWithAccount']);
 
-Route::get('activete/{accountId}', [AdminController::class, 'activete']);
-Route::get('freeze/{accountId}', [AdminController::class, 'freeze']);
-Route::get('close/{accountId}', [AdminController::class, 'close']);
-Route::get('suspend/{accountId}', [AdminController::class, 'suspend']);
+Route::post('activete/{accountId}', [AdminController::class, 'activete']);
+Route::post('freeze/{accountId}', [AdminController::class, 'freeze']);
+Route::post('close/{accountId}', [AdminController::class, 'close']);
+Route::post('suspend/{accountId}', [AdminController::class, 'suspend']);
 
 

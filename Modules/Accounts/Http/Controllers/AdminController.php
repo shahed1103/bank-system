@@ -52,7 +52,7 @@ class AdminController extends Controller
     public function activete($accountId ): JsonResponse{
         $data = [];
         try {
-            $data = $this->adminService->activete();
+            $data = $this->adminService->activete($accountId);
             return Response::Success($data['account'], $data['message']);
         } catch (Throwable $th) {
             $message = $th->getMessage();
@@ -62,10 +62,10 @@ class AdminController extends Controller
         }
     }
 
-    public function freeze($accountId ): JsonResponse{
+    public function freeze($accountId  , Request $request ): JsonResponse{
         $data = [];
         try {
-            $data = $this->adminService->freeze();
+            $data = $this->adminService->freeze($accountId , $request);
             return Response::Success($data['account'], $data['message']);
         } catch (Throwable $th) {
             $message = $th->getMessage();
@@ -75,10 +75,10 @@ class AdminController extends Controller
         }
     }
 
-    public function close($accountId ): JsonResponse{
+    public function close($accountId  , Request $request): JsonResponse{
         $data = [];
         try {
-            $data = $this->adminService->close();
+            $data = $this->adminService->close($accountId , $request);
             return Response::Success($data['account'], $data['message']);
         } catch (Throwable $th) {
             $message = $th->getMessage();
@@ -88,10 +88,10 @@ class AdminController extends Controller
         }
     }
 
-    public function suspend($accountId ): JsonResponse{
+    public function suspend($accountId ,Request $request): JsonResponse{
         $data = [];
         try {
-            $data = $this->adminService->suspend();
+            $data = $this->adminService->suspend($accountId , $request);
             return Response::Success($data['account'], $data['message']);
         } catch (Throwable $th) {
             $message = $th->getMessage();

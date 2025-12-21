@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Modules\Accounts\Services\Account\Factory\AccountFactory;
 use App\Traits\LogsActivity;
+use App\Models\User;
 
 class Account extends Model
 {

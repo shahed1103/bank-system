@@ -1,18 +1,18 @@
 <?php
 
-namespace Modules\Account\Services\StatusStrategy\Status;
+namespace Modules\Accounts\Services\StatusStrategy\Status;
 
 use Modules\Accounts\Services\StatusStrategy\ChangeStatusInterface;
 
 class ClosedService  implements ChangeStatusInterface
 
 {
-public function freeze($account , $request):array {
+ public static function freeze($account , $request):array {
 $message = 'you cant complete because this account was closed';
 return [ 'message' => $message];
 }
 
-public function activate($account):array {
+ public static function activate($account):array {
 
     $account->account_status_id = 1;
 
@@ -20,12 +20,12 @@ public function activate($account):array {
     return ['account' => $account  , 'message' => $message];
 }
 
-public function closed($account, $request):array {
+ public static function closed($account, $request):array {
     $message = 'this Account is already closed';
     return ['message' => $message];
 }
 
-public function suspend($account , $request):array {
+ public static function suspend($account , $request):array {
     $message = 'you cant complete because this account was closed';
     return [ 'message' => $message];
 }

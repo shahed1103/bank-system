@@ -2,6 +2,7 @@
 namespace Modules\Accounts\Services\StatusStrategy;
 use Modules\Accounts\Entities\Account;
 use Modules\Accounts\Entities\AccountStatus;
+
 use Modules\Accounts\Services\StatusStrategy\Status\{
     ActiveService,
     ClosedService,
@@ -16,8 +17,8 @@ class StatusStrategy
 
         public function freezeFac(int $accountId, $request) :array {
         $account = Account::find($accountId);
-        $status = AccountStatus::findOrFail($account->account_status_id)->name;
-
+        $status = AccountStatus::find($account->account_status_id)->name;
+        echo($status);
         return match($status) {
             'active'  => ActiveService :: freeze($account, $request) ,
             'closed' =>  ClosedService:: freeze($account, $request) ,
@@ -29,7 +30,7 @@ class StatusStrategy
 
         public function activateFac(int $accountId): array {
         $account = Account::find($accountId);
-        $status = AccountStatus::findOrFail($account->account_status_id)->name;
+          $status = AccountStatus::find($account->account_status_id)->name;
 
         return match($status) {
             'active'  => ActiveService :: activate($account) ,
@@ -42,10 +43,11 @@ class StatusStrategy
 
         public function closedFac(int $accountId, $request):array {
          $account = Account::find($accountId);
-        $status = AccountStatus::findOrFail($account->account_status_id)->name;
+          $status = AccountStatus::find($account->account_status_id)->name;
+
 
         return match($status) {
-           'active'  => ActiveService :: closed($account, $request) ,
+            'active'  => ActiveService :: closed($account, $request) ,
             'closed' =>  ClosedService:: closed($account , $request) ,
             'frozen' =>  FrozenService:: closed($account , $request) ,
             'suspended' =>  SuspendedService:: closed($account, $request) ,
@@ -54,8 +56,9 @@ class StatusStrategy
     }
 
         public function suspendFac(int $accountId, $request):array {
-      $account = Account::find($accountId);
-        $status = AccountStatus::findOrFail($account->account_status_id)->name;
+        $account = Account::find($accountId);
+        $status = AccountStatus::find($account->account_status_id)->name;
+         echo($status);
 
         return match($status) {
            'active'  => ActiveService :: suspend($account, $request) ,

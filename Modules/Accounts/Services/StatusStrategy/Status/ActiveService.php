@@ -1,8 +1,6 @@
 <?php
 
-namespace Modules\Account\Services\StatusStrategy\Status;
-
-
+namespace Modules\Accounts\Services\StatusStrategy\Status;
 use Modules\Accounts\Services\StatusStrategy\ChangeStatusInterface;
 
 
@@ -10,17 +8,19 @@ class ActiveService  implements ChangeStatusInterface
 {
 
 
-public function freeze($account , $request):array {
+ public static function freeze($account , $request):array {
+ echo($request['status_resion']);
 
-    $account->account_status_id = 2;
-    $account->status_resion = $request['status_resion'];
+    $account->update(['account_status_id' => 2,
+         'status_resion' => $request['status_resion'] ]);
+    $account->save();
 
     $message = 'this Account  freeze successfuly';
     return ['account' => $account  , 'message' => $message];
 }
 
 
-public function activate($account):array {
+ public static function activate($account):array {
 $account->account_status_id = 1;
 
 $message = 'this Account  return active successfuly';
@@ -29,7 +29,7 @@ return ['account' => $account  , 'message' => $message];
 
 
 //////////////////////////////////////////mustshahedEdit
-public function closed($account , $request):array {
+ public static function closed($account , $request):array {
 
     // $account->account_status_id = 4;
 
@@ -41,7 +41,7 @@ public function closed($account , $request):array {
     return ['account' => $account  , 'message' => $message];
 }
 
-public function suspend($account , $request):array {
+ public static function suspend($account , $request):array {
     $account->account_status_id = 3;
     $account->status_resion = $request['status_resion'];
 

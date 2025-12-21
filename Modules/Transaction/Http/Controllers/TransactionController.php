@@ -4,12 +4,16 @@ namespace Modules\Transaction\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Modules\Transaction\Services\TransitionService;
+
 
 class TransactionController extends Controller
 {
+ public function __construct(TransitionService $adminService){
+        $this->adminService = $adminService;
+    }
 
-
-    public function withdraw($accountId , $request ): JsonResponse{
+    public function withdraw($accountId ,Request $request ): JsonResponse{
         $data = [];
         try {
             $data = $this->adminService->withdraw($accountId , $request);

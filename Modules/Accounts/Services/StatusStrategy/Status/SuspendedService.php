@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Account\Services\StatusStrategy\Status;
+namespace Modules\Accounts\Services\StatusStrategy\Status;
 
 use Modules\Accounts\Services\StatusStrategy\ChangeStatusInterface;
 
@@ -9,7 +9,7 @@ class SuspendService  implements ChangeStatusInterface
 {
 
 
-public function freeze($account , $request):array {
+ public static function freeze($account , $request):array {
     $account->account_status_id = 2;
     $account->status_resion = $request['status_resion'];
 
@@ -18,7 +18,7 @@ public function freeze($account , $request):array {
 }
 
 
-public function activate($account):array {
+ public static function activate($account):array {
 $account->account_status_id = 1;
 
 $message = 'this Account return active successfuly';
@@ -26,7 +26,7 @@ return ['account' => $account  , 'message' => $message];
 }
 
 //////////////////////////////////////////mustshahedEdit
-public function closed($account, $request):array {
+ public static function closed($account, $request):array {
 
     // $account->account_status_id = 4;
     $close = $account->close();
@@ -37,7 +37,7 @@ public function closed($account, $request):array {
     return ['account' => $account  , 'message' => $message];
 }
 
-public function suspend($account , $request):array {
+ public static  function suspend($account , $request):array {
 
     $message = 'this Account is already suspended';
     return ['message' => $message];

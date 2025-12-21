@@ -8,7 +8,6 @@ Route::middleware(['auth:sanctum'])->prefix('v1')->group(function () {
 });
 
 
-Route::get('suspend/{accountId}', [TransactionController::class, 'suspend']);
 
 Route::post('withdraw/{accountId}', [TransactionController::class, 'withdraw']);
 Route::post('deposit/{accountId}', [TransactionController::class, 'deposit']);
