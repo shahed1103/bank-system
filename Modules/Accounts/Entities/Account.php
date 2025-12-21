@@ -10,7 +10,7 @@ use App\Traits\LogsActivity;
 class Account extends Model
 {
     use HasFactory;
-    use LogsActivity;
+ 
     protected $fillable = [
         'user_id',
         'account_number',
