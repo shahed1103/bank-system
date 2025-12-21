@@ -12,11 +12,11 @@ Route::middleware(['auth:sanctum'])->prefix('v1')->group(function () {
 Route::post('withdraw/{accountId}', [TransactionController::class, 'withdraw']);
 Route::post('deposit/{accountId}', [TransactionController::class, 'deposit']);
 Route::post('transfer/{accountId}', [TransactionController::class, 'transfer']);
-Route::post('getNonApprovedTransition', [TransactionController::class, 'getNonApprovedTransition']);
-Route::post('getNonApprovedTransfer', [TransactionController::class, 'getNonApprovedTransfer']);
-Route::post('approveTransition/{tranId}', [TransactionController::class, 'approveTransition']);
-Route::post('approveTransfer/{tranId}', [TransactionController::class, 'approveTransfer']);
-Route::post('getTransHistory/{tranId}', [TransactionController::class, 'getTransHistory']);
+Route::get('getNonApprovedTransition', [TransactionController::class, 'getNonApprovedTransition']);
+Route::get('getNonApprovedTransfer', [TransactionController::class, 'getNonApprovedTransfer']);
+Route::get('approveTransition/{tranId}', [TransactionController::class, 'approveTransition']);
+Route::get('approveTransfer/{tranId}', [TransactionController::class, 'approveTransfer']);
+Route::get('getTransHistory/{tranId}', [TransactionController::class, 'getTransHistory']);
 
 
 
