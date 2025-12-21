@@ -26,7 +26,7 @@ class TransactionController extends Controller
         }
     }
 
-    public function deposit($accountId , $request ): JsonResponse{
+    public function deposit($accountId ,Request $request ): JsonResponse{
         $data = [];
         try {
             $data = $this->adminService->deposit($accountId , $request);
@@ -39,7 +39,7 @@ class TransactionController extends Controller
         }
     }
 
-    public function transfer($accountId , $request ): JsonResponse{
+    public function transfer($accountId ,Request $request ): JsonResponse{
         $data = [];
         try {
             $data = $this->adminService->transfer($accountId , $request);

@@ -35,7 +35,7 @@ public function __construct( private TransitionStrategy $transitionStrategy){
         DB::beginTransaction();
         try{
         $account = Account::find($accountId);
-        $statusService = $this->transitionStrategy->depositStr($account->$account_status_id);
+        $statusService = $this->transitionStrategy->depositStr($account->account_status_id);
         $resultData=[];
         $resultData=$statusService->deposit( $account , $request);
         DB::commit();
@@ -52,7 +52,7 @@ public function __construct( private TransitionStrategy $transitionStrategy){
         DB::beginTransaction();
         try{
         $account = Account::find($accountId);
-        $statusService = $this->transitionStrategy->transferStr($account->$account_status_id);
+        $statusService = $this->transitionStrategy->transferStr($account->account_status_id);
         $resultData=[];
         $resultData=$statusService->transfer( $account , $request);
         DB::commit();
