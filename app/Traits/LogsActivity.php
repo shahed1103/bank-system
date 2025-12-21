@@ -38,7 +38,7 @@ trait LogsActivity
         ActivityLog::create([
             'log_name'    => (new \ReflectionClass($this))->getShortName(), // يعطيك اسم الـ Model فقط (مثلاً User)
             'description' => "$event " . $this->{$this->getKeyName()},
-            'user_id'     => Auth::id() ,
+            'user_id'     => Auth::id() ?? null,
             'ip_address'  => Request::ip(),
         ]);
     }
