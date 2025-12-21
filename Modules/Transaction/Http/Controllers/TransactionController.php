@@ -7,50 +7,112 @@ use Illuminate\Http\Request;
 
 class TransactionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        return view('transaction::index');
+
+
+    public function withdraw($accountId , $request ): JsonResponse{
+        $data = [];
+        try {
+            $data = $this->adminService->withdraw($accountId , $request);
+            return Response::Success($data['account'], $data['message']);
+        } catch (Throwable $th) {
+            $message = $th->getMessage();
+            $errors[] = $message;
+            $code = $th->getCode() ?: 400;
+            return Response::ErrorX($data, $message, $errors, $code);
+        }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        return view('transaction::create');
+    public function deposit($accountId , $request ): JsonResponse{
+        $data = [];
+        try {
+            $data = $this->adminService->deposit($accountId , $request);
+            return Response::Success($data['account'], $data['message']);
+        } catch (Throwable $th) {
+            $message = $th->getMessage();
+            $errors[] = $message;
+            $code = $th->getCode() ?: 400;
+            return Response::ErrorX($data, $message, $errors, $code);
+        }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request) {}
-
-    /**
-     * Show the specified resource.
-     */
-    public function show($id)
-    {
-        return view('transaction::show');
+    public function transfer($accountId , $request ): JsonResponse{
+        $data = [];
+        try {
+            $data = $this->adminService->transfer($accountId , $request);
+            return Response::Success($data['account'], $data['message']);
+        } catch (Throwable $th) {
+            $message = $th->getMessage();
+            $errors[] = $message;
+            $code = $th->getCode() ?: 400;
+            return Response::ErrorX($data, $message, $errors, $code);
+        }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit($id)
-    {
-        return view('transaction::edit');
+ public function getNonApprovedTransition( ): JsonResponse{
+        $data = [];
+        try {
+            $data = $this->adminService->getNonApprovedTransition();
+            return Response::Success($data['account'], $data['message']);
+        } catch (Throwable $th) {
+            $message = $th->getMessage();
+            $errors[] = $message;
+            $code = $th->getCode() ?: 400;
+            return Response::ErrorX($data, $message, $errors, $code);
+        }
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, $id) {}
+ public function getNonApprovedTransfer( ): JsonResponse{
+        $data = [];
+        try {
+            $data = $this->adminService->getNonApprovedTransfer();
+            return Response::Success($data['account'], $data['message']);
+        } catch (Throwable $th) {
+            $message = $th->getMessage();
+            $errors[] = $message;
+            $code = $th->getCode() ?: 400;
+            return Response::ErrorX($data, $message, $errors, $code);
+        }
+    }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy($id) {}
+
+ public function approveTransition($tranId ): JsonResponse{
+        $data = [];
+        try {
+            $data = $this->adminService->approveTransition($tranId);
+            return Response::Success($data['account'], $data['message']);
+        } catch (Throwable $th) {
+            $message = $th->getMessage();
+            $errors[] = $message;
+            $code = $th->getCode() ?: 400;
+            return Response::ErrorX($data, $message, $errors, $code);
+        }
+    }
+
+ public function approveTransfer($tranId ): JsonResponse{
+        $data = [];
+        try {
+            $data = $this->adminService->approveTransfer($tranId);
+            return Response::Success($data['account'], $data['message']);
+        } catch (Throwable $th) {
+            $message = $th->getMessage();
+            $errors[] = $message;
+            $code = $th->getCode() ?: 400;
+            return Response::ErrorX($data, $message, $errors, $code);
+        }
+    }
+
+ public function getTransHistory($accountID ): JsonResponse{
+        $data = [];
+        try {
+            $data = $this->adminService->getTransHistory($accountID);
+            return Response::Success($data['account'], $data['message']);
+        } catch (Throwable $th) {
+            $message = $th->getMessage();
+            $errors[] = $message;
+            $code = $th->getCode() ?: 400;
+            return Response::ErrorX($data, $message, $errors, $code);
+        }
+    }
+
+
 }

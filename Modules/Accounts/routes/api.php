@@ -23,3 +23,10 @@ Route::post('reject/{accountId}', [AdminController::class, 'reject']);
 Route::get('total-balance/{accountId}', [AccountHierarchyController::class, 'totalBalance']);
 
 Route::get('close-hierarchy/{accountId}',[AccountHierarchyController::class, 'closeHierarchy']);
+
+Route::get('activete/{accountId}', [AdminController::class, 'activete']);
+Route::get('freeze/{accountId}', [AdminController::class, 'freeze']);
+Route::get('close/{accountId}', [AdminController::class, 'close']);
+Route::get('suspend/{accountId}', [AdminController::class, 'suspend']);
+
+
