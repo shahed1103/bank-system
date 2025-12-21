@@ -17,7 +17,7 @@ use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 class AdminController extends Controller
 {
     private AdminService $adminService;
-    
+
     public function __construct(AdminService $adminService){
         $this->adminService = $adminService;
     }
@@ -48,4 +48,57 @@ class AdminController extends Controller
             return Response::ErrorX($data, $message, $errors, $code);
         }
     }
+
+    public function activete($accountId ): JsonResponse{
+        $data = [];
+        try {
+            $data = $this->adminService->activete();
+            return Response::Success($data['account'], $data['message']);
+        } catch (Throwable $th) {
+            $message = $th->getMessage();
+            $errors[] = $message;
+            $code = $th->getCode() ?: 400;
+            return Response::ErrorX($data, $message, $errors, $code);
+        }
+    }
+
+    public function freeze($accountId ): JsonResponse{
+        $data = [];
+        try {
+            $data = $this->adminService->freeze();
+            return Response::Success($data['account'], $data['message']);
+        } catch (Throwable $th) {
+            $message = $th->getMessage();
+            $errors[] = $message;
+            $code = $th->getCode() ?: 400;
+            return Response::ErrorX($data, $message, $errors, $code);
+        }
+    }
+
+    public function close($accountId ): JsonResponse{
+        $data = [];
+        try {
+            $data = $this->adminService->close();
+            return Response::Success($data['account'], $data['message']);
+        } catch (Throwable $th) {
+            $message = $th->getMessage();
+            $errors[] = $message;
+            $code = $th->getCode() ?: 400;
+            return Response::ErrorX($data, $message, $errors, $code);
+        }
+    }
+
+    public function suspend($accountId ): JsonResponse{
+        $data = [];
+        try {
+            $data = $this->adminService->suspend();
+            return Response::Success($data['account'], $data['message']);
+        } catch (Throwable $th) {
+            $message = $th->getMessage();
+            $errors[] = $message;
+            $code = $th->getCode() ?: 400;
+            return Response::ErrorX($data, $message, $errors, $code);
+        }
+    }
+
 }

@@ -7,7 +7,7 @@ use App\Traits\LogsActivity;
 
 class AccountType extends Model
 {
-    use LogsActivity;
+    // use LogsActivity;
     protected $fillable = [
         'name',
     ];
