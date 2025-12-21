@@ -8,7 +8,7 @@ Route::middleware(['auth:sanctum'])->prefix('v1')->group(function () {
 });
 
 
-
+Route::middleware(['auth:sanctum'])->group(function () {
 Route::post('withdraw/{accountId}', [TransactionController::class, 'withdraw']);
 Route::post('deposit/{accountId}', [TransactionController::class, 'deposit']);
 Route::post('transfer/{accountId}', [TransactionController::class, 'transfer']);
@@ -19,5 +19,4 @@ Route::get('approveTransfer/{tranId}', [TransactionController::class, 'approveTr
 Route::get('getTransHistory/{tranId}', [TransactionController::class, 'getTransHistory']);
 
 
-
-
+});

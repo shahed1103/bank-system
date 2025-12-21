@@ -20,7 +20,8 @@ class LoanService
 public static function  withdraw($account , $request):array {
 
 $message = "you cant withdraw because this account a LoanAccount ";
-return [ 'message' => $message];
+   return ['account' =>  $account, 'message' => $message];
+
 }
 
 
@@ -35,7 +36,8 @@ $oldBalance = LoanAccountService::getOwnBalance($account);
    ]);
 
     $message = "your deposit completed successfuly";
-    return ['message' => $message];
+      return ['account' =>  $account, 'message' => $message];
+
 
 }
 
@@ -43,6 +45,7 @@ $oldBalance = LoanAccountService::getOwnBalance($account);
 public static function  transfer($account , $request):array {
 
 $message = "you cant transfer because this account a LoanAccount ";
-return [ 'message' => $message];
+   return ['account' =>  $account, 'message' => $message];
+
 }
 }

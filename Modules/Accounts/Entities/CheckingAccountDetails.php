@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class CheckingAccountDetails extends Model
 {
     use HasFactory;
-
+    use LogsActivity;
     protected $fillable = [
         'name',
         'checking_accounts_id',

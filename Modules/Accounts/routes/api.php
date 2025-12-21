@@ -14,13 +14,14 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('reject/{accountId}', [AdminController::class, 'reject'])->middleware('can:reject');;
     Route::get('total-balance/{accountId}', [AccountHierarchyController::class, 'totalBalance'])->middleware('can:total-balance');;
     Route::get('close-hierarchy/{accountId}',[AccountHierarchyController::class, 'closeHierarchy'])->middleware('can:close-hierarchy');;
+    Route::post('activete/{accountId}', [AdminController::class, 'activete']);
+Route::post('freeze/{accountId}', [AdminController::class, 'freeze']);
+Route::post('close/{accountId}', [AdminController::class, 'close']);
+Route::post('suspend/{accountId}', [AdminController::class, 'suspend']);
+
 });
 
 Route::post('registerUserWithAccount', [RegisterAndAcoountCreationController::class, 'registerUserWithAccount']);
 
-Route::post('activete/{accountId}', [AdminController::class, 'activete']);
-Route::post('freeze/{accountId}', [AdminController::class, 'freeze']);
-Route::post('close/{accountId}', [AdminController::class, 'close']);
-Route::post('suspend/{accountId}', [AdminController::class, 'suspend']);
 
 

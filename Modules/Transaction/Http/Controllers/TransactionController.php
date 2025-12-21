@@ -4,6 +4,8 @@ namespace Modules\Transaction\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Responses\response;
+use Illuminate\Http\JsonResponse;
 use Modules\Transaction\Services\TransitionService;
 
 
@@ -17,7 +19,7 @@ class TransactionController extends Controller
         $data = [];
         try {
             $data = $this->adminService->withdraw($accountId , $request);
-            return Response::Success($data['account'], $data['message']);
+            return Response::Success($data , $data['message']);
         } catch (Throwable $th) {
             $message = $th->getMessage();
             $errors[] = $message;
@@ -30,7 +32,7 @@ class TransactionController extends Controller
         $data = [];
         try {
             $data = $this->adminService->deposit($accountId , $request);
-            return Response::Success($data['account'], $data['message']);
+            return Response::Success($data , $data['message']);
         } catch (Throwable $th) {
             $message = $th->getMessage();
             $errors[] = $message;
@@ -43,7 +45,7 @@ class TransactionController extends Controller
         $data = [];
         try {
             $data = $this->adminService->transfer($accountId , $request);
-            return Response::Success($data['account'], $data['message']);
+            return Response::Success($data , $data['message']);
         } catch (Throwable $th) {
             $message = $th->getMessage();
             $errors[] = $message;
@@ -52,6 +54,14 @@ class TransactionController extends Controller
         }
     }
 
+
+
+
+
+
+
+
+    ////////////////
  public function getNonApprovedTransition( ): JsonResponse{
         $data = [];
         try {

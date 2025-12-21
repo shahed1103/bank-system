@@ -21,7 +21,8 @@ class ActiveService  implements ChangeStatusInterface
 
 
  public static function activate($account):array {
-$account->account_status_id = 1;
+    $account->update(['account_status_id' => 1  ]);
+    $account->save();
 
 $message = 'this Account  return active successfuly';
 return ['account' => $account  , 'message' => $message];
@@ -42,9 +43,9 @@ return ['account' => $account  , 'message' => $message];
 }
 
  public static function suspend($account , $request):array {
-    $account->account_status_id = 3;
-    $account->status_resion = $request['status_resion'];
-
+     $account->update(['account_status_id' => 2,
+         'status_resion' => $request['status_resion'] ]);
+    $account->save();
     $message = 'this Account  suspended successfuly';
     return ['account' => $account  , 'message' => $message];
 }

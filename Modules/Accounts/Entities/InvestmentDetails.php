@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class InvestmentDetails extends Model
 {
     use HasFactory;
+     use LogsActivity;
 
     protected $fillable = [
         'investment_account_id',

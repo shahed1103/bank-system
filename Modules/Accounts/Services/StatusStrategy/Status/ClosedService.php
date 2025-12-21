@@ -14,8 +14,8 @@ return [ 'message' => $message];
 
  public static function activate($account):array {
 
-    $account->account_status_id = 1;
-
+    $account->update(['account_status_id' => 1 ]);
+    $account->save();
     $message = 'this Account  return active successfuly';
     return ['account' => $account  , 'message' => $message];
 }

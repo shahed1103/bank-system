@@ -8,7 +8,7 @@ use Modules\Transaction\Entities\Transfer;
 use Modules\Accounts\Entities\AccountType;
 use Exception;
 use Modules\Transaction\Services\Types\{
-    SavingsAccountService,
+    SavingAccountService,
     CheckingService,
     LoanService,
     InvestmentService

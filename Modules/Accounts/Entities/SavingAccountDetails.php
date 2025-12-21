@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class SavingAccountDetails extends Model
 {
     use HasFactory;
-
+    use LogsActivity;
     protected $fillable = [
         'name',
         'account_id',

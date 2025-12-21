@@ -10,17 +10,17 @@ class SuspendService  implements ChangeStatusInterface
 
 
  public static function freeze($account , $request):array {
-    $account->account_status_id = 2;
-    $account->status_resion = $request['status_resion'];
-
+    $account->update(['account_status_id' => 2,
+         'status_resion' => $request['status_resion'] ]);
+    $account->save();
     $message = 'this Account freeze successfuly';
     return ['account' => $account  , 'message' => $message];
 }
 
 
  public static function activate($account):array {
-$account->account_status_id = 1;
-
+    $account->update(['account_status_id' =>1 ]);
+    $account->save();
 $message = 'this Account return active successfuly';
 return ['account' => $account  , 'message' => $message];
 }

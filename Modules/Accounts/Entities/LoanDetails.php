@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class LoanDetails extends Model
 {
     use HasFactory;
-
+    use LogsActivity;
     protected $fillable = [
         'loan_id',
         'requested_principal_amount',

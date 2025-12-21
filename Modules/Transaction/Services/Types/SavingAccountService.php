@@ -24,7 +24,8 @@ $oldBalance = SavingsAccountService::getOwnBalance($account);
 if($request['amount'] > $oldBalance ) {
     $transition -> delete();
     $message = "you cant withdraw because the amount bigger than your balance";
-    return ['message' => $message];
+      return ['account' =>  $account, 'message' => $message];
+
 }
 
 if ($request['amount'] < $oldBalance / 4 ) {
@@ -32,12 +33,14 @@ if ($request['amount'] < $oldBalance / 4 ) {
         'balance' => ($oldBalance - $request['amount'])
     ]);
     $message = "your withdraw completed successfully";
-    return ['message' => $message];
+      return ['account' =>  $account, 'message' => $message];
+
 }
 
 $transition -> delete();
 $message = "your cant withdraw this amount because you have savings account";
-    return ['message' => $message];
+     return ['account' =>  $account, 'message' => $message];
+
 
 
 }
@@ -54,13 +57,15 @@ $oldBalance = SavingsAccountService::getOwnBalance($account);
    ]);
 
     $message = "your deposit completed successfuly";
-    return ['message' => $message];
+     return ['account' =>  $account, 'message' => $message];
+
 
 }
 
 
 public static function  transfer($account , $request):array {
 $message = "you cant transfer because this account a SavingsAccount ";
-return [ 'message' => $message];
+   return ['account' =>  $account, 'message' => $message];
+
 }
 }

@@ -132,7 +132,6 @@ class AdminService
         try{
         $retuenDate = [];
         $retuenDate = $this->statusStrategy->activateFac($accountId);
-
         $account = Account::find($accountId);
 
         app(NotificationService::class)->notifyAccountStatusChange($account);
