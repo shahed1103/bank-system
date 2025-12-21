@@ -9,17 +9,13 @@ use Modules\Accounts\Http\Controllers\AccountHierarchyController;
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('getAllTypes', [AccountsController::class, 'getAllTypes']);
     Route::post('createAccount', [AccountsController::class, 'createAccount']);
+    Route::get('getAllStatues', [AccountsController::class, 'getAllStatues']);
+    Route::get('approve/{accountId}', [AdminController::class, 'approve']);
+    Route::post('reject/{accountId}', [AdminController::class, 'reject']);
+    Route::get('total-balance/{accountId}', [AccountHierarchyController::class, 'totalBalance']);
+    Route::get('close-hierarchy/{accountId}',[AccountHierarchyController::class, 'closeHierarchy']);
 });
-
-
-// Route::get('getAllTypes', [AccountsController::class, 'getAllTypes']);
-Route::get('getAllStatues', [AccountsController::class, 'getAllStatues']);
 
 Route::post('registerUserWithAccount', [RegisterAndAcoountCreationController::class, 'registerUserWithAccount']);
 
-Route::get('approve/{accountId}', [AdminController::class, 'approve']);
-Route::post('reject/{accountId}', [AdminController::class, 'reject']);
 
-Route::get('total-balance/{accountId}', [AccountHierarchyController::class, 'totalBalance']);
-
-Route::get('close-hierarchy/{accountId}',[AccountHierarchyController::class, 'closeHierarchy']);
