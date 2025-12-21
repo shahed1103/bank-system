@@ -22,8 +22,13 @@ class Transfer extends Model
  *
  * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
  */
-public function account(): BelongsTo
-{
-    return $this->belongsTo(Account::class,);
-}
+    public function senderAccount(): BelongsTo
+    {
+        return $this->belongsTo(Account::class, 'send_account_id');
+    }
+
+       public function receiverAccount(): BelongsTo
+    {
+        return $this->belongsTo(Account::class, 'recive_account_id');
+    }
 }
