@@ -19,7 +19,10 @@ class RolesPermissionsSeeder extends Seeder
         $ClientRole = Role::create(['name' => 'Client']);
 
         // 2. Create permissions
-        $permissions = ['register'];
+        $permissions = ['getAllTypes' , 'createAccount' , 'getAllStatues' , 'approve' , 
+                        'reject' , 'total-balance' , 'close-hierarchy' , 'createTicket' , 
+                        'getUserTickets'  , 'getTicketDetails' , 'reply' , 'changeStatus' , 
+                        'getRecommendations'];
 
         foreach ($permissions as $permissionName) {
             Permission::findOrCreate($permissionName, 'web');
@@ -28,8 +31,13 @@ class RolesPermissionsSeeder extends Seeder
       //assign permissions to roles
         // 3. Assign permissions
 
-        $AdminRole->syncPermissions([$permissions]);
-        $ClientRole->syncPermissions([$permissions]);
+        $AdminRole->syncPermissions(['getAllTypes' , 'getAllStatues' , 'approve' , 'reject',
+                                     'reply']);
+
+        $ClientRole->syncPermissions(['getAllTypes' , 'createAccount' , 'getAllStatues' ,
+                                      'total-balance' , 'close-hierarchy' , 'createTicket' ,
+                                      'getUserTickets' , 'getTicketDetails' , 'getRecommendations' ,
+                                      'reply']);
 
 
 $sourcePath = public_path('uploads/seeder_photos/defualtProfilePhoto.png');
