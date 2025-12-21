@@ -18,7 +18,7 @@ class SavingsAccountService extends BaseAccountService implements AccountInterfa
         return 1; // Active
     }
 
-    public function getOwnBalance(Account $account): float{
+    public static function getOwnBalance(Account $account): float{
         return $account->savingDetails->balance ;
     }
 

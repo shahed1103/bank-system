@@ -5,7 +5,7 @@ namespace Modules\Transaction\Services\ChainOfResponsibility;
 class ManagerApproved  implements TransitionHandlerInterface
 {
 
-    public function handelWithdraw($account , $request): array{
+public static function handelWithdraw($account , $request): array{
         $transition = Transition::create([
         'account_id' => $account->id,
         'type' => 'withdraw' ,
@@ -18,7 +18,7 @@ class ManagerApproved  implements TransitionHandlerInterface
     return ['message' => $message];
 }
 
-    public function handelDeposit($account , $request): array{
+public static function handelDeposit($account , $request): array{
         $transition = Transition::create([
         'account_id' => $account->id,
         'type' => 'deposit' ,
@@ -30,7 +30,7 @@ class ManagerApproved  implements TransitionHandlerInterface
     return ['message' => $message];
 }
 
-    public function handelTransfer($account , $request): array{
+public static function handelTransfer($account , $request): array{
         $transfer = Trasfer::create([
        'send_account_id' => $account->id,
        'recive_account_id' => $request ['recive_account_id'],

@@ -3,43 +3,45 @@
 namespace Modules\Transaction\Services\ChainOfResponsibility;
 use Modules\Transaction\Services\ChainOfResponsibility\TransitionHandlerInterface;
 use Modules\Transaction\Services\ChainOfResponsibility\ManagerApproved;
-use Modules\Transaction\Entites\Transition;
-use Modules\Transaction\Entites\Transfer;
+use Modules\Transaction\Entities\Transition;
+use Modules\Transaction\Entities\Transfer;
 use Modules\Accounts\Entities\AccountType;
 use Exception;
 use Modules\Transaction\Services\Types\{
     SavingsAccountService,
-    CheckingAccountService,
-    LoanAccountService,
-    InvestmentAccountService
+    CheckingService,
+    LoanService,
+    InvestmentService
 };
 
 class AutoApproved  implements TransitionHandlerInterface
 {
 
-private ManagerApproved $managerApproved;
+private static ManagerApproved $managerApproved; // تحويلها إلى static
 private const CONFERENCE_LIMIT = 10000000;
 
+public static function handelWithdraw($account, $request): array {
 
-public function handelWithdraw($account , $request) : array{
+    if ($request['amount'] > self::CONFERENCE_LIMIT) {
 
-    if ($request['amount'] >  $this->$conference){
-$managerApproved->handelWithdraw($account , $request);
+        self::$managerApproved->handelWithdraw($account, $request);
     }
 
-$transition = Transition::create([
+    $transition = Transition::create([
         'account_id' => $account->id,
-        'type' => 'withdraw' ,
+        'type' => 'withdraw',
         'amount' => $request['amount'],
-        'approv'=> 'true'
- ]);
+        'approv' => true
+    ]);
 
 $type = AccountType::findOrFail($account->account_type_id)->name;
+echo($type);
     return match($type) {
-            'savings' => SavingsAccountService::withdraw($account , $request , $transition),
-            'checking' => CheckingAccountService::withdraw($account , $request, $transition),
-            'loan' =>  LoanAccountService::withdraw($account , $request, $transition),
-            'investment' =>  InvestmentAccountService::withdraw($account , $request, $transition),
+
+            'savings' => SavingAccountService::withdraw($account , $request , $transition),
+            'checking' => CheckingService::withdraw($account , $request, $transition),
+            'loan' =>  LoanService::withdraw($account , $request, $transition),
+            'investment' =>  InvestmentService::withdraw($account , $request, $transition),
             default => throw new Exception("Invalid account type: $type", 400),
         };
     }
@@ -53,25 +55,33 @@ $type = AccountType::findOrFail($account->account_type_id)->name;
 
 
 
-public function handelDeposit($account , $request): array{
-    if ($request['amount'] >  $this->$conference){
-$managerApproved->handelDeposit($account , $request);
+
+
+
+
+
+
+
+public static function handelDeposit($account , $request): array{
+  if ($request['amount'] > self::CONFERENCE_LIMIT) {
+
+        self::$managerApproved->handelWithdraw($account, $request);
     }
 
 $transition = Transition::create([
     'account_id' => $account->id,
     'type' => 'withdraw' ,
     'amount' => $request['amount'],
-    'approv'=> 'true'
+    'approv'=> true
 
 ]);
 
 $type = AccountType::findOrFail($account->account_type_id)->name;
          match($type) {
-            'savings' => SavingsAccountService::deposit($account , $request),
-            'checking' => CheckingAccountService::deposit($account , $request),
-            'loan' =>  LoanAccountService::deposit($account , $request),
-            'investment' =>  InvestmentAccountService::deposit($account , $request),
+            'savings' => SavingAccountService::deposit($account , $request),
+            'checking' => CheckingService::deposit($account , $request),
+            'loan' =>  LoanService::deposit($account , $request),
+            'investment' =>  InvestmentService::deposit($account , $request),
             default => throw new Exception("Invalid account type: $type", 400),
         };
     }
@@ -87,25 +97,26 @@ $type = AccountType::findOrFail($account->account_type_id)->name;
 
 
 
-public function handelTransfer($account , $request): array{
-    if ($request['amount'] >  $this->$conference){
-$managerApproved->handelTransfer($account , $request);
+public static function handelTransfer($account , $request): array{
+   if ($request['amount'] > self::CONFERENCE_LIMIT) {
+
+        self::$managerApproved->handelWithdraw($account, $request);
     }
 
 $transfer = Trasfer::create([
        'send_account_id' => $account->id,
        'recive_account_id' => $request ['recive_account_id'],
         'amount' => $request['amount'],
-        'approv'=> 'true'
+        'approv'=> true
 
  ]);
 
 $type = AccountType::findOrFail($account->account_type_id)->name;
          match($type) {
-            'savings' => SavingsAccountService::transfer($account , $request , $transfer),
-            'checking' => CheckingAccountService::transfer($account , $request , $transfer),
-            'loan' =>  LoanAccountService::transfer($account , $request , $transfer),
-            'investment' =>  InvestmentAccountService::transfer($account , $request , $transfer),
+            'savings' => SavingAccountService::transfer($account , $request , $transfer),
+            'checking' => CheckingService::transfer($account , $request , $transfer),
+            'loan' =>  LoanService::transfer($account , $request , $transfer),
+            'investment' =>  InvestmentService::transfer($account , $request , $transfer),
             default => throw new Exception("Invalid account type: $type", 400),
         };
     }

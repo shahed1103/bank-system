@@ -4,20 +4,23 @@ namespace Modules\Transaction\Services\Types;
 
 use Modules\Transaction\Services\Strategy\TransitionInterface;
 use Throwable;
+use Modules\Accounts\Services\Account\Types\CheckingAccountService;
+
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Exception;
 use Modules\Accounts\Entities\CheckingAccountDetails;
 
-    class CheckingAccountService  implements TransitionInterface
+    class CheckingService
 {
 
 //////////////////////////////////can
-public function withdraw($account , $request, $transition):array {
+public static function withdraw($account , $request, $transition):array {
 
 $checking = CheckingAccountDetails:: where ('account_id' , $account->id)->get();
-$oldBalance = CheckingAccountDetails::getOwnBalance();
-
+$oldBalance = CheckingAccountService::getOwnBalance($account);
+echo($oldBalance);
 if($request['amount'] > $oldBalance ) {
+
     $transition -> delete();
      $message = "you cant withdraw because the amount bigger than your balance";
     return ['message' => $message];
@@ -34,10 +37,10 @@ if($request['amount'] > $oldBalance ) {
 
 
 //////////////////////////////////can
-public function deposit($account , $request ):array {
+public static function  deposit($account , $request ):array {
 
 $checking = CheckingAccountDetails:: where ('account_id' , $account->id)->get();
-$oldBalance = CheckingAccountDetails::getOwnBalance();
+$oldBalance = CheckingAccountService::getOwnBalance($account);
 
    $checking-> update([
     'balance' => ($oldBalance + $request['amount'])
@@ -50,10 +53,10 @@ $oldBalance = CheckingAccountDetails::getOwnBalance();
 
 
 //////////////////////////////can
-public function transfer($account , $request , $transfer):array {
+public static function  transfer($account , $request , $transfer):array {
 
 $send_checking = CheckingAccountDetails:: where ('account_id' , $account->id)->get();
-$old_sendBalance = CheckingAccountDetails::getOwnBalance();
+$old_sendBalance = CheckingAccountService::getOwnBalance($account);
 
 if($request['amount'] > $old_sendBalance ) {
     $transfer -> delete();
@@ -67,7 +70,7 @@ if($request['amount'] > $old_sendBalance ) {
    ]);
 
 $recive_checking = CheckingAccountDetails:: where ('account_id' , $request['recive_account_id'])->get();
-$old_reciveBalance = CheckingAccountDetails::getOwnBalance();
+$old_reciveBalance = CheckingAccountService::getOwnBalance($account);
 
    $recive_checking-> update([
     'balance' => ($old_reciveBalance + $request['amount'])

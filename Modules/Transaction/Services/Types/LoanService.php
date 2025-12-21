@@ -5,17 +5,19 @@ namespace Modules\Transaction\Services\Types;
 
 use Modules\Transaction\Services\Strategy\TransitionInterface;
 use Throwable;
+use Modules\Accounts\Services\Account\Types\LoanAccountService;
+
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Exception;
 use Modules\Accounts\Entities\LoanDetails;
 
-class LoanAccountService  implements TransitionInterface
+class LoanService
 {
 
 
 
 
-public function withdraw($account , $request):array {
+public static function  withdraw($account , $request):array {
 
 $message = "you cant withdraw because this account a LoanAccount ";
 return [ 'message' => $message];
@@ -23,10 +25,10 @@ return [ 'message' => $message];
 
 
 //////////////////////////////////can
-public function deposit($account , $request):array {
+public static function  deposit($account , $request):array {
 
 $loan = LoanDetails:: where ('account_id' , $account->id)->get();
-$oldBalance = LoanDetails::getOwnBalance();
+$oldBalance = LoanAccountService::getOwnBalance($account);
 
    $loan-> update([
     'balance' => ($oldBalance - $request['amount'])
@@ -38,7 +40,7 @@ $oldBalance = LoanDetails::getOwnBalance();
 }
 
 
-public function transfer($account , $request):array {
+public static function  transfer($account , $request):array {
 
 $message = "you cant transfer because this account a LoanAccount ";
 return [ 'message' => $message];

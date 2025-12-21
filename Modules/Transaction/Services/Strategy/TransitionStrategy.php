@@ -17,7 +17,7 @@ class TransitionStrategy
 {
     public function withdrawStr($accountStatusId): TransitionInterface{
      $status = AccountStatus::findOrFail($accountStatusId)->name;
-
+   echo($status);
         return match($status) {
             'active' => new ActiveService (),
             'closed' => new ClosedService(),

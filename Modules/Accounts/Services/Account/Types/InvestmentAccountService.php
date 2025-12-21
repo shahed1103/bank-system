@@ -18,7 +18,7 @@ class InvestmentAccountService extends BaseAccountService implements AccountInte
     }
 
 
-    public function getOwnBalance(Account $account): float{
+    public static function getOwnBalance(Account $account): float{
         return $account->investmentDetails->balance ;
     }
 

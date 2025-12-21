@@ -4,20 +4,21 @@ namespace Modules\Transaction\Services\Types;
 
 use Modules\Accounts\Entities\InvestmentDetails;
 use Modules\Transaction\Services\Strategy\TransitionInterface;
+use Modules\Accounts\Services\Account\Types\InvestmentAccountService;
+
 use Throwable;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Exception;
 
 
-class InvestmentAccountService  implements TransitionInterface
-{
+class InvestmentService {
 
 
     //////////////////////////////////can
-public function withdraw($account , $request, $transition):array {
+public static function  withdraw($account , $request, $transition):array {
 
 $invest = InvestmentDetails:: where ('account_id' , $account->id)->get();
-$oldBalance = InvestmentDetails::getOwnBalance();
+$oldBalance = InvestmentAccountService::getOwnBalance($account);
 
 if($request['amount'] > $oldBalance ) {
     $transition -> delete();
@@ -42,11 +43,11 @@ $message = "your cant withdraw this amount because you have investment account";
 
 
 //////////////////////////////////can
-public function deposit($account , $request):array {
+public static function  deposit($account , $request):array {
 
 
 $invest = InvestmentDetails:: where ('account_id' , $account->id)->get();
-$oldBalance = InvestmentDetails::getOwnBalance();
+$oldBalance = InvestmentAccountService::getOwnBalance($account);
 
    $invest-> update([
     'balance' => ($oldBalance + $request['amount'])
@@ -58,9 +59,9 @@ $oldBalance = InvestmentDetails::getOwnBalance();
 
 
 //////////////////////////////can
-public function transfer($account , $request , $transfer):array {
+public static function  transfer($account , $request , $transfer):array {
 $send_checking = InvestmentDetails:: where ('account_id' , $account->id)->get();
-$old_sendBalance = InvestmentDetails::getOwnBalance();
+$old_sendBalance = InvestmentAccountService::getOwnBalance($account);
 
 if($request['amount'] > $old_sendBalance ) {
     $transfer -> delete();
@@ -74,7 +75,7 @@ if($request['amount'] > $old_sendBalance ) {
    ]);
 
 $recive_checking = InvestmentDetails:: where ('account_id' , $request['recive_account_id'])->get();
-$old_reciveBalance = InvestmentDetails::getOwnBalance();
+$old_reciveBalance = InvestmentAccountService::getOwnBalance($account);
 
    $recive_checking-> update([
     'balance' => ($old_reciveBalance + $request['amount'])
