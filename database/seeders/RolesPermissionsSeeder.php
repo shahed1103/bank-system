@@ -22,7 +22,7 @@ class RolesPermissionsSeeder extends Seeder
         $permissions = ['getAllTypes' , 'createAccount' , 'getAllStatues' , 'approve' , 
                         'reject' , 'total-balance' , 'close-hierarchy' , 'createTicket' , 
                         'getUserTickets'  , 'getTicketDetails' , 'reply' , 'changeStatus' , 
-                        'getRecommendations'];
+                        'getRecommendations' , 'dailyTransactions' , 'accountSummary'];
 
         foreach ($permissions as $permissionName) {
             Permission::findOrCreate($permissionName, 'web');
@@ -32,7 +32,7 @@ class RolesPermissionsSeeder extends Seeder
         // 3. Assign permissions
 
         $AdminRole->syncPermissions(['getAllTypes' , 'getAllStatues' , 'approve' , 'reject',
-                                     'reply']);
+                                     'reply' , 'dailyTransactions' , 'accountSummary']);
 
         $ClientRole->syncPermissions(['getAllTypes' , 'createAccount' , 'getAllStatues' ,
                                       'total-balance' , 'close-hierarchy' , 'createTicket' ,
@@ -64,7 +64,7 @@ $admin = User::factory()->create([
 $admin->assignRole($AdminRole);
 //assign permissions with the role to the user
 $permissions = $AdminRole->permissions()->pluck('name')->toArray();
-$admin->givePermissionTo ($permissions);
+$admin->givePermissionTo($permissions);
 
 
 $clientUser = User::factory()->create([

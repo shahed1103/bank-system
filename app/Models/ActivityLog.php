@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class ActivityLog extends Model
 {
      protected $fillable = [
-             'log_name',
-           'description',
-           'user_id',
+          'log_name',
+          'description',
+          'user_id',
          'ip_address'
     ];
 
