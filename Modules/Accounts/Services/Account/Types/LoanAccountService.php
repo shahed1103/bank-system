@@ -17,7 +17,7 @@ class LoanAccountService extends BaseAccountService implements AccountInterface 
         return 5; //non Active
     }
 
-    public function getOwnBalance(Account $account): float{
+    public static function getOwnBalance(Account $account): float{
         return -($account->loanDetails->remaining_principal) ;
     }
 

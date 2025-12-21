@@ -18,7 +18,8 @@ class CheckingAccountService extends BaseAccountService implements AccountInterf
         return 1; // Active
     }
 
-    public function getOwnBalance(Account $account): float{
+    public static function getOwnBalance(Account $account): float{
+        echo($account);
         return $account->checkingDetails->balance ;
     }
 
