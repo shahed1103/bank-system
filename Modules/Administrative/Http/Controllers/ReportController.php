@@ -21,15 +21,15 @@ class ReportController extends Controller
 
     public function dailyTransactions(): JsonResponse{
         $data = [] ;
-        // try {
+        try {
             $data = $this->reportService->dailyTransactions();
             return Response::Success($data['Transaction Report'],$data['message'] );
-        // }
-        // catch (Throwable $th) {
-        //     $message = $th->getMessage();
-        //     $errors [] = $message;
-        //     return Response::Error($data , $message , $errors);
-        // }
+        }
+        catch (Throwable $th) {
+            $message = $th->getMessage();
+            $errors [] = $message;
+            return Response::Error($data , $message , $errors);
+        }
     }
 
     public function accountSummary(): JsonResponse{
