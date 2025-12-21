@@ -3,7 +3,7 @@
 namespace Modules\Administrative\Services;
 
 use Modules\Accounts\Entities\Account;
-use Modules\Accounts\Services\Account\Factory\AccountFactory;
+use Modules\Administrative\Services\AccountFactory;
 use Modules\Accounts\Services\Account\ApproveRejectInterface;
 use Exception;
 use Illuminate\Support\Carbon;
@@ -13,7 +13,7 @@ use Modules\Accounts\Entities\AccountStatus;
 use Modules\CustomerService\Events\AccountActivityOccurred;
 use Modules\Accounts\Services\StatusStrategy\StatusStrategy;
 
-class AdminService
+class ManagmentDashboardService
 {
 
 public function userCounts(): array {
