@@ -103,7 +103,7 @@ public static function handelTransfer($account , $request): array{
         self::$managerApproved->handelWithdraw($account, $request);
     }
 
-$transfer = Trasfer::create([
+$transfer = Transfer::create([
        'send_account_id' => $account->id,
        'recive_account_id' => $request ['recive_account_id'],
         'amount' => $request['amount'],
