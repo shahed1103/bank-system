@@ -23,7 +23,7 @@ class NotificationService
         event(new AccountActivityOccurred(
             $account->user,
             'account_status_changed',
-            ['account_status' => $account->status->name]
+            ['account_status' => $account->accountStatus->name]
         ));
     }
 
