@@ -64,7 +64,7 @@ $admin = User::factory()->create([
 $admin->assignRole($AdminRole);
 //assign permissions with the role to the user
 $permissions = $AdminRole->permissions()->pluck('name')->toArray();
-$admin->givePermissionTo ($permissions);
+$admin->givePermissionTo($permissions);
 
 
 $clientUser = User::factory()->create([
