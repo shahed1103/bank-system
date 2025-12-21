@@ -17,10 +17,8 @@ class PaymentController extends Controller
             'type'     => 'required|string|in:credit_card,wire',
         ]);
 
-        // 🔹 اختيار الـ Adapter
         $gateway = PaymentGatewayFactory::make($request->type);
 
-        // 🔹 حقن الـ Adapter بالخدمة
         $service = new PaymentService($gateway);
 
         $result = $service->execute(
