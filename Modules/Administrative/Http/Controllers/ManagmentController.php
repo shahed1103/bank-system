@@ -2,7 +2,7 @@
 
 namespace Modules\Administrative\Http\Controllers;
 use Illuminate\Routing\Controller;
-use Modules\Accounts\Services\Account\Factory\AccountFactory;
+use Modules\Administrative\Services\ManagmentDashboardService;
 use Illuminate\Http\Request;
 use App\Http\Responses\response;
 use Modules\Accounts\Http\Requests\AccountCreateRequest;
@@ -13,78 +13,78 @@ use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Modules\Accounts\Entities\AccountType;
 use Modules\Accounts\Entities\AccountStatus;
 
+
+
+
 class ManagmentController extends Controller
 {
 
-    public function userCounts(): JsonResponse{
-    $data = [] ;
+protected ManagmentDashboardService $adminService;
+
+public function __construct(ManagmentDashboardService $adminService)
+{
+    $this->leaderService = $leaderService;
+}
+
+public function userCounts(): JsonResponse {
+    $data = [];
     try {
-        $service = $this->accountFactory->userCounts();
-        return Response::Success($data['account'],$data['message'] );
-    }
-    catch (Throwable $th) {
+        $data = $this->adminService->userCounts();
+        return Response::Success($data, $data['message']);
+    } catch (Throwable $th) {
         $message = $th->getMessage();
-        $errors [] = $message;
-        $code = $th->getCode() ?: 400;
-        return Response::ErrorX($data , $message , $errors , $code);
+        $errors[] = $message;
+        return Response::Error($data, $message, $errors);
     }
 }
 
-    public function accounts(): JsonResponse{
-    $data = [] ;
+public function accounts(): JsonResponse {
+    $data = [];
     try {
-        $service = $this->accountFactory->accounts();
-        return Response::Success($data['account'],$data['message'] );
-    }
-    catch (Throwable $th) {
+        $data = $this->adminService->accounts();
+        return Response::Success($data, $data['message']);
+    } catch (Throwable $th) {
         $message = $th->getMessage();
-        $errors [] = $message;
-        $code = $th->getCode() ?: 400;
-        return Response::ErrorX($data , $message , $errors , $code);
+        $errors[] = $message;
+        return Response::Error($data, $message, $errors);
     }
 }
 
-
-    public function numberOfFreezeAccounts(): JsonResponse{
-    $data = [] ;
+public function numberOfFreezeAccounts(): JsonResponse {
+    $data = [];
     try {
-        $service = $this->accountFactory->numberOfFreezeAccounts();
-        return Response::Success($data['account'],$data['message'] );
-    }
-    catch (Throwable $th) {
+        $data = $this->adminService->numberOfFreezeAccounts();
+        return Response::Success($data, $data['message']);
+    } catch (Throwable $th) {
         $message = $th->getMessage();
-        $errors [] = $message;
-        $code = $th->getCode() ?: 400;
-        return Response::ErrorX($data , $message , $errors , $code);
+        $errors[] = $message;
+        return Response::Error($data, $message, $errors);
     }
 }
 
-    public function getDailyTransfers(): JsonResponse{
-    $data = [] ;
+public function getDailyTransfers(): JsonResponse {
+    $data = [];
     try {
-        $service = $this->accountFactory->getDailyTransfers();
-        return Response::Success($data['account'],$data['message'] );
-    }
-    catch (Throwable $th) {
+        $data = $this->adminService->getDailyTransfers();
+        return Response::Success($data, $data['message']);
+    } catch (Throwable $th) {
         $message = $th->getMessage();
-        $errors [] = $message;
-        $code = $th->getCode() ?: 400;
-        return Response::ErrorX($data , $message , $errors , $code);
+        $errors[] = $message;
+        return Response::Error($data, $message, $errors);
     }
 }
 
-    public function getDailyTransition(): JsonResponse{
-    $data = [] ;
+public function getDailyTransition(): JsonResponse {
+    $data = [];
     try {
-        $service = $this->accountFactory->getDailyTransition();
-        return Response::Success($data['account'],$data['message'] );
-    }
-    catch (Throwable $th) {
+        $data = $this->adminService->getDailyTransition();
+        return Response::Success($data, $data['message']);
+    } catch (Throwable $th) {
         $message = $th->getMessage();
-        $errors [] = $message;
-        $code = $th->getCode() ?: 400;
-        return Response::ErrorX($data , $message , $errors , $code);
+        $errors[] = $message;
+        return Response::Error($data, $message, $errors);
     }
 }
+
 
 }
