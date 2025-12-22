@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Accounts\Services\StatusStrategy;
+namespace Modules\Accounts\Services\StatusStatePattern;
 
 
 interface ChangeStatusInterface

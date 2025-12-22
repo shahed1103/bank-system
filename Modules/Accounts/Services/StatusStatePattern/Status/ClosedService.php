@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Accounts\Services\StatusStrategy\Status;
+namespace Modules\Accounts\Services\StatusStatePattern\Status;
 
 use Modules\Accounts\Services\StatusStrategy\ChangeStatusInterface;
 

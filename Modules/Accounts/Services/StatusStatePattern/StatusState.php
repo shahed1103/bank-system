@@ -1,9 +1,9 @@
 <?php
-namespace Modules\Accounts\Services\StatusStrategy;
+namespace Modules\Accounts\Services\StatusStatePattern;
 use Modules\Accounts\Entities\Account;
 use Modules\Accounts\Entities\AccountStatus;
 
-use Modules\Accounts\Services\StatusStrategy\Status\{
+use Modules\Accounts\Services\StatusStatePattern\Status\{
     ActiveService,
     ClosedService,
     FrozenService,
@@ -11,10 +11,8 @@ use Modules\Accounts\Services\StatusStrategy\Status\{
 };
 
 
-class StatusStrategy
+class StatusState
 {
-
-
         public function freezeFac(int $accountId, $request) :array {
         $account = Account::find($accountId);
         $status = AccountStatus::find($account->account_status_id)->name;

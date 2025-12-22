@@ -12,11 +12,11 @@ use App\Models\User;
 use Modules\Accounts\Entities\AccountStatus;
 use Illuminate\Support\Facades\DB;
 use Modules\CustomerService\Events\AccountActivityOccurred;
-use Modules\Accounts\Services\StatusStrategy\StatusStrategy;
+use Modules\Accounts\Services\StatusStatePattern\StatusState;
 
 class AdminService
 {
-    public function __construct(private StatusStrategy $statusStrategy){
+    public function __construct(private StatusState $statusStrategy){
     $this->statusStrategy = $statusStrategy;
 }
 
