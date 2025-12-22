@@ -7,6 +7,5 @@ interface PaymentGatewayInterface
     public function pay(
         float $amount,
         string $currency,
-        array $meta = []
     ): bool;
 }
