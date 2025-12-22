@@ -4,11 +4,12 @@ namespace Modules\Accounts\Entities;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\LogsActivity;
 
 class SavingAccountDetails extends Model
 {
     use HasFactory;
-    use LogsActivity;
+   // use LogsActivity;
     protected $fillable = [
         'name',
         'account_id',

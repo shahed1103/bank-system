@@ -17,14 +17,13 @@ use Modules\Transaction\Services\Types\{
 class AutoApproved  implements TransitionHandlerInterface
 {
 
-private static ManagerApproved $managerApproved; // تحويلها إلى static
-private const CONFERENCE_LIMIT = 10000000;
+private  const CONFERENCE_LIMIT = 1000;
 
 public static function handelWithdraw($account, $request): array {
 
     if ($request['amount'] > self::CONFERENCE_LIMIT) {
-
-        self::$managerApproved->handelWithdraw($account, $request);
+        echo('llllllllllllllllll');
+       return ManagerApproved::handelWithdraw($account, $request);
     }
 
     $transition = Transition::create([
@@ -77,7 +76,7 @@ $transition = Transition::create([
 ]);
 
 $type = AccountType::findOrFail($account->account_type_id)->name;
-         match($type) {
+     return    match($type) {
             'savings' => SavingAccountService::deposit($account , $request),
             'checking' => CheckingService::deposit($account , $request),
             'loan' =>  LoanService::deposit($account , $request),
@@ -112,7 +111,7 @@ $transfer = Transfer::create([
  ]);
 
 $type = AccountType::findOrFail($account->account_type_id)->name;
-         match($type) {
+       return  match($type) {
             'savings' => SavingAccountService::transfer($account , $request , $transfer),
             'checking' => CheckingService::transfer($account , $request , $transfer),
             'loan' =>  LoanService::transfer($account , $request , $transfer),

@@ -16,7 +16,7 @@ use Modules\Accounts\Entities\CheckingAccountDetails;
 //////////////////////////////////can
 public static function withdraw($account , $request, $transition):array {
 
-$checking = CheckingAccountDetails:: where ('account_id' , $account->id)->get();
+$checking = CheckingAccountDetails:: where ('account_id' , $account->id)->first();
 $oldBalance = CheckingAccountService::getOwnBalance($account);
 echo($oldBalance);
 if($request['amount'] > $oldBalance ) {
@@ -38,12 +38,13 @@ if($request['amount'] > $oldBalance ) {
 //////////////////////////////////can
 public static function  deposit($account , $request ):array {
 
-$checking = CheckingAccountDetails:: where ('account_id' , $account->id)->get();
+$checking = CheckingAccountDetails:: where ('account_id' , $account->id)->first();
 $oldBalance = CheckingAccountService::getOwnBalance($account);
 
    $checking-> update([
     'balance' => ($oldBalance + $request['amount'])
    ]);
+   $checking->save();
 
     $message = "your deposit completed successfuly";
    return ['account' =>  $account, 'message' => $message];
@@ -55,7 +56,7 @@ $oldBalance = CheckingAccountService::getOwnBalance($account);
 //////////////////////////////can
 public static function  transfer($account , $request , $transfer):array {
 
-$send_checking = CheckingAccountDetails:: where ('account_id' , $account->id)->get();
+$send_checking = CheckingAccountDetails:: where ('account_id' , $account->id)->first();
 $old_sendBalance = CheckingAccountService::getOwnBalance($account);
 
 if($request['amount'] > $old_sendBalance ) {
@@ -69,6 +70,8 @@ if($request['amount'] > $old_sendBalance ) {
    $send_checking-> update([
     'balance' => ($old_sendBalance - $request['amount'])
    ]);
+   $send_checking->save();
+
 
 $recive_checking = CheckingAccountDetails:: where ('account_id' , $request['recive_account_id'])->get();
 $old_reciveBalance = CheckingAccountService::getOwnBalance($account);
@@ -76,7 +79,7 @@ $old_reciveBalance = CheckingAccountService::getOwnBalance($account);
    $recive_checking-> update([
     'balance' => ($old_reciveBalance + $request['amount'])
    ]);
-
+$recive_checking->save();
 
     $message = "your transfer completed successfuly";
    return ['account' =>  $account, 'message' => $message];

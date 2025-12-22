@@ -4,7 +4,7 @@ namespace Modules\Transaction\Services\Status;
 
 use Modules\Transaction\Services\Strategy\TransitionInterface;
 
-class SuspendService  implements TransitionInterface
+class SuspendedService  implements TransitionInterface
 {
 
 

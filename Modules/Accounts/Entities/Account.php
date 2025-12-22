@@ -11,7 +11,7 @@ use App\Models\User;
 class Account extends Model
 {
     use HasFactory;
-     use LogsActivity;
+//     use LogsActivity;
     protected $fillable = [
         'user_id',
         'account_number',

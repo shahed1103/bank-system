@@ -14,7 +14,8 @@ return [ 'message' => $message];
 }
 
 public function deposit($account , $request): array {
-AutoApproved::handelDeposit ($account , $request);
+return AutoApproved::handelDeposit ($account , $request);
+
     }
 
 public function transfer($account , $request):array {

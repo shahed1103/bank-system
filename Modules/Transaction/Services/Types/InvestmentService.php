@@ -31,6 +31,8 @@ if ($request['amount'] < $oldBalance / 2 ) {
     $invest->update([
         'balance' => ($oldBalance - $request['amount'])
     ]);
+$invest->save();
+
     $message = "your withdraw completed successfully";
      return ['account' =>  $account, 'message' => $message];
 
@@ -55,7 +57,7 @@ $oldBalance = InvestmentAccountService::getOwnBalance($account);
    $invest-> update([
     'balance' => ($oldBalance + $request['amount'])
    ]);
-
+$invest->save();
     $message = "your deposit completed successfuly";
       return ['account' =>  $account, 'message' => $message];
 
@@ -77,14 +79,14 @@ if($request['amount'] > $old_sendBalance ) {
    $send_checking-> update([
     'balance' => ($old_sendBalance - $request['amount'])
    ]);
-
+$send_checking->save();
 $recive_checking = InvestmentDetails:: where ('account_id' , $request['recive_account_id'])->get();
 $old_reciveBalance = InvestmentAccountService::getOwnBalance($account);
 
    $recive_checking-> update([
     'balance' => ($old_reciveBalance + $request['amount'])
    ]);
-
+$recive_checking->save();
 
     $message = "your transfer completed successfuly";
     return ['account' =>  $account, 'message' => $message];

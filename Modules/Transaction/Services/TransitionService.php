@@ -23,7 +23,7 @@ public function __construct( private TransitionStrategy $transitionStrategy){
         $resultData = $statusService->withdraw( $account , $request);
         DB::commit();
 
-        return  $resultData;
+        return  ['account'=>$resultData , 'message' => 'message'];
 
         } catch (Throwable $e) {
             DB::rollBack();
@@ -40,7 +40,7 @@ public function __construct( private TransitionStrategy $transitionStrategy){
         $resultData=$statusService->deposit( $account , $request);
         DB::commit();
 
-        return  $resultData;
+         return  ['account'=>$resultData , 'message' => 'message'];
 
         } catch (Throwable $e) {
             DB::rollBack();
@@ -57,7 +57,7 @@ public function __construct( private TransitionStrategy $transitionStrategy){
         $resultData=$statusService->transfer( $account , $request);
         DB::commit();
 
-        return  $resultData;
+      return  ['account'=>$resultData , 'message' => 'message'];
 
         } catch (Throwable $e) {
             DB::rollBack();

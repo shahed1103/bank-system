@@ -19,7 +19,7 @@ class TransactionController extends Controller
         $data = [];
         try {
             $data = $this->adminService->withdraw($accountId , $request);
-            return Response::Success($data , $data['message']);
+            return Response::Success($data['account'] , $data['message']);
         } catch (Throwable $th) {
             $message = $th->getMessage();
             $errors[] = $message;

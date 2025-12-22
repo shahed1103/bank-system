@@ -1,16 +1,18 @@
 <?php
 
 namespace Modules\Transaction\Services\ChainOfResponsibility;
-
+use Modules\Transaction\Entities\Transition;
+use Modules\Transaction\Entities\Transfer;
 class ManagerApproved  implements TransitionHandlerInterface
 {
 
 public static function handelWithdraw($account , $request): array{
+    echo('oooooooooooooooo');
         $transition = Transition::create([
         'account_id' => $account->id,
         'type' => 'withdraw' ,
         'amount' => $request['amount'],
-        'approv'=> 'false'
+        'approv'=> false
  ]);
 
      $message = "this withdraw need admin approv befer comleted please wait
@@ -18,12 +20,14 @@ public static function handelWithdraw($account , $request): array{
     return ['message' => $message];
 }
 
+
+
 public static function handelDeposit($account , $request): array{
         $transition = Transition::create([
         'account_id' => $account->id,
         'type' => 'deposit' ,
         'amount' => $request['amount'],
-        'approv'=> 'false'
+        'approv'=> false
  ]);
      $message = "this withdraw need admin approv befer comleted please wait
       for recive notefication";
@@ -35,7 +39,7 @@ public static function handelTransfer($account , $request): array{
        'send_account_id' => $account->id,
        'recive_account_id' => $request ['recive_account_id'],
         'amount' => $request['amount'],
-        'approv'=> 'false'
+        'approv'=> false
 
  ]);
      $message = "this withdraw need admin approv befer comleted please wait

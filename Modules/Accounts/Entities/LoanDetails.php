@@ -4,11 +4,12 @@ namespace Modules\Accounts\Entities;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\LogsActivity;
 
 class LoanDetails extends Model
 {
     use HasFactory;
-    use LogsActivity;
+  //  use LogsActivity;
     protected $fillable = [
         'loan_id',
         'requested_principal_amount',
