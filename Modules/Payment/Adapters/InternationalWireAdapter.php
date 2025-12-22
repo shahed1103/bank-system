@@ -14,9 +14,8 @@ class InternationalWireAdapter implements PaymentGatewayInterface
         $this->swift = new SwiftBankSystem();
     }
 
-    public function pay(float $amount, string $currency, array $meta = []): bool
+    public function pay(float $amount, string $currency): bool
     {
-        // 🔥 Adapter Logic
         $result = $this->swift->sendMoney($amount, $currency);
         return $result === 'SUCCESS';
     }

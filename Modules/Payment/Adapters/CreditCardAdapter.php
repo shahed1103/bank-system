@@ -14,9 +14,8 @@ class CreditCardAdapter implements PaymentGatewayInterface
         $this->system = new CreditCardSystem();
     }
 
-    public function pay(float $amount, string $currency, array $meta = []): bool
+    public function pay(float $amount, string $currency): bool
     {
-        // 🔥 Adapter Logic
         return $this->system->chargeCard($amount);
     }
 }
